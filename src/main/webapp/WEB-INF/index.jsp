@@ -12,6 +12,8 @@
 <a href="/match/"><img src="image/apple.jpg" alt="match" width="100" height="100"/></a>
 
 <button type="button" class="btn btn-danger">매칭</button>
+<button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/writeForm'">회원가입</button>
+
 
 </body>
 </html>
