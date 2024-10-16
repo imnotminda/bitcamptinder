@@ -39,7 +39,7 @@ $('#writeBtn').click(function(){
  	
  	if($('#name').val()=='')
  		$('#nameDiv').html('이름 입력');
- 			else if($('#id').val()=='')
+ 			else if($('#username').val()=='')
  		$('#idDiv').html('아이디 입력');
  			else if($('#pwd').val()=='')
  		$('#pwdDiv').html('비밀번호 입력');
@@ -51,7 +51,7 @@ $('#writeBtn').click(function(){
 	        dataType: 'text',
 	        success: function(){
 					alert('회원가입완료');
-					location.href = '/BitcampTinder/user/list'
+					location.href = '/BitcampTinder'
 			},
         error: function(e){
         console.log(e);

@@ -1,5 +1,7 @@
 package user.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,12 @@ import user.service.UserService;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
-	
 
 	@Override
 	public String checkID(String username) {
 		UserDTO userDTO = userDAO.checkId(username);
 		System.out.println("UserDTO: " + userDTO);
-		if(userDTO == null)
+		if (userDTO == null)
 			return "non_exist";
 		else
 			return "exist";
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void write(UserDTO userDTO) {
 		userDAO.write(userDTO);
-		
+
 	}
 
 //	@Override
@@ -40,17 +41,16 @@ public class UserServiceImpl implements UserService {
 //		Map<String, Integer> map = new HashMap<>();
 //		map.put("startNum", startNum);
 //		map.put("endNum", endNum);
-		
-		//DB
-		//List<UserDTO> list = userDAO.list(map);
-		
-		//페이징 처리
-	
+
+	// DB
+	// List<UserDTO> list = userDAO.list(map);
+
+	// 페이징 처리
 
 	@Override
 	public void update(UserDTO userDTO) {
 		userDAO.update(userDTO);
-		
+
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(UserDTO userDTO) {
 		userDAO.delete(userDTO);
-		
+
 	}
 
 	@Override
@@ -69,5 +69,17 @@ public class UserServiceImpl implements UserService {
 		return userDAO.checkDeleteInfo(username);
 	}
 
+	// 로그인 추가 -241016
 
+//	@Override
+//	public UserDTO login(String username, String pwd) {
+//		// TODO Auto-generated method stub
+//		return userDAO.login(String username, String pwd);
+//	
+//	}
+
+	public UserDTO login(Map<String, String> map) {
+		return userDAO.login(map);
+
+	}
 }

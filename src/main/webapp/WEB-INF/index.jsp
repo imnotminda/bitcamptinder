@@ -11,9 +11,16 @@
 <body>
 <a href="/match/"><img src="image/apple.jpg" alt="match" width="100" height="100"/></a>
 
+
 <button type="button" class="btn btn-danger">매칭</button>
-<button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/writeForm'">회원가입</button>
+<% if (session.getAttribute("memId") == null) { %>
+    <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/writeForm'">회원가입</button>
+    <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/loginForm'">로그인</button>
+<% } else { %>
+    <button type="button" class="btn btn-danger" onclick="location.href='/BitcampTinder/user/updateForm'">정보수정</button>
+    <button type="button" class="btn btn-danger" onclick="location.href='/BitcampTinder/user/logout'">로그아웃</button>
+    <button type="button" class="btn btn-danger" onclick="location.href='/BitcampTinder/user/mypage'">마이페이지</button>
 
-
+<% } %>
 </body>
 </html>

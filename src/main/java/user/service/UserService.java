@@ -1,5 +1,7 @@
 package user.service;
 
+import java.util.Map;
+
 import user.bean.UserDTO;
 
 public interface UserService {
@@ -18,4 +20,12 @@ public interface UserService {
 	public void delete(UserDTO userDTO);
 	
 	public UserDTO checkDeleteInfo(String username);
+	
+	//로그인 추가 
+	
+//public UserDTO login(String username, String pwd);
+	
+	public UserDTO login(Map<String, String> map);
+
 }
+
