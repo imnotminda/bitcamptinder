@@ -1,7 +1,5 @@
 package user.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,25 +16,29 @@ import user.service.UserService;
 @RequestMapping(value="user")
 public class UserController {
 
+	//username 변경
+	
 	@Autowired
     private UserService userService;
 	
+	//회원가입
 	@RequestMapping(value="writeForm", method=RequestMethod.GET)
 	public String writeForm() {
 		return "/user/writeForm";
 	}
 	
+	@RequestMapping(value="write", method=RequestMethod.POST)
+	@ResponseBody
+	public void write(@ModelAttribute UserDTO userDTO) {
+		userService.write(userDTO);
+	}
+	//회원아이디 유효성
     @RequestMapping(value="checkId", method=RequestMethod.POST)
     @ResponseBody
-    public String checkId(String id) {
-    	return userService.checkID(id);
+    public String checkId(String username) {
+    	return userService.checkID(username);
     }
     
-    @RequestMapping(value="write", method=RequestMethod.POST)
-    @ResponseBody
-    public void write(@ModelAttribute UserDTO userDTO) {
-    	userService.write(userDTO);
-    }
     
 //    @RequestMapping(value="list", method=RequestMethod.GET)
 //	public String list (@RequestParam(required = false, defaultValue = "1") String pg, Model model) { //페이징처리 무조건 필요하지 않고, 기본값은 1페이지
@@ -47,23 +49,26 @@ public class UserController {
 //		return "/user/list"; // =>/WEB-INF/user/list.jsp
 //	}
     
+    //회원 정보 수정
     @RequestMapping(value="updateForm", method=RequestMethod.GET)
-	public String updateForm(@RequestParam String id, @RequestParam String pg, Model model) {
-    	UserDTO userDTO = userService.getUser(id);
+	public String updateForm(@RequestParam String username, @RequestParam String pg, Model model) {
+    	UserDTO userDTO = userService.getUser(username);
     	model.addAttribute("userDTO", userDTO);
     	model.addAttribute("pg", pg);
 		return "/user/updateForm";
 	}
     
+
     @RequestMapping(value="update", method=RequestMethod.POST)
     @ResponseBody
 	public void update(@ModelAttribute UserDTO userDTO) {
 		userService.update(userDTO);
 	}
     
+    //회원 삭제 
     @RequestMapping(value="checkDeleteInfo", method=RequestMethod.GET)
-	public String checkDeleteInfo(@RequestParam String id, @RequestParam String name, @RequestParam String pwd, Model model ) {
-		UserDTO userDTO = userService.checkDeleteInfo(id);
+	public String checkDeleteInfo(@RequestParam String username, @RequestParam String name, @RequestParam String pwd, Model model ) {
+		UserDTO userDTO = userService.checkDeleteInfo(username);
 		model.addAttribute("userDTO", userDTO);
 		return "/user/delete";
 	}

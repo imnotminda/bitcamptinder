@@ -3,8 +3,9 @@ package user.service;
 import user.bean.UserDTO;
 
 public interface UserService {
-
-	public String checkID(String id);
+//username수정
+	
+	public String checkID(String username);
 
 	public void write(UserDTO userDTO);
 
@@ -12,9 +13,9 @@ public interface UserService {
 	
 	public void update(UserDTO userDTO);
 
-	public UserDTO getUser(String id);
+	public UserDTO getUser(String username);
 
 	public void delete(UserDTO userDTO);
 	
-	public UserDTO checkDeleteInfo(String id);
+	public UserDTO checkDeleteInfo(String username);
 }

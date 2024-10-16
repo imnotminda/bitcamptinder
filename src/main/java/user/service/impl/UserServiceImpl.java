@@ -7,6 +7,8 @@ import user.bean.UserDTO;
 import user.dao.UserDAO;
 import user.service.UserService;
 
+//id username으로바꾸기
+
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -14,8 +16,8 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public String checkID(String id) {
-		UserDTO userDTO = userDAO.checkId(id);
+	public String checkID(String username) {
+		UserDTO userDTO = userDAO.checkId(username);
 		System.out.println("UserDTO: " + userDTO);
 		if(userDTO == null)
 			return "non_exist";
@@ -52,8 +54,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO getUser(String id) {
-		return userDAO.getUser(id);
+	public UserDTO getUser(String username) {
+		return userDAO.getUser(username);
 	}
 
 	@Override
@@ -63,8 +65,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO checkDeleteInfo(String id) {
-		return userDAO.checkDeleteInfo(id);
+	public UserDTO checkDeleteInfo(String username) {
+		return userDAO.checkDeleteInfo(username);
 	}
 
 

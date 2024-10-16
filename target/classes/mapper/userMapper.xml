@@ -6,43 +6,61 @@
  <mapper namespace="user.dao.UserDAO">
  
  	<!-- 회원가입 -->
-	<insert id="write" parameterType="userDTO">
-		INSERT INTO usertable VALUES(#{name}, #{id}, #{pwd})
-	</insert> 
+ 	
+ 	  <insert id="write" parameterType="UserDTO">
+        INSERT INTO date_user (
+            USER_USERNAME, USER_NAME, USER_PWD, USER_AGE, USER_GENDER,
+            USER_EMAIL1, USER_EMAIL2, USER_TEL1, USER_TEL2, USER_TEL3,
+            USER_SPORT, USER_ART, USER_FOOD, USER_MUSIC, USER_HOBBY,
+            USER_TRAVEL, USER_SMOKE, USER_RELIGION, USER_MBTI,
+            REG_DATE, PROFILE_PIC
+            
+        ) VALUES (
+            #{username}, #{name}, #{pwd}, #{age}, #{gender},
+            #{email1}, #{email2}, #{tel1}, #{tel2}, #{tel3},
+            #{sport}, #{art}, #{food}, #{music}, #{hobby},
+            #{travel}, #{smoke}, #{religion}, #{mbti},
+            CURRENT_TIMESTAMP, #{profile_pic}
+        )
+    </insert>
+ 	
 	
 	<!-- 중복 아이디 체크 -->
 	 <select id="checkId" parameterType="String" resultType="userDTO">
-        select * from usertable where id=#{id}
+        select * from DATE_USER where id=#{id}
     </select>
  	
  	<!-- 회원 목록 가져오기 -->
  	<select id="list" resultType="userDTO">
- 		select * from usertable limit #{startNum}, #{endNum}
+ 		select * from DATE_USER limit #{startNum}, #{endNum}
  	</select>
  	
- 	<!-- 총글수 계산 -->
- 	<select id="getTotalA" resultType="int">
- 		select count(*) from usertable
- 	</select>
  	
  	<!-- 회원정보 가져오기 -->
  	<select id="getUser" parameterType="String" resultType="userDTO">
-    	SELECT * FROM usertable WHERE id = #{id}
+    	SELECT * FROM DATE_USER WHERE username = #{username}
 	</select>
  	
  	<!-- 회원정보 수정 -->
- 	<update id="update" parameterType="userDTO">
- 		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
+ 	<update id="update" parameterType="user.bean.UserDTO">
+ 		UPDATE DATE_USER 
+ 		SET name = #{name}, pwd = #{pwd}, age = #{age}, gender = #{gender}, 
+		email1 = #{email1}, email2 = #{email2}, 
+		tel1 = #{tel1}, tel2 = #{tel2}, tel3 = #{tel3}, 
+		sport = #{sport}, art = #{art}, food = #{food}, music = #{music},
+		hobby = #{hobby}, travel = #{travel}, smoke = #{smoke}, 
+		religion = #{religion}, mbti = #{mbti}, movie = #{movie}, reg_date = #{reg_date} 
+ 		WHERE username = #{username}
  	</update>
  	
  	<!-- 회원탈퇴 정보 확인 -->
  	<select id="checkDeleteInfo" parameterType="String" resultType="userDTO">
-    	SELECT * FROM usertable WHERE id = #{id}
+    	SELECT * FROM DATE_USER WHERE username = #{username}
 	</select>
  	
  	<!-- 회원정보 탈퇴 -->
  	<delete id="delete" parameterType="String">
- 		DELETE FROM usertable WHERE id=#{id}
+ 		DELETE FROM DATE_USER WHERE username=#{username}
  	</delete>
  	
  </mapper>
