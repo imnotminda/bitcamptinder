@@ -35,6 +35,7 @@
                     %>
                         <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/mypage">마이페이지</a></li>
+                          <li><a href="${pageContext.request.contextPath}/user/updateForm">회원정보 수정</a></li>
                     <%
                         }
                     %>

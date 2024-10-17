@@ -39,19 +39,29 @@
 		SELECT * FROM DATE_USER WHERE USER_USERNAME = #{user_username}
 	</select>
 
-	<!-- 회원정보 수정 -->
+	<!-- 회원정보 수정 241017-->
 	<update id="update" parameterType="user.bean.UserDTO">
-		UPDATE DATE_USER
-		SET name = #{name}, pwd = #{pwd}, age = #{age}, gender = #{gender},
-		email1 = #{email1}, email2 = #{email2},
-		tel1 = #{tel1}, tel2 = #{tel2}, tel3 = #{tel3},
-		sport = #{sport}, art = #{art}, food = #{food}, music = #{music},
-		hobby =
-		#{hobby}, travel = #{travel}, smoke = #{smoke},
-		religion = #{religion}, mbti = #{mbti}, movie = #{movie}, reg_date =
-		#{reg_date}
-		WHERE username = #{username}
-	</update>
+    UPDATE DATE_USER SET 
+        USER_PWD = #{user_pwd}, 
+        USER_GENDER = #{user_gender}, 
+        USER_EMAIL1 = #{user_email1}, 
+        USER_EMAIL2 = #{user_email2}, 
+        USER_TEL1 = #{user_tel1}, 
+        USER_TEL2 = #{user_tel2}, 
+        USER_TEL3 = #{user_tel3}, 
+        USER_SPORT = #{user_sport}, 
+        USER_ART = #{user_art}, 
+        USER_FOOD = #{user_food}, 
+        USER_MUSIC = #{user_music}, 
+        USER_HOBBY = #{user_hobby}, 
+        USER_TRAVEL = #{user_travel}, 
+        USER_SMOKE = #{user_smoke}, 
+        USER_RELIGION = #{user_religion}, 
+        USER_MBTI = #{user_mbti}, 
+        USER_MOVIE = #{user_movie},
+        REG_DATE = #{reg_date}
+    	WHERE USER_USERNAME = #{user_username} <!-- 아이디를 통해 특정 사용자 선택 -->
+</update>
 
 	<!-- 회원탈퇴 정보 확인 -->
 	<select id="checkDeleteInfo" parameterType="String"
