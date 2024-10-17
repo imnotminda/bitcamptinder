@@ -120,6 +120,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
         <div id="Formwrap">
             <a href="/BitcampTinder/"><img src="../image/apple.jpg" width="25" alt="Tinder" /></a> 
             BitcampTinder 회원정보 수정
+            <input type="hidden" value="${sessionScope.memId}" id="memId"/>
             <form id="updateForm">
                 <div id="inputwrap">
                     <!-- 사용자 정보 출력 테스트 -->

@@ -51,10 +51,10 @@ $(function() {
         if (confirm("정말 로그아웃 하시겠습니까?")) {
             $.ajax({
                 type: 'GET',
-                url: '/BitcampTinder/user/logout',
+                url: '${pageContext.request.contextPath}/user/logout',
                 success: function() {
                     alert('성공적으로 로그아웃 되었습니다.');
-                    location.href = '/BitcampTinder';
+                    location.href = '${pageContext.request.contextPath}';
                 },
                 error: function(e){
                     console.log(e);

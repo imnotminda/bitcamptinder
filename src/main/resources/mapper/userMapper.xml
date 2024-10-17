@@ -42,8 +42,8 @@
 	<!-- 회원정보 수정 241017-->
 	<update id="update" parameterType="user.bean.UserDTO">
     UPDATE DATE_USER SET 
+    	USER_NAME = #{user_name},
         USER_PWD = #{user_pwd}, 
-        USER_GENDER = #{user_gender}, 
         USER_EMAIL1 = #{user_email1}, 
         USER_EMAIL2 = #{user_email2}, 
         USER_TEL1 = #{user_tel1}, 
@@ -59,7 +59,7 @@
         USER_RELIGION = #{user_religion}, 
         USER_MBTI = #{user_mbti}, 
         USER_MOVIE = #{user_movie},
-        REG_DATE = #{reg_date}
+        REG_DATE = CURRENT_TIMESTAMP
     	WHERE USER_USERNAME = #{user_username} <!-- 아이디를 통해 특정 사용자 선택 -->
 </update>
 
