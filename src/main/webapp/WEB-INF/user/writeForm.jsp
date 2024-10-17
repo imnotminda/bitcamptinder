@@ -73,7 +73,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 /* id, name, pwdWrap 항목 컨테이너 스타일 */
 #idwrap, #namewrap, #pwdwrap, #btnwrap, #resetwrap, #categorywrap,
 	#sportwrap, #foodwrap, #hobbywrap, #artwrap, #musicwrap, #smokingwrap,
-	#mbtiwrap, #reliwrap, #genderwrap, #agewrap {
+	#mbtiwrap, #reliwrap, #genderwrap, #agewrap, #moviewrap {
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	color: #333;
@@ -140,45 +140,45 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  1.이름  -->
 					<div id="namewrap">
 						<div>이름 :</div>
-						<input type="text" id="name" name="name" />
+						<input type="text" id="user_name" name="user_name" />
 						<div id="nameDiv"></div>
 					</div>
 					<!--  2.성별 -->
 					<div id="genderwrap">
 						<label>성별 :</label> <input type="radio" id="genderMale"
 							name="gender" value="male"> <label for="genderMale">남</label>
-						<input type="radio" id="genderFemale" name="gender" value="female">
+						<input type="radio" id="genderFemale" name="user_gender" value="female">
 						<label for="genderFemale">여</label>
 						<div id="genderDiv"></div>
 					</div>
 					<!--  3.나이 -->
 					<div id="agewrap">
 						<div>나이 :</div>
-						<input type="text" id="age" name="age" />
+						<input type="text" id="user_age" name="user_age" />
 						<div id="ageDiv"></div>
 					</div>
 					<!--  4.아이디 -->
 					<div id="idwrap">
 						<div>아이디 :</div>
-						<input type="text" id="username" name="username" />
+						<input type="text" id="user_username" name="user_username" />
 						<div id="idDiv"></div>
 					</div>
 					<!--  5.비밀번호 -->
 					<div id="pwdwrap">
 						<div>비밀번호 :</div>
-						<input type="password" id="pwd" name="pwd" />
+						<input type="password" id="user_pwd" name="user_pwd" />
 						<div id="pwdDiv"></div>
 					</div>
 					<!--  6.MBTI -->
 					<div id="mbtiwrap">
 						<div>MBTI :</div>
-						<input type="mbti" id="mbti" name="mbti" />
+						<input type="mbti" id="user_mbti" name="user_mbti" />
 						<div id="mbtiDiv"></div>
 					</div>
 					<!--  7.종교 -->
 					<div id="reliwrap">
 						<div>종교 :</div>
-						<input type="reli" id="religion" name="religion" />
+						<input type="reli" id="user_religion" name="user_religion" />
 						<div id="reliDiv"></div>
 					</div>
 					<!--  8.핸드폰 -->
@@ -188,7 +188,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 						<!-- 핸드폰 번호 제목 -->
 						<div id="telInputs">
 							<!-- 첫 번째 번호 선택 -->
-							<select id="tel1" name="tel1">
+							<select id="user_tel1" name="user_tel1">
 								<optgroup>
 									<option value="010">010</option>
 									<option value="011">011</option>
@@ -197,10 +197,10 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							</select>
 
 							<!-- 두 번째 번호 입력 -->
-							<input type="text" id="tel2" name="tel2" size="3" maxlength="4"
+							<input type="text" id="user_tel2" name="user_tel2" size="3" maxlength="4"
 								style="width: 90px;" />
 							<!-- 세 번째 번호 입력 -->
-							<input type="text" id="tel3" name="tel3" size="3" maxlength="4"
+							<input type="text" id="user_tel3" name="user_tel3" size="3" maxlength="4"
 								style="width: 90px;" />
 						</div>
 						<div id="telDiv"></div>
@@ -211,14 +211,14 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							
 							<div id="emailInputs">
 								<!-- 이메일 첫 번째 입력 -->
-								<input type="text" name="email1" id="email1" size="10"
+								<input type="text" name="user_email1" id="user_email1" size="10"
 									placeholder="이메일 앞부분" /> @
 								<!-- 이메일 두 번째 입력 -->
-								<input type="text" name="email2" id="email2" size="10"
+								<input type="text" name="user_email2" id="user_email2" size="10"
 									placeholder="도메인" />
 
 								<!-- 이메일 세 번째 입력 (선택 옵션) -->
-								<input type="text" name="email3" id="email3" list="email3_list"
+								<input type="text" name="user_email3" id="user_email3" list="email3_list"
 									placeholder="직접 입력 또는 선택" />
 
 								<!-- 이메일 옵션 리스트 -->
@@ -240,7 +240,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="categorywrap">
 							<label for="travelcategory">여행 카테고리 :</label> 
-							<select id="travel" name="travel">
+							<select id="user_travel" name="user_travel">
 								<option value="국내여행">국내여행</option>
 								<option value="해외여행">해외여행</option>
 								<option value="camping">캠핑</option>
@@ -254,7 +254,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div style="display: inline-block; width: 45%;">
 						<div id="sportwrap">
 							<label for="sportcategory">스포츠및 운동:</label> 
-							<select id="sport" name="sport">
+							<select id="user_sport" name="user_sport">
 								<option value="축구">축구</option>
 								<option value="여행">여행</option>
 								<option value="야구">야구</option>
@@ -271,7 +271,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="foodwrap">
 							<label for="foodcategory">요리:</label> 
-							<select id="food" name="food">
+							<select id="user_food" name="user_food">
 								<option value="요리">요리</option>
 								<option value="식사">식사</option>
 								<option value="디저트">디저트</option>
@@ -286,7 +286,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div style="display: inline-block; width: 45%;">
 						<div id="hobbywrap">
 							<label for="hobbycategory">취미 및 여가:</label> 
-							<select id="hobby" name="hobby">
+							<select id="user_hobby" name="user_hobby">
 								<option value="독서">독서</option>
 								<option value="게임">게임</option>
 								<option value="DIY">DIY</option>
@@ -301,7 +301,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="artwrap">
 							<label for="artcategory">음악 취향:</label> 
-							<select id="art" name="art">
+							<select id="user_art" name="user_art">
 								<option value="음악">음악</option>
 								<option value="미술">미술</option>
 								<option value="영화">영화</option>
@@ -316,7 +316,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div style="display: inline-block; width: 45%;">
 						<div id="musicwrap">
 							<label for="musiccategory">취미 및 여가:</label> <select
-								id="music" name="music">
+								id="user_music" name="user_music">
 								<option value="클래식">클래식</option>
 								<option value="팝">팝</option>
 								<option value="록">록</option>
@@ -328,14 +328,34 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							<div id="musiccategoryDiv"></div>
 						</div>
 					</div>
-					<!-- 16. 흡연 -->
-					<div id="smokingwrap">
-						<label>흡연 :</label> <input type="radio" id="smokingYes"
-							name="smoke" value="yes"> <label for="smokingYes">유</label>
-						<input type="radio" id="smokingNo" name="smoke" value="mokingNo">
-						<label for="mokingNo">무</label>
-						<div id="smokingDiv"></div>
-					</div>
+			<div style="display: inline-block; width: 100%;">
+      <!-- 흡연 -->
+    <div id="smokingwrap" style="display: inline-block; width: 45%; vertical-align: top;">
+        <label>흡연 :</label>
+        <div style="display: inline-block;">
+            <input type="radio" id="smokingYes" name="user_smoke" value="yes">
+            <label for="smokingYes">유</label>
+        </div>
+        <div style="display: inline-block;">
+            <input type="radio" id="smokingNo" name="user_smoke" value="no">
+            <label for="smokingNo">무</label>
+        </div>
+        <div id="smokingDiv"></div>
+    </div>
+
+
+    <!-- 영화 -->
+    <div id="moviewrap" style="display: inline-block; width: 45%; vertical-align: top;">
+        <label for="moviecategory">영화 :</label>
+        <select id="user_movie" name="user_movie">
+            <option value="공포">공포</option>
+            <option value="로맨스">로맨스</option>
+            <option value="애니메이션">애니메이션</option>
+            <option value="액션">액션</option>
+        </select>
+        <div id="moviecategoryDiv"></div>
+    </div>
+</div>
 		<!-- 수정 x -->
 		<div id="btnwrap">
 			<button type="button" id="writeBtn" style="width: 100px; height: 30px;">회원가입</button>
