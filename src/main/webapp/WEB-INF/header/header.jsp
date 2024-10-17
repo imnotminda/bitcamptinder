@@ -18,6 +18,8 @@
             </div>
         
             <div class="right-menu">
+               <input type="button" value="매칭" id="autoMatchBtn" />
+               <input type="hidden" value="${sessionScope.memId}" id="memId"/>
                 <ul>
                     <%
                         // 세션에서 로그인 여부 확인
@@ -38,5 +40,7 @@
             </div>
         </nav>
     </header>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../js/autoMatch.js"></script>
 </body>
 </html>
