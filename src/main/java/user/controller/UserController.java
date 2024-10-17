@@ -47,8 +47,8 @@ public class UserController {
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
 	public String login(@RequestParam("username") String username, 
-			@RequestParam("pwd") String pwd,
-			HttpSession session) {
+						@RequestParam("pwd") String pwd,
+						HttpSession session) {
 		Map<String, String> map = new HashMap<>();
 		map.put("username", username);
 		map.put("pwd", pwd);
@@ -58,10 +58,13 @@ public class UserController {
 		return "fail"; // 실패 시 "fail" 문자열 반환
 		} else {
 			// 로그인 성공 시 세션에 사용자 정보 저장
-			session.setAttribute("memId", userDTO.getUsername());
-			session.setAttribute("memName", userDTO.getName());
+			session.setAttribute("memId", userDTO.getUser_username());
+			session.setAttribute("memName", userDTO.getUser_name());
 			//session.setAttribute("memEmail", userDTO.getEmail1() + "@" + userDTO.getEmail2());
 			session.setAttribute("memDTO", userDTO);
+			
+		    System.out.println("memId: " + session.getAttribute("memId"));
+		    System.out.println("memName: " + session.getAttribute("memName"));
 			return "success"; // 성공 시 "success" 문자열 반환
 		}
 
