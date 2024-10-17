@@ -19,7 +19,16 @@ public class MatchServiceImpl implements MatchService {
 
 	@Override
 	public List<UserDTO> getMatchingUsers(String currentUser) {
-		UserDTO currentUserDetails = matchDAO.getUser(currentUser);
+		 // Convert currentUser string back to int (because we are using user_id)
+	    int currentUserId = Integer.parseInt(currentUser);
+
+	    // Use the correct method to fetch by user_id
+	    UserDTO currentUserDetails = matchDAO.getUserById(currentUserId); // Query by user_id
+
+	    if (currentUserDetails == null) {
+	        System.err.println("User not found: " + currentUserId);
+	        throw new RuntimeException("User not found: " + currentUserId);
+	    }
 		
 		String currentUserSport = currentUserDetails.getUser_sport();
 		String currentUserArt = currentUserDetails.getUser_art();
@@ -32,50 +41,61 @@ public class MatchServiceImpl implements MatchService {
 		String currentUserMbti = currentUserDetails.getUser_mbti();
 		String currentUserMovie = currentUserDetails.getUser_movie();
 		
-		List<UserDTO> otherUsers = matchDAO.getAllUsersExcept(currentUser);
+		List<UserDTO> otherUsers = matchDAO.getAllUsersExcept(currentUserId);
+		
+		// Check if there are other users
+	    if (otherUsers == null || otherUsers.isEmpty()) {
+	        return new ArrayList<>(); // Return an empty list if no other users are found
+	    }
+		
 	    List<UserDTO> matchedUsers = new ArrayList<>();
 		
 	    for (UserDTO otherUser : otherUsers) {
+	    	if (otherUser == null) {
+	            continue; // Skip null users if any
+	        }
 	    	int matchScore = 0;
 
-	    	if (currentUserDetails.getUser_sport().equals(otherUser.getUser_sport())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_art().equals(otherUser.getUser_art())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_food().equals(otherUser.getUser_food())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_music().equals(otherUser.getUser_music())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_hobby().equals(otherUser.getUser_hobby())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_travel().equals(otherUser.getUser_travel())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_smoke().equals(otherUser.getUser_smoke())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_religion().equals(otherUser.getUser_religion())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_mbti().equals(otherUser.getUser_mbti())) {
-	    		matchScore += 10;
-	    	}
-	    	if (currentUserDetails.getUser_movie().equals(otherUser.getUser_movie())) {
-	    		matchScore += 10;
-	    	}
+	    	 if (currentUserSport.equals(otherUser.getUser_sport())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserArt.equals(otherUser.getUser_art())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserFood.equals(otherUser.getUser_food())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserMusic.equals(otherUser.getUser_music())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserHobby.equals(otherUser.getUser_hobby())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserTravel.equals(otherUser.getUser_travel())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserSmoke.equals(otherUser.getUser_smoke())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserReligion.equals(otherUser.getUser_religion())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserMbti.equals(otherUser.getUser_mbti())) {
+	             matchScore += 10;
+	         }
+	         if (currentUserMovie.equals(otherUser.getUser_movie())) {
+	             matchScore += 10;
+	         }
 
+	         System.out.println("Current User: " + currentUser);
+	         System.out.println("Current User Details: " + currentUserDetails);
 	    	otherUser.setMatchScore(matchScore);
 	    	matchedUsers.add(otherUser);
 	    }
 	    
         matchedUsers.sort((u1, u2) -> Integer.compare(u2.getMatchScore(), u1.getMatchScore()));
         
-        return null;
+        return matchedUsers;
 
 	}
 }
