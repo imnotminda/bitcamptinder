@@ -1,15 +1,15 @@
 $(function() {
     //아이디 중복체크
-$('#username').focusout(function() {
+$('#user_username').focusout(function() {
     $('#idDiv').empty();
     
-     if ($('#username').val() == '')
+     if ($('#user_username').val() == '')
         $('#idDiv').html('먼저 아이디 입력');
    	else 
         $.ajax({
             type: 'post',
             url: '/BitcampTinder/user/getExistId',
-           data: 'username='+$('#username').val(), 
+           data: 'user_username='+$('#user_username').val(), 
     dataType: 'text',
     success: function(data){
 			//alert(data);
@@ -37,9 +37,9 @@ $('#writeBtn').click(function(){
  	$('#idDiv').empty();
  	$('#pwdDiv').empty();
  	
- 	if($('#name').val()=='')
+ 	if($('#user_name').val()=='')
  		$('#nameDiv').html('이름 입력');
- 			else if($('#username').val()=='')
+ 			else if($('#user_username').val()=='')
  		$('#idDiv').html('아이디 입력');
  			else if($('#pwd').val()=='')
  		$('#pwdDiv').html('비밀번호 입력');

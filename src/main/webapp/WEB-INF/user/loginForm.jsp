@@ -180,13 +180,12 @@ $(function() {
 					},
 					dataType : 'text',
 					success: function(data) {
-						   alert('로그인 성공'); // 수정된 부분
-		                    if (data.trim() === 'fail') { 
+		            	if (data.trim() === 'fail') { 
 							$('#loginResult').html('아이디 또는 비밀번호가 틀립니다.');
 							$('#loginResult').css('font-size', '10px');
 							$('#loginResult').css('padding', '10px');
 						} else {
-							// 로그인 성공 시 메인 페이지로 이동
+							alert('로그인 성공'); // 수정된 부분
 							location.href = '/BitcampTinder';
 						}
 					},

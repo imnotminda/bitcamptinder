@@ -8,23 +8,21 @@
 	<!-- 회원가입 -->
 
 	<insert id="write" parameterType="UserDTO">
-		INSERT INTO date_user (
-		USER_USERNAME, USER_NAME, USER_PWD, USER_AGE, USER_GENDER,
-		USER_EMAIL1, USER_EMAIL2, USER_TEL1, USER_TEL2, USER_TEL3,
-		USER_SPORT, USER_ART, USER_FOOD, USER_MUSIC, USER_HOBBY,
-		USER_TRAVEL, USER_SMOKE, USER_RELIGION, USER_MBTI,
-		REG_DATE, PROFILE_PIC
+    INSERT INTO date_user (
+        USER_USERNAME, USER_NAME, USER_PWD, USER_AGE, USER_GENDER,
+        USER_EMAIL1, USER_EMAIL2, USER_TEL1, USER_TEL2, USER_TEL3,
+        USER_SPORT, USER_ART, USER_FOOD, USER_MUSIC, USER_HOBBY,
+        USER_TRAVEL, USER_SMOKE, USER_RELIGION, USER_MBTI,
+        REG_DATE, PROFILE_PIC, USER_MOVIE
+    ) VALUES (
+        #{user_username}, #{user_name}, #{user_pwd}, #{user_age}, #{user_gender},
+        #{user_email1}, #{user_email2}, #{user_tel1}, #{user_tel2}, #{user_tel3},
+        #{user_sport}, #{user_art}, #{user_food}, #{user_music}, #{user_hobby},
+        #{user_travel}, #{user_smoke}, #{user_religion}, #{user_mbti},
+        CURRENT_TIMESTAMP, #{profile_pic}, #{user_movie}
+    )
 
-		) VALUES (
-		#{username}, #{name}, #{pwd}, #{age}, #{gender},
-		#{email1}, #{email2}, #{tel1}, #{tel2}, #{tel3},
-		#{sport}, #{art}, #{food}, #{music}, #{hobby},
-		#{travel}, #{smoke}, #{religion}, #{mbti},
-		CURRENT_TIMESTAMP, #{profile_pic}
-		)
-	</insert>
-
-
+</insert>
 	<!-- 중복 아이디 체크 -->
 	<select id="checkId" parameterType="String" resultType="userDTO">
 		select * from DATE_USER where username=#{username}
@@ -38,7 +36,7 @@
 
 	<!-- 회원정보 가져오기 -->
 	<select id="getUser" parameterType="String" resultType="userDTO">
-		SELECT * FROM DATE_USER WHERE username = #{username}
+		SELECT * FROM DATE_USER WHERE USER_USERNAME = #{username}
 	</select>
 
 	<!-- 회원정보 수정 -->

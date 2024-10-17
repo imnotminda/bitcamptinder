@@ -34,4 +34,5 @@ public class UserDTO {
 	private Date reg_date;
 	private String profile_pic;
 	private String user_movie;
+	private int matchScore;
 }
