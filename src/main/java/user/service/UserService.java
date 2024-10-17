@@ -1,23 +1,31 @@
 package user.service;
 
-import java.util.List;
 import java.util.Map;
 
 import user.bean.UserDTO;
 
 public interface UserService {
-
-	public String checkID(String id);
+//username수정
+	
+	public String checkID(String username);
 
 	public void write(UserDTO userDTO);
 
-	public Map<String, Object> list(String pg);
+	//public Map<String, Object> list(String pg);
 	
 	public void update(UserDTO userDTO);
 
-	public UserDTO getUser(String id);
+	public UserDTO getUser(String username);
 
 	public void delete(UserDTO userDTO);
 	
-	public UserDTO checkDeleteInfo(String id);
+	public UserDTO checkDeleteInfo(String username);
+	
+	//로그인 추가 
+	
+//public UserDTO login(String username, String pwd);
+	
+	public UserDTO login(Map<String, String> map);
+
 }
+

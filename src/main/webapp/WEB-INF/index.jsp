@@ -12,6 +12,7 @@
 <body>
 <c:import url="/WEB-INF/header/header.jsp"></c:import>
 
+
 <div class="introduction" id="section1">
     <img src="${pageContext.request.contextPath}/image/BA.jpg" alt="배너">
 </div>
@@ -160,5 +161,6 @@ window.addEventListener('touchmove', function(event) {
 
 let previousTouchY = 0; // touchmove를 위해 추가된 변수
 </script>
+>>>>>>> 4edaaeba8f6910032ea87c808610fcee9dfa753e
 </body>
 </html>

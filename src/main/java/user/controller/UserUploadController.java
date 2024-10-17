@@ -193,11 +193,13 @@ public class UserUploadController {
 //				e.printStackTrace();
 //			}
 			
+			//241015 오혜진 추가
 			UserUploadDTO dto = new UserUploadDTO();
-			dto.setImageName(userUploadDTO.getImageName());
-			dto.setImageContent(userUploadDTO.getImageContent());
-			dto.setImageFileName(imageFileName);
-			dto.setImageOriginalFileName(imageOriginalFileName);
+			dto.setProfile_pic(userUploadDTO.getProfile_pic());
+//			dto.setImageName(userUploadDTO.getImageName());
+//			dto.setImageContent(userUploadDTO.getImageContent());
+//			dto.setImageFileName(imageFileName);
+//			dto.setImageOriginalFileName(imageOriginalFileName);
 			
 			imageUploadList.add(dto);
 			

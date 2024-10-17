@@ -12,7 +12,7 @@
 	<annotation-driven />
 	
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF" />
+		<beans:property name="prefix" value="/WEB-INF/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
@@ -24,6 +24,7 @@
 	<context:component-scan base-package="user.controller" />
 	<context:component-scan base-package="user.dao" />
 	
+
 	<resources location="/WEB-INF/css/" mapping="/css/**"></resources>
 	<resources location="/WEB-INF/header/" mapping="/header/**"></resources>
 	<resources location="/WEB-INF/js/" mapping="/js/**"></resources>
