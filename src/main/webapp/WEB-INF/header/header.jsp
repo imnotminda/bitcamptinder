@@ -22,15 +22,14 @@
                     <%
                         // 세션에서 로그인 여부 확인
                         String memId = (String) session.getAttribute("memId");
-                    	out.println("세션에 저장된 memId: " + memId);
                         if (memId == null) { // 로그인이 되어 있지 않으면
                     %>
                         <li><a href="${pageContext.request.contextPath}/user/loginForm">로그인</a></li>
                     <%
                         } else { // 로그인이 되어 있으면
                     %>
+                        <li><a href="${pageContext.request.contextPath}/user/feedForm">${memId }님</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-                        <li><a href="${pageContext.request.contextPath}/user/mypage">마이페이지</a></li>
                     <%
                         }
                     %>
