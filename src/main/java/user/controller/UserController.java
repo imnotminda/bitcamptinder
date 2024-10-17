@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import user.bean.UserDTO;
+import user.service.MailService;
 import user.service.UserService;
 
 @Controller
@@ -25,6 +26,8 @@ public class UserController {
 	// username 변경
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MailService mailService;
 
 	// 회원가입
 	@RequestMapping(value = "writeForm", method = RequestMethod.GET)
@@ -69,7 +72,12 @@ public class UserController {
 		}
 
 	}
-
+	
+	@GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "/index";
+    }
 
 	// 회원아이디 유효성
 	@RequestMapping(value = "checkId", method = RequestMethod.POST)
@@ -116,6 +124,14 @@ public class UserController {
 	@ResponseBody
 	public void delete(@ModelAttribute UserDTO userDTO) {
 		userService.delete(userDTO);
+	}
+	
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(@RequestParam String email) {
+	    System.out.println("이메일 인증 요청이 들어옴!");
+	    System.out.println("이메일 인증 이메일 : " + email);
+	    return mailService.joinEmail(email);
 	}
 	
 }
