@@ -24,9 +24,10 @@
 	<context:component-scan base-package="user.controller" />
 	<context:component-scan base-package="user.dao" />
 	
-	<resources location="/resources/css/" mapping="/css/**"></resources>
-	<resources location="/resources/js/" mapping="/js/**"></resources>
-	<resources location="/resources/image/" mapping="/image/**"></resources>
+	<resources location="/WEB-INF/css/" mapping="/css/**"></resources>
+	<resources location="/WEB-INF/header/" mapping="/header/**"></resources>
+	<resources location="/WEB-INF/js/" mapping="/js/**"></resources>
+	<resources location="/WEB-INF/image/" mapping="/image/**"></resources>
 	<resources location="/resources/storage/" mapping="/storage/**"></resources>
 	
 </beans:beans>
