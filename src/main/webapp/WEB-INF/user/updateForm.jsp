@@ -231,11 +231,11 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 						<div id="foodwrap">
 							<label for="foodcategory">요리:</label> 
 							<select id="user_food" name="user_food">
-								<option value="요리">요리</option>
-								<option value="식사">식사</option>
-								<option value="디저트">디저트</option>
-								<option value="채식">채식</option>
-								<option value="세계">세계 음식 탐방</option>
+								  <option value="요리" ${userDTO.user_food == '요리' ? 'selected' : ''}>요리</option>
+            <option value="식사" ${userDTO.user_food == '식사' ? 'selected' : ''}>식사</option>
+            <option value="디저트" ${userDTO.user_food == '디저트' ? 'selected' : ''}>디저트</option>
+            <option value="채식" ${userDTO.user_food == '채식' ? 'selected' : ''}>채식</option>
+            <option value="세계" ${userDTO.user_food == '세계' ? 'selected' : ''}>세계 음식 탐방</option>
 							</select>
 							<div id="foodcategoryDiv"></div>
 						</div>
