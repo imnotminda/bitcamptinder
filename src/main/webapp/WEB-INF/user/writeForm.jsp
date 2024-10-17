@@ -230,8 +230,10 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 								</datalist>
 
 								<div id="btnwrap">
+									<input type="text" id="emailCheckInput" placeholder="인증번호 6자리" disabled="disabled" maxlength="6">
 									<button type="button" id="emailBtn"
 										style="width: 80px; height: 30px;">인증</button>
+										<span id="emailWarning"></span>
 								</div>
 							</div>
 						</div>
@@ -370,5 +372,48 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 	</div>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="../js/write.js"></script>
+	 <script type="text/javascript">
+        // Define the mailCheckUrl variable here
+        var mailCheckUrl = '${pageContext.request.contextPath}/user/mailCheck';
+    </script>
+	<script type="text/javascript">
+	$('#emailBtn').click(function() {
+		 const email = $('#user_email1').val() + '@' + $('#user_email2').val();
+		    console.log('완성된 이메일 : ' + email);
+		    const checkInput = $('#emailCheckInput');
+		    
+		    $.ajax({
+		        type: 'GET',
+		        url: mailCheckUrl + '?email=' + encodeURIComponent(email), // Use the variable here
+		        success: function(data) {
+		            console.log("data : " + data);
+		            checkInput.attr('disabled', false);
+		            code = data;
+		            alert('인증번호가 발송되었습니다.');
+		        },
+		        error: function(xhr, status, error) {
+		            console.error("Error occurred: " + error);
+		            alert('이메일 인증에 실패했습니다. 다시 시도해주세요.');
+		        }
+		    });
+		});
+	$('#emailCheckInput').blur(function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $('#emailWarning');
+		
+		if(inputCode === code){
+			$resultMsg.html('인증번호가 일치합니다.');
+			$resultMsg.css('color','green');
+			$('#emailBtn').attr('disabled',true);
+			$('#user_email1').attr('readonly',true);
+			$('#user_email2').attr('readonly',true);
+			$('#user_email2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+	         $('#user_email2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+		}else{
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+			$resultMsg.css('color','red');
+		}
+	});
+	</script>
 </body>
 </html>
