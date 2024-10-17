@@ -122,7 +122,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
             BitcampTinder 회원정보 수정
             <form id="updateForm">
                 <div id="inputwrap">
-                    <!-- 사용자 정보 출력 -->
+                    <!-- 사용자 정보 출력 테스트 -->
                     <div id="namewrap">
                         <div>이름 :</div>
                         <input type="text" id="user_name" name="user_name" value="${userDTO.user_name}" />
