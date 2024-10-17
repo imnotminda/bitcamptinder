@@ -21,7 +21,7 @@ public class MatchController {
 	private MatchService matchService;
 	
 	//자동매칭
-	@GetMapping("/match/user/autoMatch")
+	@GetMapping("/BitcampTinder/user/autoMatch")
 	@ResponseBody
 	public List<UserDTO> autoMatch (HttpSession session) {
 		String currentUser = (String) session.getAttribute("memId");
