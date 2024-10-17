@@ -38,7 +38,7 @@
 
 	<!-- 회원정보 가져오기 -->
 	<select id="getUser" parameterType="String" resultType="userDTO">
-		SELECT * FROM DATE_USER WHERE username = #{username}
+		SELECT * FROM DATE_USER WHERE USER_USERNAME = #{username}
 	</select>
 
 	<!-- 회원정보 수정 -->

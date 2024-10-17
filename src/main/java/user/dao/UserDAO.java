@@ -25,6 +25,7 @@ public interface UserDAO {
 	public void delete(UserDTO userDTO);
 
 	public UserDTO checkDeleteInfo(String username);
+	
 
 
 	//유저 로그인 -241016

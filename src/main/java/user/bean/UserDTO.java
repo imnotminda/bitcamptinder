@@ -37,6 +37,7 @@ public class UserDTO {
 	private String movie;
 	private Date reg_date;
 	private String profile_pic;
+	private int matchScore;
 	
 	
 	
