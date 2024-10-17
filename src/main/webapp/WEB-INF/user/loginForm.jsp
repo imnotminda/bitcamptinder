@@ -139,13 +139,13 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  4.아이디 -->
 					<div id="idwrap">
 						<div>아이디 :</div>
-						<input type="text" id="username" name="username" />
+						<input type="text" id="username" name="user_username" />
 						<div id="idDiv"></div>
 					</div>
 					<!--  5.비밀번호 -->
 					<div id="pwdwrap">
 						<div>비밀번호 :</div>
-						<input type="password" id="pwd" name="pwd" />
+						<input type="password" id="pwd" name="user_pwd" />
 						<div id="pwdDiv"></div>
 					</div>
 					
@@ -175,8 +175,8 @@ $(function() {
 					type: 'POST',
 					url: '/BitcampTinder/user/login',  // 스프링 컨트롤러의 URL로 변경
 					data: {
-						username: $('#username').val(),
-						pwd: $('#pwd').val()
+						user_username: $('#username').val(),
+						user_pwd: $('#pwd').val()
 					},
 					dataType : 'text',
 					success: function(data) {

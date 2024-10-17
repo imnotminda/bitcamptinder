@@ -10,8 +10,11 @@ import user.bean.UserDTO;
 @Mapper
 public interface MatchDAO {
 
-	UserDTO getUser(@Param("user_id") String user_id);
+	 UserDTO getUserById(@Param("user_id") int user_id); // Method to get user by user_id
+	    
+	 UserDTO getUserByUsername(@Param("user_username") String user_username); // Method to get user by username
+	    
+	 List<UserDTO> getAllUsersExcept(@Param("user_id") int user_id); // Method to get all users except the current user by ID
 
-	List<UserDTO> getAllUsersExcept(@Param("user_id")String user_id);
 
 }

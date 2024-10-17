@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,21 +47,20 @@ public class UserController {
 	// 241016 로그인 로직 - 오혜진
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
-	public String login(@RequestParam("username") String username, 
-						@RequestParam("pwd") String pwd,
+	public String login(@RequestParam("user_username") String username, 
+						@RequestParam("user_pwd") String pwd,
 						HttpSession session) {
 		Map<String, String> map = new HashMap<>();
-		map.put("username", username);
-		map.put("pwd", pwd);
+		map.put("user_username", username);
+		map.put("user_pwd", pwd);
 		UserDTO userDTO = userService.login(map); // Map 전달
 
 		if (userDTO == null) {
 		return "fail"; // 실패 시 "fail" 문자열 반환
 		} else {
 			// 로그인 성공 시 세션에 사용자 정보 저장
-			session.setAttribute("memId", userDTO.getUser_username());
-			session.setAttribute("memName", userDTO.getUser_name());
-			//session.setAttribute("memEmail", userDTO.getEmail1() + "@" + userDTO.getEmail2());
+			session.setAttribute("memId", (userDTO.getUser_id()));
+			session.setAttribute("memName", userDTO.getUser_username());
 			session.setAttribute("memDTO", userDTO);
 			
 		    System.out.println("memId: " + session.getAttribute("memId"));
@@ -116,5 +116,5 @@ public class UserController {
 	public void delete(@ModelAttribute UserDTO userDTO) {
 		userService.delete(userDTO);
 	}
-
+	
 }

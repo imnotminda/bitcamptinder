@@ -38,7 +38,7 @@
 
 	<!-- 회원정보 가져오기 -->
 	<select id="getUser" parameterType="String" resultType="userDTO">
-		SELECT * FROM DATE_USER WHERE USER_USERNAME = #{username}
+		SELECT * FROM DATE_USER WHERE USER_USERNAME = #{user_username}
 	</select>
 
 	<!-- 회원정보 수정 -->
@@ -67,8 +67,8 @@
 	</delete>
 
 	<!-- 회원 로그인 / 241016 오혜진 -->
-	<select id="login" parameterType="map" resultType="UserDTO">
-		SELECT * FROM date_user WHERE USER_USERNAME = #{username} AND USER_PWD = #{pwd}
+	<select id="login" parameterType="map" resultType="userDTO">
+		SELECT * FROM date_user WHERE USER_USERNAME = #{user_username} AND USER_PWD = #{user_pwd}
 		
 	</select>
 
