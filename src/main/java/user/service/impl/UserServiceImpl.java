@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 
 	@Override
-	public String checkID(String username) {
-		UserDTO userDTO = userDAO.checkId(username);
+	public String checkID(String user_username) {
+		UserDTO userDTO = userDAO.checkId(user_username);
 		System.out.println("UserDTO: " + userDTO);
 		if (userDTO == null)
 			return "non_exist";
@@ -47,6 +47,8 @@ public class UserServiceImpl implements UserService {
 
 	// 페이징 처리
 
+	
+	
 	@Override
 	public void update(UserDTO userDTO) {
 		userDAO.update(userDTO);
@@ -54,8 +56,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO getUser(String username) {
-		return userDAO.getUser(username);
+	public UserDTO getUser(String user_username) {
+		return userDAO.getUser(user_username);
 	}
 
 	@Override
@@ -65,21 +67,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO checkDeleteInfo(String username) {
-		return userDAO.checkDeleteInfo(username);
+	public UserDTO checkDeleteInfo(String user_username) {
+		return userDAO.checkDeleteInfo(user_username);
 	}
 
 	// 로그인 추가 -241016
-
-//	@Override
-//	public UserDTO login(String username, String pwd) {
-//		// TODO Auto-generated method stub
-//		return userDAO.login(String username, String pwd);
-//	
-//	}
 
 	public UserDTO login(Map<String, String> map) {
 		return userDAO.login(map);
 
 	}
+	
+	
 }

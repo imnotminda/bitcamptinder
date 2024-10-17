@@ -150,7 +150,9 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					</div>
 					
 					<div id="btnwrap">
-			<button type="button" id="loginBtn" style="width: 100px; height: 30px;">로그인</button></div>
+			<button type="button" id="loginBtn" style="width: 100px; height: 30px;">로그인</button>
+			<button type="button" style="width: 100px; height: 30px;" onclick="location.href='http://localhost:8080/BitcampTinder/user/writeForm'">회원가입</button>
+ </div>
  <div id="loginResult"></div>
 </div>
 </form>
