@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>BitcampTinder: 회원가입</title>
-<!-- <link rel="stylesheet" href="../css/user.css"> -->
+
 <style>
 #btnwrap {
 	display: flex;
@@ -120,13 +122,13 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
         <div id="Formwrap">
             <a href="/BitcampTinder/"><img src="../image/apple.jpg" width="25" alt="Tinder" /></a> 
             BitcampTinder 회원정보 수정
-            <input type="hidden" value="${sessionScope.memId}" id="memId"/>
             <form id="updateForm">
+            	<input type="hidden" id="memId" value="${sessionscope.memId }" />
                 <div id="inputwrap">
                     <!-- 사용자 정보 출력 테스트 -->
                     <div id="namewrap">
                         <div>이름 :</div>
-                        <input type="text" id="user_name" name="user_name" value="${userDTO.user_name}" />
+                        <input type="text" id="user_name" name="user_name" value="${userDTO.user_name}" readonly />
                         <div id="nameDiv"></div>
                     </div>
                <!--      <div id="genderwrap">
@@ -155,7 +157,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
                         
                     <div id="mbtiwrap">
                         <div>MBTI :</div>
-                        <input type="mbti" id="user_mbti" name="user_mbti"  />
+                        <input type="mbti" id="user_mbti" name="user_mbti" value="${userDTO.user_mbti}" />
                         <div id="mbtiDiv"></div>
                     </div>
                     <div id="reliwrap">
@@ -195,125 +197,132 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
                     
                     
                  <!-- 선택사항 -->
-                 					<!--  10.여행 -->
-					<div style="display: inline-block; width: 45%; margin-right: 5%;">
-						<div id="categorywrap">
-							<label for="travelcategory">여행 카테고리 :</label> 
-							<select id="user_travel" name="user_travel">
-								<option value="국내여행">국내여행</option>
-								<option value="해외여행">해외여행</option>
-								<option value="camping">캠핑</option>
-								<option value="배낭여행">배낭여행</option>
-								<option value="자연탐방">자연탐방</option>
-							</select>
-							<div id="travelcategoryDiv"></div>
-						</div>
-					</div>
-						<!--  11.스포츠 -->
-					<div style="display: inline-block; width: 45%;">
-						<div id="sportwrap">
-							<label for="sportcategory">스포츠및 운동:</label> 
-							<select id="user_sport" name="user_sport">
-								<option value="축구">축구</option>
-								<option value="여행">여행</option>
-								<option value="야구">야구</option>
-								<option value="테니스">테니스</option>
-								<option value="수영">수영</option>
-								<option value="요가">요가</option>
-								<option value="사이클링">사이클링</option>
-								<option value="헬스/피트니스">헬스/피트니스</option>
-							</select>
-							<div id="sportcategoryDiv"></div>
-						</div>
-					</div>
-					<!-- 12.음식 -->
-					<div style="display: inline-block; width: 45%; margin-right: 5%;">
-						<div id="foodwrap">
-							<label for="foodcategory">요리:</label> 
-							<select id="user_food" name="user_food">
-								  <option value="요리" ${userDTO.user_food == '요리' ? 'selected' : ''}>요리</option>
-            <option value="식사" ${userDTO.user_food == '식사' ? 'selected' : ''}>식사</option>
-            <option value="디저트" ${userDTO.user_food == '디저트' ? 'selected' : ''}>디저트</option>
-            <option value="채식" ${userDTO.user_food == '채식' ? 'selected' : ''}>채식</option>
-            <option value="세계" ${userDTO.user_food == '세계' ? 'selected' : ''}>세계 음식 탐방</option>
-							</select>
-							<div id="foodcategoryDiv"></div>
-						</div>
-					</div>
-					<!-- 13.취미 및 여가  -->
+                 	<!-- 여행 카테고리 -->
+<div style="display: inline-block; width: 45%; margin-right: 5%;">
+    <div id="categorywrap">
+        <label for="travelcategory">여행 카테고리 :</label> 
+        <select id="user_travel" name="user_travel">
+            <option value="국내여행" <c:if test="${userDTO.user_travel == '국내여행'}">selected</c:if>>국내여행</option>
+            <option value="해외여행" <c:if test="${userDTO.user_travel == '해외여행'}">selected</c:if>>해외여행</option>
+            <option value="camping" <c:if test="${userDTO.user_travel == 'camping'}">selected</c:if>>캠핑</option>
+            <option value="배낭여행" <c:if test="${userDTO.user_travel == '배낭여행'}">selected</c:if>>배낭여행</option>
+            <option value="자연탐방" <c:if test="${userDTO.user_travel == '자연탐방'}">selected</c:if>>자연탐방</option>
+        </select>
+        <div id="travelcategoryDiv"></div>
+    </div>
+</div>
 
-					<div style="display: inline-block; width: 45%;">
-						<div id="hobbywrap">
-							<label for="hobbycategory">취미 및 여가:</label> 
-							<select id="user_hobby" name="user_hobby">
-								<option value="독서">독서</option>
-								<option value="게임">게임</option>
-								<option value="DIY">DIY</option>
-								<option value="자전거 타기">자전거 타기</option>
-								<option value="사진 촬영">사진 촬영</option>
-								<option value="정원가꾸기">정원가꾸기</option>
-							</select>
-							<div id="hobbycategoryDiv"></div>
-						</div>
-					</div>
-					<!--14. 예술 및 문화  -->
-					<div style="display: inline-block; width: 45%; margin-right: 5%;">
-						<div id="artwrap">
-							<label for="artcategory">음악 취향:</label> 
-							<select id="user_art" name="user_art">
-								<option value="음악">음악</option>
-								<option value="미술">미술</option>
-								<option value="영화">영화</option>
-								<option value="공연예술">공연예술</option>
-								<option value="사진">사진</option>
+<!-- 스포츠 -->
+<div style="display: inline-block; width: 45%;">
+    <div id="sportwrap">
+        <label for="sportcategory">스포츠및 운동:</label> 
+        <select id="user_sport" name="user_sport">
+            <option value="축구" <c:if test="${userDTO.user_sport == '축구'}">selected</c:if>>축구</option>
+            <option value="여행" <c:if test="${userDTO.user_sport == '여행'}">selected</c:if>>여행</option>
+            <option value="야구" <c:if test="${userDTO.user_sport == '야구'}">selected</c:if>>야구</option>
+            <option value="테니스" <c:if test="${userDTO.user_sport == '테니스'}">selected</c:if>>테니스</option>
+            <option value="수영" <c:if test="${userDTO.user_sport == '수영'}">selected</c:if>>수영</option>
+            <option value="요가" <c:if test="${userDTO.user_sport == '요가'}">selected</c:if>>요가</option>
+            <option value="사이클링" <c:if test="${userDTO.user_sport == '사이클링'}">selected</c:if>>사이클링</option>
+            <option value="헬스/피트니스" <c:if test="${userDTO.user_sport == '헬스/피트니스'}">selected</c:if>>헬스/피트니스</option>
+        </select>
+        <div id="sportcategoryDiv"></div>
+    </div>
+</div>
 
-							</select>
-							<div id="artcategoryDiv"></div>
-						</div>
-					</div>
-					<!--15. 음악  -->
-					<div style="display: inline-block; width: 45%;">
-						<div id="musicwrap">
-							<label for="musiccategory">취미 및 여가:</label> <select
-								id="user_music" name="user_music">
-								<option value="클래식">클래식</option>
-								<option value="팝">팝</option>
-								<option value="록">록</option>
-								<option value="힙합">힙합</option>
-								<option value="재즈">재즈</option>
-								<option value="EDB">EDM</option>
+<!-- 음식 -->
+<div style="display: inline-block; width: 45%; margin-right: 5%;">
+    <div id="foodwrap">
+        <label for="foodcategory">요리:</label> 
+        <select id="user_food" name="user_food">
+            <option value="요리" <c:if test="${userDTO.user_food == '요리'}">selected</c:if>>요리</option>
+            <option value="식사" <c:if test="${userDTO.user_food == '식사'}">selected</c:if>>식사</option>
+            <option value="디저트" <c:if test="${userDTO.user_food == '디저트'}">selected</c:if>>디저트</option>
+            <option value="채식" <c:if test="${userDTO.user_food == '채식'}">selected</c:if>>채식</option>
+            <option value="세계" <c:if test="${userDTO.user_food == '세계'}">selected</c:if>>세계 음식 탐방</option>
+        </select>
+        <div id="foodcategoryDiv"></div>
+    </div>
+</div>
 
-							</select>
-							<div id="musiccategoryDiv"></div>
-						</div>
-					</div>
-			<div style="display: inline-block; width: 100%;">
+<!-- 취미 및 여가 -->
+<div style="display: inline-block; width: 45%;">
+    <div id="hobbywrap">
+        <label for="hobbycategory">취미 및 여가:</label> 
+        <select id="user_hobby" name="user_hobby">
+            <option value="독서" <c:if test="${userDTO.user_hobby == '독서'}">selected</c:if>>독서</option>
+            <option value="게임" <c:if test="${userDTO.user_hobby == '게임'}">selected</c:if>>게임</option>
+            <option value="DIY" <c:if test="${userDTO.user_hobby == 'DIY'}">selected</c:if>>DIY</option>
+            <option value="자전거 타기" <c:if test="${userDTO.user_hobby == '자전거 타기'}">selected</c:if>>자전거 타기</option>
+            <option value="사진 촬영" <c:if test="${userDTO.user_hobby == '사진 촬영'}">selected</c:if>>사진 촬영</option>
+            <option value="정원가꾸기" <c:if test="${userDTO.user_hobby == '정원가꾸기'}">selected</c:if>>정원가꾸기</option>
+        </select>
+        <div id="hobbycategoryDiv"></div>
+    </div>
+</div>
+
+<!-- 예술 및 문화 -->
+<div style="display: inline-block; width: 45%; margin-right: 5%;">
+    <div id="artwrap">
+        <label for="artcategory">음악 취향:</label> 
+        <select id="user_art" name="user_art">
+            <option value="음악" <c:if test="${userDTO.user_art == '음악'}">selected</c:if>>음악</option>
+            <option value="미술" <c:if test="${userDTO.user_art == '미술'}">selected</c:if>>미술</option>
+            <option value="영화" <c:if test="${userDTO.user_art == '영화'}">selected</c:if>>영화</option>
+            <option value="공연예술" <c:if test="${userDTO.user_art == '공연예술'}">selected</c:if>>공연예술</option>
+            <option value="사진" <c:if test="${userDTO.user_art == '사진'}">selected</c:if>>사진</option>
+        </select>
+        <div id="artcategoryDiv"></div>
+    </div>
+</div>
+
+<!-- 음악 -->
+<div style="display: inline-block; width: 45%;">
+    <div id="musicwrap">
+        <label for="musiccategory">음악 장르:</label> 
+        <select id="user_music" name="user_music">
+            <option value="클래식" <c:if test="${userDTO.user_music == '클래식'}">selected</c:if>>클래식</option>
+            <option value="팝" <c:if test="${userDTO.user_music == '팝'}">selected</c:if>>팝</option>
+            <option value="록" <c:if test="${userDTO.user_music == '록'}">selected</c:if>>록</option>
+            <option value="힙합" <c:if test="${userDTO.user_music == '힙합'}">selected</c:if>>힙합</option>
+            <option value="재즈" <c:if test="${userDTO.user_music == '재즈'}">selected</c:if>>재즈</option>
+            <option value="EDM" <c:if test="${userDTO.user_music == 'EDM'}">selected</c:if>>EDM</option>
+        </select>
+        <div id="musiccategoryDiv"></div>
+    </div>
+</div>
+
+<div style="display: inline-block; width: 100%;">
       <!-- 흡연 -->
+  <div style="display: inline-block; width: 100%;">
+    <!-- 흡연 -->
     <div id="smokingwrap" style="display: inline-block; width: 45%; vertical-align: top;">
         <label>흡연 :</label>
         <div style="display: inline-block;">
-            <input type="radio" id="smokingYes" name="user_smoke" value="yes">
+            <input type="radio" id="smokingYes" name="user_smoke" value="yes" <c:if test="${userDTO.user_smoke == 'yes'}">checked</c:if>>
             <label for="smokingYes">유</label>
         </div>
         <div style="display: inline-block;">
-            <input type="radio" id="smokingNo" name="user_smoke" value="no">
+            <input type="radio" id="smokingNo" name="user_smoke" value="no" <c:if test="${userDTO.user_smoke == 'no'}">checked</c:if>>
             <label for="smokingNo">무</label>
         </div>
         <div id="smokingDiv"></div>
     </div>
 
+<!-- 영화 -->
+<div id="moviewrap" style="display: inline-block; width: 45%; vertical-align: top;">
+    <label for="moviecategory">영화 :</label>
+    <select id="user_movie" name="user_movie">
+        <option value="공포" <c:if test="${userDTO.user_movie == '공포'}">selected</c:if>>공포</option>
+        <option value="로맨스" <c:if test="${userDTO.user_movie == '로맨스'}">selected</c:if>>로맨스</option>
+        <option value="액션" <c:if test="${userDTO.user_movie == '액션'}">selected</c:if>>액션</option>
+        <option value="코미디" <c:if test="${userDTO.user_movie == '코미디'}">selected</c:if>>코미디</option>
+        <option value="드라마" <c:if test="${userDTO.user_movie == '드라마'}">selected</c:if>>드라마</option>
+        <option value="SF" <c:if test="${userDTO.user_movie == 'SF'}">selected</c:if>>SF</option>
+    </select>
+    <div id="moviecategoryDiv"></div>
+</div>
 
-    <!-- 영화 -->
-    <div id="moviewrap" style="display: inline-block; width: 45%; vertical-align: top;">
-        <label for="moviecategory">영화 :</label>
-        <select id="user_movie" name="user_movie">
-            <option value="공포">공포</option>
-            <option value="로맨스">로맨스</option>
-            <option value="애니메이션">애니메이션</option>
-            <option value="액션">액션</option>
-        </select>
-        <div id="moviecategoryDiv"></div>
-    </div>
 </div>
                     <div id="btnwrap">
                         <button type="button" id="updateBtn" style="width: 100px; height: 30px;">수정</button>
