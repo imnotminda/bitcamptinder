@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    padding: 10px;
+    text-align: left;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 90px; /* 로고 이미지 높이 설정 */
+    width: 90px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.right-menu {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 반응형 디자인 추가 */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: row; /* 가로 방향 정렬 */
+        justify-content: space-between; /* 양쪽 끝으로 정렬 */
+    }
+
+    .logo img {
+        height: 50px; /* 모바일에서의 로고 이미지 높이 설정 */
+        width: 50px; /* 모바일에서의 로고 이미지 너비 설정 */
+    }
+
+    nav ul {
+        display: flex; /* 수평 정렬 유지 */
+        padding-left: 0; /* 패딩 제거 */
+    }
+
+    nav ul li {
+        margin: 0 8px; /* 간격 조절 */
+        font-size: 14px; /* 모바일에서 메뉴 글자 크기 설정 */
+    }
+}
