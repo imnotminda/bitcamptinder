@@ -123,18 +123,18 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 			<form id="writeForm">
 				<div id="inputwrap">
 					<!-- ************* 프로필 이미지 일단 숨김 처리 *********-->
-					<!-- <table border="1">
+					 <table border="1">
 						<tr>
 							<td colspan="2"><input type="file" name="img[]"
 								multiple="multiple"></td>
 						</tr>
 						<tr>
-						 <td colspan="2" align="center">
+					<!-- 	 <td colspan="2" align="center">
 								<input type="submit" value="이미지 업로드" style="width: 100px; height: 30px;"> 
 						 <input type="reset" value="취소"> 
-							</td>
+							</td> -->
 						</tr>
-					</table> -->
+					</table> 
 					<!-- 성별 -->
 
 					<!--  1.이름  -->
