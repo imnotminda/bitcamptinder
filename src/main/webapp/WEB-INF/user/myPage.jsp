@@ -195,7 +195,8 @@ h2.widget-heading {
 				<li><a href="myPage.se">마이페이지</a>
 					<ul style="width: 210px;">
 						<li><a href="pwdChange.me">- 회원 정보수정 </a></li>
-						<li><a href="delete.me">- 회원 탈퇴</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
+						 <!-- <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/loginForm'">로그인</button> -->
 					</ul></li>
 
 
