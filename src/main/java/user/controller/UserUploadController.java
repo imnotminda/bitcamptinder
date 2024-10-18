@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import user.bean.UserDTO;
 import user.bean.UserUploadDTO;
 import user.service.ObjectStorageService;
 import user.service.UserService;
@@ -166,9 +167,7 @@ public class UserUploadController {
 			
 			//NaverCloud Platform ObjectStorage
 			imageFileName = objectStorageService.uploadFile(bucketName, "storage/", img);
-			
-			
-			
+		
 			imageOriginalFileName = img.getOriginalFilename();
 			file = new File(filePath, imageOriginalFileName);
 			
@@ -182,7 +181,7 @@ public class UserUploadController {
 			
 //			try {
 				result += "<span>"
-					   + "<img src='/spring/storage/"
+					   + "<img src='/BitcampTinder/storage/"
 						
 //					   + URLEncoder.encode(imageOriginalFileName, "UTF-8") => 파일명에 공백이 있으면 업로드가 안된다.
 					   
