@@ -97,19 +97,29 @@ public class UserController {
 
 	// 241017 오혜진 회원 정보 수정
 	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
-	public String updateForm( Model model, HttpSession session) {
+	public String updateForm(Model model, HttpSession session) {
 		String user_username = (String) session.getAttribute("memName");
 		UserDTO userDTO = userService.getUser(user_username);
 		model.addAttribute("userDTO", userDTO);
 		return "/user/updateForm";
 	}
-
+	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
 	public void update(@ModelAttribute UserDTO userDTO) {
 	    System.out.println("수정사용자 정보: " + userDTO); //로그확인
 		userService.update(userDTO);
 	}
+	
+	//마이페이지 
+	
+    @RequestMapping(value = "myPage", method = RequestMethod.GET)
+    public String mypage(Model model, HttpSession session) {
+        String user_username = (String) session.getAttribute("memName");
+        UserDTO userDTO = userService.getUser(user_username);
+        model.addAttribute("userDTO", userDTO);
+        return "/user/myPage";
+    }
 
 	// 회원 삭제
 	@RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
