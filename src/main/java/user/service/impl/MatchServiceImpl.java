@@ -97,7 +97,7 @@ public class MatchServiceImpl implements MatchService {
 	             matchScore += 20;
 	         }
 	         
-	         if (matchScore > 60) {
+	         if (matchScore > 70) {
 	                otherUser.setMatchScore(matchScore);
 	                matchedUsers.add(otherUser);
 	            }
@@ -105,8 +105,8 @@ public class MatchServiceImpl implements MatchService {
 	    
         matchedUsers.sort((u1, u2) -> Integer.compare(u2.getMatchScore(), u1.getMatchScore()));
         
-        if (matchedUsers.size() > 5) {
-            matchedUsers = matchedUsers.subList(0, 5);
+        if (matchedUsers.size() > 3) {
+            matchedUsers = matchedUsers.subList(0, 3);
         }
         
         return matchedUsers;

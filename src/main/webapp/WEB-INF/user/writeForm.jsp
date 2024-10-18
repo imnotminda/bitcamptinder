@@ -118,8 +118,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <body>
 	<div id="wrap">
 		<div id="Formwrap">
-			<a href="/BitcampTinder/"><img src="../image/apple.jpg"
-				width="25" alt="Tinder" /></a> BitcampTinder 회원가입
+			<a href="/BitcampTinder/"><img src="../image/tlogo.png"
+				width="50" alt="Tinder" /></a> BitcampTinder 회원가입
 			<form id="writeForm">
 				<div id="inputwrap">
 					<!-- ************* 프로필 이미지 일단 숨김 처리 *********-->

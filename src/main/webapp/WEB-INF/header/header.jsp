@@ -30,6 +30,7 @@
                         if (memId == null) { // 로그인이 되어 있지 않으면
                     %>
                         <li><a href="${pageContext.request.contextPath}/user/loginForm">로그인</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/writeForm">회원가입</a></li>
                     <%
                         } else { // 로그인이 되어 있으면
                     %>
