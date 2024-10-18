@@ -161,6 +161,5 @@ window.addEventListener('touchmove', function(event) {
 
 let previousTouchY = 0; // touchmove를 위해 추가된 변수
 </script>
->>>>>>> 4edaaeba8f6910032ea87c808610fcee9dfa753e
 </body>
 </html>

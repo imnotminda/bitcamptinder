@@ -117,10 +117,4 @@ public class UserController {
 		userService.delete(userDTO);
 	}
 	
-	//feedForm
-	@RequestMapping(value = "feedForm", method = RequestMethod.GET)
-	public String userfeedForm() {
-		return "/user/feedForm";
-	}
-
 }
