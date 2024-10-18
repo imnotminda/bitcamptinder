@@ -105,15 +105,6 @@ public class UserController {
 		return userService.checkId(user_username);
 	}
 
-//    @RequestMapping(value="list", method=RequestMethod.GET)
-//	public String list (@RequestParam(required = false, defaultValue = "1") String pg, Model model) { //페이징처리 무조건 필요하지 않고, 기본값은 1페이지
-//    	Map<String, Object> pageMap = userService.list(pg);
-//    	
-//    	pageMap.put("pg", pg);
-//    	model.addAttribute("pageMap",pageMap);
-//		return "/user/list"; // =>/WEB-INF/user/list.jsp
-//	}
-
 	// 241017 오혜진 회원 정보 수정
 	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
 	public String updateForm(Model model, HttpSession session) {
@@ -136,25 +127,41 @@ public class UserController {
 	    public String mypage(@RequestParam("user_id") Integer userId, Model model) {
 	        UserDTO userDTO = userService.getUserById(userId);
 	        if (userDTO != null) {
-	            model.addAttribute("userDTO", userDTO);
+	        	System.out.println("UserDTO: " + userDTO); // Debug line
+	        	model.addAttribute("userDTO", userDTO);    
 	            return "user/myPage"; // Ensure this path is correct
 	        } else {
 	            return "redirect:/error"; // Handle user not found scenario
 	        }
 	    }
-	// 회원 삭제
-	@RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
-	public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String name, @RequestParam String pwd,
-			Model model) {
-		UserDTO userDTO = userService.checkDeleteInfo(user_username);
-		model.addAttribute("userDTO", userDTO);
-		return "/user/delete";
-	}
+	 
+	 @RequestMapping(value = "deleteForm", method = RequestMethod.GET)
+	    public String deleteForm(Model model, HttpSession session) {
+	    	String user_username = (String) session.getAttribute("memName");
+			UserDTO userDTO = userService.getUser(user_username);
+			model.addAttribute("userDTO", userDTO);
+			 System.out.println("memId: " + session.getAttribute("memId"));
+			 System.out.println("memName: " + session.getAttribute("memName"));
+			return "/user/deleteForm";
+	    }
+	 
+	 @RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
+	    @ResponseBody
+	    public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String user_pwd) {
+	        UserDTO userDTO = userService.checkDeleteInfo(user_username);
+	        
+	        // 비밀번호 확인 로직
+	        if (userDTO != null && userDTO.getUser_pwd().equals(user_pwd)) {
+	            return "비밀번호가 일치합니다."; // 비밀번호가 일치하는 경우
+	        } else {
+	            return "비밀번호가 일치하지 않습니다."; // 비밀번호가 불일치하는 경우
+	        }
+	    }
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	@ResponseBody
-	public void delete(@ModelAttribute UserDTO userDTO) {
-		userService.delete(userDTO);
+	public void delete(@RequestParam String user_username) {
+	    userService.delete(user_username);
 	}
 	
 	@GetMapping("/mailCheck")

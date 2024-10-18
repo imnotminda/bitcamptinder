@@ -37,7 +37,7 @@
 
                         <li><a href="${pageContext.request.contextPath}/user/feedForm">${memId }님</a></li>              
                         <li><a href="${pageContext.request.contextPath}/user/updateForm">회원정보 수정</a></li>
-                        <li><a href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/myPage?user_id=${sessionScope.memId}">마이페이지</a></li>
                         <li><a href="${pageContext.request.contextPath}/user/logout" id="logoutBtn">로그아웃</a></li>
                     <%
                         }

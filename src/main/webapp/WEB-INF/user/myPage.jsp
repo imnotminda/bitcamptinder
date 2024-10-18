@@ -224,7 +224,7 @@ h2.widget-heading {
 										</c:when>
 										<c:otherwise>
 											<img
-												src="resources/image/profile/<fmt:formatNumber value='${sessionScope.loginMember.memberNo}' pattern ='00000000' />.${sessionScope.loginMember.memberPhotoExtend}"
+												src="resources/image/profile/<fmt:formatNumber value='${userDTO.profile_pic}' pattern ='00000000' />.${sessionScope.loginMember.memberPhotoExtend}"
 												alt="User photo2" id="uploadFiles">
 										</c:otherwise>
 									</c:choose>

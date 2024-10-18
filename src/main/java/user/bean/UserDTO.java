@@ -35,4 +35,23 @@ public class UserDTO {
 	private String profile_pic;
 	private String user_movie;
 	private int matchScore;
+	
+	public String toString() {
+	    return "UserDTO{" +
+	            "user_id=" + user_id +
+	            ", user_name='" + user_name + '\'' +
+	            ", user_age=" + user_age +
+	            ", user_email='" + user_email1 + user_email2 + '\'' +
+	            ", user_mbti='" + user_mbti + '\'' +
+	            ", user_movie='" + user_movie + '\'' +
+	            ", user_religion='" + user_religion + '\'' +
+	            ", user_travel='" + user_travel + '\'' +
+	            ", user_music='" + user_music + '\'' +
+	            ", user_hobby='" + user_hobby + '\'' +
+	            ", user_art='" + user_art + '\'' +
+	            ", user_food='" + user_food + '\'' +
+	            ", user_smoke='" + user_smoke + '\'' +
+	            ", user_gender='" + user_gender + '\'' +
+	            '}';
+	}
 }
