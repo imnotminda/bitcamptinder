@@ -132,14 +132,16 @@ public class UserController {
 	
 	//마이페이지 
 	
-    @RequestMapping(value = "myPage", method = RequestMethod.GET)
-    public String mypage(Model model, HttpSession session) {
-        String user_username = (String) session.getAttribute("memName");
-        UserDTO userDTO = userService.getUser(user_username);
-        model.addAttribute("userDTO", userDTO);
-        return "/user/myPage";
-    }
-
+	 @RequestMapping(value = "myPage", method = RequestMethod.GET)
+	    public String mypage(@RequestParam("user_id") Integer userId, Model model) {
+	        UserDTO userDTO = userService.getUserById(userId);
+	        if (userDTO != null) {
+	            model.addAttribute("userDTO", userDTO);
+	            return "user/myPage"; // Ensure this path is correct
+	        } else {
+	            return "redirect:/error"; // Handle user not found scenario
+	        }
+	    }
 	// 회원 삭제
 	@RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
 	public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String name, @RequestParam String pwd,

@@ -32,5 +32,7 @@ public interface UserService {
 	//프로필 업로드 서비스 추가 
 	public void updateProfilePic(UserDTO userDTO, MultipartFile img);
 
+	public UserDTO getUserById(Integer userId);
+
 }
 

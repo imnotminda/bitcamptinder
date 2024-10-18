@@ -33,5 +33,7 @@ public interface UserDAO {
 	
 	//겔러리
 	public List<UserDTO> getAllUsers();
+
+	public UserDTO getUserById(Integer userId);
 	
 }

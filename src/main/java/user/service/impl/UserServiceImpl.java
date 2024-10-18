@@ -98,6 +98,11 @@ public class UserServiceImpl implements UserService {
 	    // 이후 DAO 호출로 DB에 저장하는 로직 추가 (예: userDAO.updateProfilePic(userDTO))
 	}
 
+	@Override
+	public UserDTO getUserById(Integer userId) {
+		return userDAO.getUserById(userId);
+	}
+
 	
 	
 	
