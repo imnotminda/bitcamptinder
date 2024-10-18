@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="user.dao.CommentDAO">
+ 	<insert id="commentInput" parameterType="user.bean.UserCommentDTO">
+    	INSERT INTO data_comment (user_id, comment_content, logtime)
+        VALUES (#{user_id}, #{comment_content}, #{logtime})
+    </insert>
+ </mapper>
