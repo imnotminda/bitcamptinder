@@ -10,4 +10,9 @@ public class MainController {
 	public String index() {
 		return "/index";
 	}
+	
+	@RequestMapping(value="/mypage")
+	public String myPage() {
+		return "/myPage";
+	}
 }
