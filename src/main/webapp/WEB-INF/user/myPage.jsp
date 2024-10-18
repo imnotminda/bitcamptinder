@@ -203,13 +203,16 @@ h2.widget-heading {
 
 			<!--  프로필 이미지  영역 -->
 			<div class="profile-widget">
-				<h2 class="widget-heading">프로필</h2>
+		<h2 class="widget-heading">프로필</h2>
 				<div class="cover-img">
+				<h2 class="widget-heading">
+					</h2>
 					<label for="chooseFileBg"> <%--   <img src="resources/image/background/<fmt:formatNumber value='${sessionScope.UserDTO.propicfic}' pattern='00000000' />.jpg" onerror="this.src='resources/image/company/signup-bg.jpg'" onclick="" id="uploadFilesBg"> --%>
 					</label>
 				</div>
 				<div class="user-details">
 					<div class="user-img">
+				<img src="${userDTO.profile_pic }" />
 						<form method="post" enctype="multipart/form-data">
 							<label for="chooseFile">
 								<div id="canvas">

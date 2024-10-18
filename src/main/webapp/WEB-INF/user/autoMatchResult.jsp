@@ -35,7 +35,7 @@
                             <p class="card-text">매치점수 : ${user.matchScore}%</p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">성별: ${user.user_gender}</small><br>
+                            <small class="text-muted">MBTI: ${user.user_mbti}</small><br>
                             <small class="text-muted">나이: ${user.user_age}</small>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 package user.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,20 +16,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import user.bean.UserDTO;
 import user.service.MailService;
 import user.service.UserService;
+import user.service.impl.NCPObjectStorageService;
 
 @Controller
 @RequestMapping(value = "user")
 public class UserController {
 
-	// username 변경
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MailService mailService;
+	@Autowired
+	private NCPObjectStorageService objectStorageService;
 
 	// 회원가입
 	@RequestMapping(value = "writeForm", method = RequestMethod.GET)
@@ -37,8 +42,22 @@ public class UserController {
 
 	@RequestMapping(value = "write", method = RequestMethod.POST)
 	@ResponseBody
-	public void write(@ModelAttribute UserDTO userDTO) {
-		userService.write(userDTO);
+	public void write(@RequestParam("profile_pic_file") MultipartFile file, @ModelAttribute UserDTO userDTO) {
+		// Upload the file to the storage and get the URL
+	    if (file != null && !file.isEmpty()) {
+	        String bucketName = "bitcamp-9th-bucket-142";
+	        String directoryPath = "storage/"; // Specify the directory if needed
+
+	        // Upload the file and get the file URL
+	        String fileUrl = objectStorageService.uploadFile(bucketName, directoryPath, file);
+	        System.out.println("File URL Length: " + fileUrl.length());
+
+	        // Set the profile picture URL to the DTO
+	        userDTO.setProfile_pic(fileUrl); // Store the URL or filename in the DTO
+	    }
+
+	    // Save user data, including the profile_pic URL
+	    userService.write(userDTO);
 	}
 
 	// 241016 로그인 - 오혜진
@@ -82,8 +101,8 @@ public class UserController {
 	// 회원아이디 유효성
 	@RequestMapping(value = "checkId", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkId(String user_username) {
-		return userService.checkID(user_username);
+	public String checkId(@RequestParam String user_username) {
+		return userService.checkId(user_username);
 	}
 
 //    @RequestMapping(value="list", method=RequestMethod.GET)

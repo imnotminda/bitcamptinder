@@ -15,13 +15,13 @@ public class UserDTO {
 	private String user_username; //가입, 로그인하는 아이디 
 	private String user_name;
 	private String user_pwd;
-	private String user_age;
+	private Integer user_age;
 	private String user_gender;
 	private String user_email1;
 	private String user_email2;
-	private String user_tel1;
-	private String user_tel2;
-	private String user_tel3;
+	private Integer user_tel1;
+	private Integer user_tel2;
+	private Integer user_tel3;
 	private String user_sport;
 	private String user_art;
 	private String user_food;

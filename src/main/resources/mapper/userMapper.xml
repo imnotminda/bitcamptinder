@@ -25,7 +25,7 @@
 </insert>
 	<!-- 중복 아이디 체크 -->
 	<select id="checkId" parameterType="String" resultType="userDTO">
-		select * from DATE_USER where username=#{username}
+		select * from DATE_USER where user_username=#{user_username}
 	</select>
 
 	<!-- 회원 목록 가져오기 -->

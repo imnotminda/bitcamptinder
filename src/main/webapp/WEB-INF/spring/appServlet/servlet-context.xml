@@ -28,6 +28,6 @@
 	<resources location="/WEB-INF/header/" mapping="/header/**"></resources>
 	<resources location="/WEB-INF/js/" mapping="/js/**"></resources>
 	<resources location="/WEB-INF/image/" mapping="/image/**"></resources>
-	<resources location="/resources/storage/" mapping="/storage/**"></resources>
+	<resources location="/WEB-INF/storage/" mapping="/storage/**"></resources>
 	
 </beans:beans>
