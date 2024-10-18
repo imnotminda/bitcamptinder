@@ -82,8 +82,8 @@ public class UserController {
 	// 회원아이디 유효성
 	@RequestMapping(value = "checkId", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkId(String user_username) {
-		return userService.checkID(user_username);
+	public String checkId(@RequestParam String user_username) {
+		return userService.checkId(user_username);
 	}
 
 //    @RequestMapping(value="list", method=RequestMethod.GET)

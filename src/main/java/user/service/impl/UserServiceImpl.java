@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 
 	@Override
-	public String checkID(String user_username) {
+	public String checkId(String user_username) {
 		UserDTO userDTO = userDAO.checkId(user_username);
 		System.out.println("UserDTO: " + userDTO);
 		if (userDTO == null)
