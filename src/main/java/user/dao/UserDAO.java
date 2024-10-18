@@ -30,7 +30,8 @@ public interface UserDAO {
 
 	//유저 로그인 -241016
 	public UserDTO login(Map<String, String> map);
-
-
+	
+	//겔러리
+	public List<UserDTO> getAllUsers();
 	
 }

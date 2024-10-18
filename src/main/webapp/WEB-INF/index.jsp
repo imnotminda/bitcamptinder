@@ -19,96 +19,15 @@
 
 <div id="section2">
     <div class="gallery" id="gallery">
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C3pNhIgBhx5/" target="_blank">
-                <img src="https://framerusercontent.com/images/bloG6QuaK2Ye6sku5tyAwTrXK4.png" alt="Image 1">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/CyVRh7Zhzaj/" target="_blank">
-                <img src="https://framerusercontent.com/images/Rpgr943XEDnxmKPNGxbpFIxZQas.png" alt="Image 2">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/CxrsRFqBaOe/" target="_blank">
-                <img src="https://framerusercontent.com/images/roaQ7gp1XnK5UinG9KATaEJdDo.png" alt="Image 3">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0OWsnjBvsv/" target="_blank">
-                <img src="https://framerusercontent.com/images/ikjsUietWNnQWRgCw7WcOauwZjY.png" alt="Image 4">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPkShmmP/" target="_blank">
-                <img src="https://framerusercontent.com/images/cJbGksss1aTS6DahvtinIGa9JNw.png" alt="Image 5">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/cJbGksss1aTS6DahvtinIGa9JNw.png" alt="Image 6">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/cJbGksss1aTS6DahvtinIGa9JNw.png" alt="Image 6">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/cJbGksss1aTS6DahvtinIGa9JNw.png" alt="Image 6">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/cJbGksss1aTS6DahvtinIGa9JNw.png" alt="Image 6">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/bloG6QuaK2Ye6sku5tyAwTrXK4.png" alt="Image 6">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/cJbGksss1aTS6DahvtinIGa9JNw.png" alt="Image 6">
-            </a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://www.instagram.com/reel/C0tPPlf8Y-/" target="_blank">
-                <img src="https://framerusercontent.com/images/bloG6QuaK2Ye6sku5tyAwTrXK4.png" alt="Image 6">
-            </a>
-        </div>
-        <!-- 추가 이미지가 있을 경우 계속 추가 -->
+
     </div>
 </div>
 
 <footer id="section3">
     <a>&copy; 2024 커플 매칭 웹 사이트. 모든 권리 보유.</a>
 </footer>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-const gallery = document.getElementById('gallery');
-const items = document.querySelectorAll('.gallery-item');
-const itemCount = items.length;
-const itemsPerPage = 4; // 한 페이지에 보여줄 이미지 개수
-let currentIndex = 0; // 현재 인덱스
-
-function showNextItems() {
-    currentIndex += itemsPerPage; // 인덱스 증가
-    if (currentIndex >= itemCount) {
-        currentIndex = 0; // 인덱스가 마지막을 초과하면 처음으로 돌아감
-    }
-    const visibleItems = Array.from(items).slice(currentIndex, currentIndex + itemsPerPage);
-    items.forEach(item => item.style.display = 'none'); // 모든 아이템 숨기기
-    visibleItems.forEach(item => item.style.display = 'block'); // 현재 보이는 아이템만 표시
-}
-
-// 일정 시간 후에 슬라이드 변경
-setInterval(showNextItems, 3000); // 3초마다 변경
-
-// 처음 보일 때 초기 설정
-showNextItems();
 
 // 스크롤 및 터치 이벤트 처리
 const sections = ['section1', 'section2', 'section3'];
@@ -160,6 +79,57 @@ window.addEventListener('touchmove', function(event) {
 });
 
 let previousTouchY = 0; // touchmove를 위해 추가된 변수
+
+$(document).ready(function() {
+	console.log("AJAX 요청 발송");
+	$.ajax({
+	    url: '/BitcampTinder/user/gallery',
+	    type: 'GET',
+	    dataType: 'json',
+	    success: function(data) {
+	    	console.log("AJAX 요청 성공", data);
+	        var gallery = $('#gallery');
+	        $.each(data, function(index, user) {
+	            console.log("넌 뭐냐 ? " + user); // 각 user 객체 출력
+	            console.log(user.user_id);
+	            console.log("넌 뭐냐 픽 ? " + user.profile_pic); // 각 user 객체 출력	            
+	            var profileImage = user.profile_pic ? user.profile_pic : 'http://localhost:8080/BitcampTinder/image/default.jpg';
+	            console.log("사용할 이미지 경로:", profileImage); // 최종 이미지 경로 확인
+	            var galleryItem = `
+	                <div class="gallery-item">
+	                    <a href="${pageContext.request.contextPath}/user/myPage?userId=${user.user_id}" target="_blank">
+	                        <img src="http://localhost:8080/BitcampTinder/image/default.jpg" alt="${user.username}">
+	                    </a>
+	                </div>`;
+	            gallery.append(galleryItem);
+	        });
+	           // AJAX 요청이 완료된 후 items를 초기화
+            const items = document.querySelectorAll('.gallery-item');
+            const itemCount = items.length;
+            const itemsPerPage = 4; // 한 페이지에 보여줄 이미지 개수
+            let currentIndex = 0; // 현재 인덱스
+
+            function showNextItems() {
+                currentIndex += itemsPerPage; // 인덱스 증가
+                if (currentIndex >= itemCount) {
+                    currentIndex = 0; // 인덱스가 마지막을 초과하면 처음으로 돌아감
+                }
+                const visibleItems = Array.from(items).slice(currentIndex, currentIndex + itemsPerPage);
+                items.forEach(item => item.style.display = 'none'); // 모든 아이템 숨기기
+                visibleItems.forEach(item => item.style.display = 'block'); // 현재 보이는 아이템만 표시
+            }
+
+            // 일정 시간 후에 슬라이드 변경
+            setInterval(showNextItems, 3000); // 3초마다 변경
+
+            // 처음 보일 때 초기 설정
+            showNextItems();
+        },
+        error: function() {
+            console.error("유저 데이터를 불러오는 중 오류 발생");
+        }
+    });
+});
 </script>
 </body>
 </html>

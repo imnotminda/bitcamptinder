@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,19 +24,19 @@ public class CommentController {
 	public String userfeedForm() {
 		return "/user/feedForm";
 	}
-	@RequestMapping(value ="commentInput", method = RequestMethod.POST)
-	@ResponseBody
-	public String commentInput(@RequestParam("userId") int userId, 
-	                           @RequestParam("commentContent") String commentContent) {
-		System.out.println(userId);
-		System.out.println(commentContent);
-	    UserCommentDTO userCommentDTO = new UserCommentDTO();
-	    userCommentDTO.setUser_id(userId);
-	    userCommentDTO.setComment_content(commentContent);
-	    userCommentDTO.setLogtime(new Date());
+    @RequestMapping(value = "commentInput", method = RequestMethod.POST)
+    @ResponseBody
+    public String commentInput(@RequestParam("userId") int userId, 
+                               @RequestParam("commentContent") String commentContent) {
+        System.out.println(userId);
+        System.out.println(commentContent);
 
-	    commentService.commentInput(userCommentDTO);
+        UserCommentDTO userCommentDTO = new UserCommentDTO();
+        userCommentDTO.setUser_id(userId);
+        userCommentDTO.setComment_content(commentContent);
+        userCommentDTO.setLogtime(new Date());
 
-	    return "success";
-	}
+        String result = commentService.commentInput(userCommentDTO);
+        return result;
+    }
 }
