@@ -20,9 +20,9 @@ public interface UserDAO {
 	
 	public void update(UserDTO userDTO);
 
-	public UserDTO getUser(String username);
+	public UserDTO getUser(String user_username);
 
-	public void delete(UserDTO userDTO);
+	//public void delete(UserDTO userDTO);
 
 	public UserDTO checkDeleteInfo(String username);
 	
@@ -30,6 +30,10 @@ public interface UserDAO {
 
 	//유저 로그인 -241016
 	public UserDTO login(Map<String, String> map);
+
+	//public UserDTO getExistPwd(String user_name);
+
+	public void delete(String user_username);
 
 
 	
