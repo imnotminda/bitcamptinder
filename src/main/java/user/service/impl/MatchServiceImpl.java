@@ -24,12 +24,14 @@ public class MatchServiceImpl implements MatchService {
 
 	    // Use the correct method to fetch by user_id
 	    UserDTO currentUserDetails = matchDAO.getUserById(currentUserId); // Query by user_id
-
+	    
 	    if (currentUserDetails == null) {
 	        System.err.println("User not found: " + currentUserId);
 	        throw new RuntimeException("User not found: " + currentUserId);
 	    }
 		
+	    String currentUserGender = currentUserDetails.getUser_gender();
+	    
 		String currentUserSport = currentUserDetails.getUser_sport();
 		String currentUserArt = currentUserDetails.getUser_art();
 		String currentUserFood = currentUserDetails.getUser_food();
@@ -54,46 +56,58 @@ public class MatchServiceImpl implements MatchService {
 	    	if (otherUser == null) {
 	            continue; // Skip null users if any
 	        }
+	    	
+    	 if (currentUserGender.equalsIgnoreCase("male") && otherUser.getUser_gender().equalsIgnoreCase("male")) {
+                continue; // Skip if both are male
+            }
+         if (currentUserGender.equalsIgnoreCase("female") && otherUser.getUser_gender().equalsIgnoreCase("female")) {
+                continue; // Skip if both are female
+            }
+         
 	    	int matchScore = 0;
 
 	    	 if (currentUserSport.equals(otherUser.getUser_sport())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserArt.equals(otherUser.getUser_art())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserFood.equals(otherUser.getUser_food())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserMusic.equals(otherUser.getUser_music())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserHobby.equals(otherUser.getUser_hobby())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserTravel.equals(otherUser.getUser_travel())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserSmoke.equals(otherUser.getUser_smoke())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserReligion.equals(otherUser.getUser_religion())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserMbti.equals(otherUser.getUser_mbti())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
 	         if (currentUserMovie.equals(otherUser.getUser_movie())) {
-	             matchScore += 10;
+	             matchScore += 20;
 	         }
-
-	         System.out.println("Current User: " + currentUser);
-	         System.out.println("Current User Details: " + currentUserDetails);
-	    	otherUser.setMatchScore(matchScore);
-	    	matchedUsers.add(otherUser);
+	         
+	         if (matchScore > 60) {
+	                otherUser.setMatchScore(matchScore);
+	                matchedUsers.add(otherUser);
+	            }
 	    }
 	    
         matchedUsers.sort((u1, u2) -> Integer.compare(u2.getMatchScore(), u1.getMatchScore()));
+        
+        if (matchedUsers.size() > 5) {
+            matchedUsers = matchedUsers.subList(0, 5);
+        }
         
         return matchedUsers;
 
