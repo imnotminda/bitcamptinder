@@ -11,8 +11,5 @@ public class MainController {
 		return "/index";
 	}
 	
-	@RequestMapping(value="/mypage")
-	public String myPage() {
-		return "/myPage";
-	}
+
 }
