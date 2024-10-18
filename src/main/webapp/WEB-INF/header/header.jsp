@@ -33,8 +33,10 @@
                     <%
                         } else { // 로그인이 되어 있으면
                     %>
-                        <li><a href="${pageContext.request.contextPath}/user/feedForm">${memId }님</a></li>
-                        <li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
+
+                        <li><a href="${pageContext.request.contextPath}/user/feedForm">${memId }님</a></li>              
+                        <li><a href="${pageContext.request.contextPath}/user/logout" id="logoutBtn">로그아웃</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/updateForm">회원정보 수정</a></li>
                     <%
                         }
                     %>
@@ -44,5 +46,24 @@
     </header>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autoMatch.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('#logoutBtn').click(function(){
+        if (confirm("정말 로그아웃 하시겠습니까?")) {
+            $.ajax({
+                type: 'GET',
+                url: '${pageContext.request.contextPath}/user/logout',
+                success: function() {
+                    alert('성공적으로 로그아웃 되었습니다.');
+                    location.href = '${pageContext.request.contextPath}';
+                },
+                error: function(e){
+                    console.log(e);
+                }
+            });
+        }
+    });
+});
+</script>
 </body>
 </html>

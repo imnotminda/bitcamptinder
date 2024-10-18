@@ -7,7 +7,7 @@ import user.bean.UserDTO;
 public interface UserService {
 //username수정
 	
-	public String checkID(String username);
+	public String checkID(String user_username);
 
 	public void write(UserDTO userDTO);
 
@@ -15,11 +15,11 @@ public interface UserService {
 	
 	public void update(UserDTO userDTO);
 
-	public UserDTO getUser(String username);
+	public UserDTO getUser(String user_username);
 
 	public void delete(UserDTO userDTO);
 	
-	public UserDTO checkDeleteInfo(String username);
+	public UserDTO checkDeleteInfo(String user_username);
 	
 	//로그인 추가 
 	

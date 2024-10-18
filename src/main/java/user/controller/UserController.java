@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import user.bean.UserDTO;
+import user.service.MailService;
 import user.service.UserService;
 
 @Controller
@@ -25,6 +26,8 @@ public class UserController {
 	// username 변경
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MailService mailService;
 
 	// 회원가입
 	@RequestMapping(value = "writeForm", method = RequestMethod.GET)
@@ -69,13 +72,18 @@ public class UserController {
 		}
 
 	}
-
+	
+	@GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "/index";
+    }
 
 	// 회원아이디 유효성
 	@RequestMapping(value = "checkId", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkId(String username) {
-		return userService.checkID(username);
+	public String checkId(String user_username) {
+		return userService.checkID(user_username);
 	}
 
 //    @RequestMapping(value="list", method=RequestMethod.GET)
@@ -87,26 +95,27 @@ public class UserController {
 //		return "/user/list"; // =>/WEB-INF/user/list.jsp
 //	}
 
-	// 회원 정보 수정
+	// 241017 오혜진 회원 정보 수정
 	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
-	public String updateForm(@RequestParam String username, @RequestParam String pg, Model model) {
-		UserDTO userDTO = userService.getUser(username);
+	public String updateForm( Model model, HttpSession session) {
+		String user_username = (String) session.getAttribute("memName");
+		UserDTO userDTO = userService.getUser(user_username);
 		model.addAttribute("userDTO", userDTO);
-		model.addAttribute("pg", pg);
 		return "/user/updateForm";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
 	public void update(@ModelAttribute UserDTO userDTO) {
+	    System.out.println("수정사용자 정보: " + userDTO); //로그확인
 		userService.update(userDTO);
 	}
 
 	// 회원 삭제
 	@RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
-	public String checkDeleteInfo(@RequestParam String username, @RequestParam String name, @RequestParam String pwd,
+	public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String name, @RequestParam String pwd,
 			Model model) {
-		UserDTO userDTO = userService.checkDeleteInfo(username);
+		UserDTO userDTO = userService.checkDeleteInfo(user_username);
 		model.addAttribute("userDTO", userDTO);
 		return "/user/delete";
 	}
@@ -115,6 +124,14 @@ public class UserController {
 	@ResponseBody
 	public void delete(@ModelAttribute UserDTO userDTO) {
 		userService.delete(userDTO);
+	}
+	
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(@RequestParam String email) {
+	    System.out.println("이메일 인증 요청이 들어옴!");
+	    System.out.println("이메일 인증 이메일 : " + email);
+	    return mailService.joinEmail(email);
 	}
 	
 }
