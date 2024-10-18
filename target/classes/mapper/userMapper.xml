@@ -79,6 +79,10 @@
 		SELECT * FROM date_user WHERE USER_USERNAME = #{user_username} AND USER_PWD = #{user_pwd}
 		
 	</select>
-
+	
+    <select id="getAllUsers" resultType="userDTO">
+        SELECT user_id, user_username, profile_pic
+        FROM date_user
+    </select>
 
 </mapper>
