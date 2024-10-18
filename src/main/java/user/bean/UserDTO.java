@@ -13,8 +13,8 @@ import lombok.Setter;
 public class UserDTO {
 	private int user_id; //seq
 	private String user_username; //가입, 로그인하는 아이디 
-	private String user_name;
-	private String user_pwd;
+	private String user_name; 
+	private String user_pwd; 
 	private Integer user_age;
 	private String user_gender;
 	private String user_email1;

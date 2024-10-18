@@ -62,11 +62,11 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUser(user_username);
 	}
 
-	@Override
-	public void delete(UserDTO userDTO) {
-		userDAO.delete(userDTO);
-
-	}
+//	@Override
+//	public void delete(UserDTO userDTO) {
+//		userDAO.delete(userDTO);
+//
+//	}
 
 	@Override
 	public UserDTO checkDeleteInfo(String user_username) {
@@ -79,6 +79,8 @@ public class UserServiceImpl implements UserService {
 		return userDAO.login(map);
 
 	}
+	
+	
 	
 	
 	@Autowired
@@ -97,8 +99,21 @@ public class UserServiceImpl implements UserService {
 
 	    // 이후 DAO 호출로 DB에 저장하는 로직 추가 (예: userDAO.updateProfilePic(userDTO))
 	}
-
 	
+//	@Override
+//	public UserDTO getExistPwd(String user_name) {
+//		UserDTO userDTO = userDAO.getExistPwd(user_name);
+//		//UserDTO userDTO = userDAO.getUser(id);
+//		
+//		return userDTO;
+//	}
+	
+
+	@Override
+	public void delete(String user_username) {
+		userDAO.delete(user_username);
+		
+	}
 	
 	
 	

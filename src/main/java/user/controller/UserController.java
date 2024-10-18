@@ -140,20 +140,76 @@ public class UserController {
         return "/user/myPage";
     }
 
-	// 회원 삭제
-	@RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
-	public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String name, @RequestParam String pwd,
-			Model model) {
-		UserDTO userDTO = userService.checkDeleteInfo(user_username);
+	 //241018회원 삭제
+//	@RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
+//	public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String name, @RequestParam String pwd,
+//			Model model) {
+//		UserDTO userDTO = userService.checkDeleteInfo(user_username);
+//		model.addAttribute("userDTO", userDTO);
+//		return "/user/delete";
+//	}
+//	
+
+//    @RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String user_pwd) {
+//        UserDTO userDTO = userService.checkDeleteInfo(user_username);
+//        
+//        // 비밀번호 확인 로직
+//        if (userDTO != null && userDTO.getUser_pwd().equals(user_pwd)) {
+//            return "비밀번호가 일치합니다."; // 비밀번호가 일치하는 경우
+//        } else {
+//            return "비밀번호가 일치하지 않습니다."; // 비밀번호가 불일치하는 경우
+//        }
+//    }
+
+    @RequestMapping(value = "checkDeleteInfo", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
+    @ResponseBody
+    public String checkDeleteInfo(@RequestParam String user_username, @RequestParam String user_pwd) {
+        UserDTO userDTO = userService.checkDeleteInfo(user_username);
+        
+        // 비밀번호 확인 로직
+        if (userDTO != null && userDTO.getUser_pwd().equals(user_pwd)) {
+            return "비밀번호가 일치합니다."; // 비밀번호가 일치하는 경우
+        } else {
+            return "비밀번호가 일치하지 않습니다."; // 비밀번호가 불일치하는 경우
+        }
+    }
+
+	
+
+	
+
+	
+
+    @RequestMapping(value = "deleteForm", method = RequestMethod.GET)
+    public String deleteForm(Model model, HttpSession session) {
+    	String user_username = (String) session.getAttribute("memName");
+		UserDTO userDTO = userService.getUser(user_username);
 		model.addAttribute("userDTO", userDTO);
-		return "/user/delete";
-	}
+		 System.out.println("memId: " + session.getAttribute("memId"));
+		 System.out.println("memName: " + session.getAttribute("memName"));
+		return "/user/deleteForm";
+    }
+
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	@ResponseBody
-	public void delete(@ModelAttribute UserDTO userDTO) {
-		userService.delete(userDTO);
+	public void delete(@RequestParam String user_username) {
+	    userService.delete(user_username);
 	}
+
+	
+
+	//비밀번호 추가 
+//	@RequestMapping(value = "getExistPwd", method = RequestMethod.POST)
+//	@ResponseBody
+//	public UserDTO getExistPwd(@RequestParam String user_username) {
+//	    UserDTO userDTO = userService.getUser(user_username);
+//	    return userDTO; // 사용자 DTO를 JSON으로 반환
+//	}
+
+	
 	
 	@GetMapping("/mailCheck")
 	@ResponseBody
