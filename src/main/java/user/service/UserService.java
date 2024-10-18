@@ -2,6 +2,8 @@ package user.service;
 
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import user.bean.UserDTO;
 
 public interface UserService {
@@ -26,6 +28,9 @@ public interface UserService {
 //public UserDTO login(String username, String pwd);
 	
 	public UserDTO login(Map<String, String> map);
+
+	//프로필 업로드 서비스 추가 
+	public void updateProfilePic(UserDTO userDTO, MultipartFile img);
 
 }
 
