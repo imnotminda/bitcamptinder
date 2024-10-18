@@ -8,4 +8,6 @@ public interface MatchService {
 
 	List<UserDTO> getMatchingUsers(String currentUser);
 
+	UserDTO getCurrentUserById(Integer currentUserId);
+
 }

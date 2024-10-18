@@ -8,7 +8,7 @@ $(function() {
             type: 'get',
             url: '/BitcampTinder/user/autoMatch',
             success: function(response) {
-                confirm('매칭이 완료되었습니다! 결과를 보시겠습니까?');
+                confirm('매칭 완료! 결과를 보시겠습니까?');
                 location.href = '/BitcampTinder/user/autoMatchResult';
             },
             error: function(e) {

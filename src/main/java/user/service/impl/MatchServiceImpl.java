@@ -112,4 +112,11 @@ public class MatchServiceImpl implements MatchService {
         return matchedUsers;
 
 	}
+
+	@Override
+	public UserDTO getCurrentUserById(Integer currentUserId) {
+		return matchDAO.getCurrentUserById(currentUserId);
+	}
+
+
 }

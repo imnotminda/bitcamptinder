@@ -16,5 +16,7 @@ public interface MatchDAO {
 	    
 	 List<UserDTO> getAllUsersExcept(@Param("user_id") int user_id); // Method to get all users except the current user by ID
 
+	UserDTO getCurrentUserById(@Param("user_id") Integer currentUserId);
+
 
 }

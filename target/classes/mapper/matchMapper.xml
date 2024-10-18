@@ -16,4 +16,9 @@
         WHERE USER_ID != #{user_id} <!-- Changed from USER_ID to USER_USERNAME -->
     </select>
     
+    <select id="getCurrentUserById" parameterType="int" resultType="user.bean.UserDTO">
+        SELECT * 
+        FROM date_user
+        WHERE USER_ID = #{user_id} <!-- Changed from USER_ID to USER_USERNAME -->
+    </select>
 </mapper>

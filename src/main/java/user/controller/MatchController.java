@@ -47,17 +47,20 @@ public class MatchController {
 	
 	 @GetMapping("autoMatchResult")
 	    public String showMatchResults(HttpSession session, Model model) {
-		 	Integer currentUser = (Integer) session.getAttribute("memId");
+		 	Integer currentUserId = (Integer) session.getAttribute("memId");
 
 		 	// Check if user is logged in
-		    if (currentUser == null) {
+		    if (currentUserId == null) {
 		        throw new RuntimeException("User is not logged in.");
 		    }
+		    
+		    UserDTO currentUser = matchService.getCurrentUserById(currentUserId);
 
 		    // Convert Integer to String if needed in your service, or directly pass as Integer
-		    List<UserDTO> matchingUsers = matchService.getMatchingUsers(String.valueOf(currentUser));
+		    List<UserDTO> matchingUsers = matchService.getMatchingUsers(String.valueOf(currentUserId));
 
 		    model.addAttribute("matchingUsers", matchingUsers);
+		    model.addAttribute("currentUser", currentUser);
 
 		    return "/user/autoMatchResult";
 	    }
