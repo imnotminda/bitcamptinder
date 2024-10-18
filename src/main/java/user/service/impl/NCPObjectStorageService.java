@@ -35,7 +35,7 @@ public class NCPObjectStorageService implements ObjectStorageService {
     public String uploadFile(String bucketName, String directoryPath, MultipartFile img) {
         try (InputStream inputStream = img.getInputStream()) {
             // 파일 이름을 UUID로 생성하여 충돌 방지
-            String imageFileName = UUID.randomUUID().toString() + "_" + img.getOriginalFilename();
+        	String imageFileName = img.getOriginalFilename();
 
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType(img.getContentType());

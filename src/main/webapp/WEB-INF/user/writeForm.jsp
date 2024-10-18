@@ -120,22 +120,16 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 		<div id="Formwrap">
 			<a href="/BitcampTinder/"><img src="../image/tlogo.png"
 				width="50" alt="Tinder" /></a> BitcampTinder 회원가입
-			<form id="writeForm">
+			<form id="writeForm" enctype="multipart/form-data">
 				<div id="inputwrap">
 					<!-- ************* 프로필 이미지 일단 숨김 처리 *********-->
-					 <table border="1">
-						<tr>
-							<td colspan="2"><input type="file" name="img[]"
-								multiple="multiple"></td>
-						</tr>
-						<tr>
-					<!-- 	 <td colspan="2" align="center">
-								<input type="submit" value="이미지 업로드" style="width: 100px; height: 30px;"> 
-						 <input type="reset" value="취소"> 
-							</td> -->
-						</tr>
-					</table> 
-					<!-- 성별 -->
+					<div id="profilePicWrap">
+						<img id="showProfilePic"
+							src="${ pageContext.request.contextPath }/image/placeholder.png" width="70" height="70" /> 
+							<img src="${ pageContext.request.contextPath }/image/camera.png" alt="카메라" id="albumArtCamera" width="50" height="50"> 
+							<input type="file" name="profile_pic_file" id="profilePic">
+						<div id="profilePicDiv"></div>
+					</div>
 
 					<!--  1.이름  -->
 					<div id="namewrap">
@@ -147,8 +141,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div id="genderwrap">
 						<label>성별 :</label> <input type="radio" id="genderMale"
 							name="gender" value="male"> <label for="genderMale">남</label>
-						<input type="radio" id="genderFemale" name="user_gender" value="female">
-						<label for="genderFemale">여</label>
+						<input type="radio" id="genderFemale" name="user_gender"
+							value="female"> <label for="genderFemale">여</label>
 						<div id="genderDiv"></div>
 					</div>
 					<!--  3.나이 -->
@@ -197,18 +191,18 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							</select>
 
 							<!-- 두 번째 번호 입력 -->
-							<input type="text" id="user_tel2" name="user_tel2" size="3" maxlength="4"
-								style="width: 90px;" />
+							<input type="text" id="user_tel2" name="user_tel2" size="3"
+								maxlength="4" style="width: 90px;" />
 							<!-- 세 번째 번호 입력 -->
-							<input type="text" id="user_tel3" name="user_tel3" size="3" maxlength="4"
-								style="width: 90px;" />
+							<input type="text" id="user_tel3" name="user_tel3" size="3"
+								maxlength="4" style="width: 90px;" />
 						</div>
 						<div id="telDiv"></div>
 
 						<!--9. 이메일 -->
 						<div id="emailwrap">
 							<label for="email1">이메일 :</label>
-							
+
 							<div id="emailInputs">
 								<!-- 이메일 첫 번째 입력 -->
 								<input type="text" name="user_email1" id="user_email1" size="10"
@@ -218,8 +212,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 									placeholder="도메인" />
 
 								<!-- 이메일 세 번째 입력 (선택 옵션) -->
-								<input type="text" name="user_email3" id="user_email3" list="email3_list"
-									placeholder="직접 입력 또는 선택" />
+								<input type="text" name="user_email3" id="user_email3"
+									list="email3_list" placeholder="직접 입력 또는 선택" />
 
 								<!-- 이메일 옵션 리스트 -->
 								<datalist id="email3_list">
@@ -230,10 +224,11 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 								</datalist>
 
 								<div id="btnwrap">
-									<input type="text" id="emailCheckInput" placeholder="인증번호 6자리" disabled="disabled" maxlength="6">
+									<input type="text" id="emailCheckInput" placeholder="인증번호 6자리"
+										disabled="disabled" maxlength="6">
 									<button type="button" id="emailBtn"
 										style="width: 80px; height: 30px;">인증</button>
-										<span id="emailWarning"></span>
+									<span id="emailWarning"></span>
 								</div>
 							</div>
 						</div>
@@ -241,8 +236,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  10.여행 -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="categorywrap">
-							<label for="travelcategory">여행 카테고리 :</label> 
-							<select id="user_travel" name="user_travel">
+							<label for="travelcategory">여행 카테고리 :</label> <select
+								id="user_travel" name="user_travel">
 								<option value="국내여행">국내여행</option>
 								<option value="해외여행">해외여행</option>
 								<option value="camping">캠핑</option>
@@ -252,11 +247,11 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							<div id="travelcategoryDiv"></div>
 						</div>
 					</div>
-						<!--  11.스포츠 -->
+					<!--  11.스포츠 -->
 					<div style="display: inline-block; width: 45%;">
 						<div id="sportwrap">
-							<label for="sportcategory">스포츠및 운동:</label> 
-							<select id="user_sport" name="user_sport">
+							<label for="sportcategory">스포츠및 운동:</label> <select
+								id="user_sport" name="user_sport">
 								<option value="축구">축구</option>
 								<option value="여행">여행</option>
 								<option value="야구">야구</option>
@@ -272,8 +267,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!-- 12.음식 -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="foodwrap">
-							<label for="foodcategory">요리:</label> 
-							<select id="user_food" name="user_food">
+							<label for="foodcategory">요리:</label> <select id="user_food"
+								name="user_food">
 								<option value="요리">요리</option>
 								<option value="식사">식사</option>
 								<option value="디저트">디저트</option>
@@ -287,8 +282,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 
 					<div style="display: inline-block; width: 45%;">
 						<div id="hobbywrap">
-							<label for="hobbycategory">취미 및 여가:</label> 
-							<select id="user_hobby" name="user_hobby">
+							<label for="hobbycategory">취미 및 여가:</label> <select
+								id="user_hobby" name="user_hobby">
 								<option value="독서">독서</option>
 								<option value="게임">게임</option>
 								<option value="DIY">DIY</option>
@@ -302,8 +297,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--14. 예술 및 문화  -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="artwrap">
-							<label for="artcategory">음악 취향:</label> 
-							<select id="user_art" name="user_art">
+							<label for="artcategory">음악 취향:</label> <select id="user_art"
+								name="user_art">
 								<option value="음악">음악</option>
 								<option value="미술">미술</option>
 								<option value="영화">영화</option>
@@ -330,154 +325,185 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							<div id="musiccategoryDiv"></div>
 						</div>
 					</div>
-			<div style="display: inline-block; width: 100%;">
-      <!-- 흡연 -->
-    <div id="smokingwrap" style="display: inline-block; width: 45%; vertical-align: top;">
-        <label>흡연 :</label>
-        <div style="display: inline-block;">
-            <input type="radio" id="smokingYes" name="user_smoke" value="yes">
-            <label for="smokingYes">유</label>
-        </div>
-        <div style="display: inline-block;">
-            <input type="radio" id="smokingNo" name="user_smoke" value="no">
-            <label for="smokingNo">무</label>
-        </div>
-        <div id="smokingDiv"></div>
-    </div>
+					<div style="display: inline-block; width: 100%;">
+						<!-- 흡연 -->
+						<div id="smokingwrap"
+							style="display: inline-block; width: 45%; vertical-align: top;">
+							<label>흡연 :</label>
+							<div style="display: inline-block;">
+								<input type="radio" id="smokingYes" name="user_smoke"
+									value="yes"> <label for="smokingYes">유</label>
+							</div>
+							<div style="display: inline-block;">
+								<input type="radio" id="smokingNo" name="user_smoke" value="no">
+								<label for="smokingNo">무</label>
+							</div>
+							<div id="smokingDiv"></div>
+						</div>
 
 
-    <!-- 영화 -->
-    <div id="moviewrap" style="display: inline-block; width: 45%; vertical-align: top;">
-        <label for="moviecategory">영화 :</label>
-        <select id="user_movie" name="user_movie">
-            <option value="공포">공포</option>
-            <option value="로맨스">로맨스</option>
-            <option value="애니메이션">애니메이션</option>
-            <option value="액션">액션</option>
-        </select>
-        <div id="moviecategoryDiv"></div>
-    </div>
-</div>
-		<!-- 수정 x -->
-		<div id="btnwrap">
-			<button type="button" id="writeBtn" style="width: 100px; height: 30px;">회원가입</button>
-	<!--   </div>
+						<!-- 영화 -->
+						<div id="moviewrap"
+							style="display: inline-block; width: 45%; vertical-align: top;">
+							<label for="moviecategory">영화 :</label> <select id="user_movie"
+								name="user_movie">
+								<option value="공포">공포</option>
+								<option value="로맨스">로맨스</option>
+								<option value="애니메이션">애니메이션</option>
+								<option value="액션">액션</option>
+							</select>
+							<div id="moviecategoryDiv"></div>
+						</div>
+					</div>
+					<!-- 수정 x -->
+					<div id="btnwrap">
+						<button type="button" id="writeBtn"
+							style="width: 100px; height: 30px;">회원가입</button>
+						<!--   </div>
              <div id="resetwrap"> -->
-			<button type="reset" id="resetBtn"
-				style="width: 100px; height: 30px;">취소</button>
+						<button type="reset" id="resetBtn"
+							style="width: 100px; height: 30px;">취소</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-</form>
-</div>
-	</div>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="../js/write.js"></script>
-		<script type="text/javascript">
-	
-    var mailCheckUrl = '${pageContext.request.contextPath}/user/mailCheck';
-    var code = "";
-    var isEmailVerified = false;
+	<script type="text/javascript">
+		var mailCheckUrl = '${pageContext.request.contextPath}/user/mailCheck';
+		var code = "";
+		var isEmailVerified = false;
 
-    $('#emailBtn').click(function() {
-        const email = $('#user_email1').val() + '@' + $('#user_email2').val();
-        console.log('완성된 이메일 : ' + email);
-        const checkInput = $('#emailCheckInput');
+		$('#emailBtn').click(
+				function() {
+					const email = $('#user_email1').val() + '@'
+							+ $('#user_email2').val();
+					console.log('완성된 이메일 : ' + email);
+					const checkInput = $('#emailCheckInput');
 
-        $.ajax({
-            type: 'GET',
-            url: mailCheckUrl + '?email=' + encodeURIComponent(email),
-            success: function(data) {
-                console.log("data : " + data);
-                checkInput.attr('disabled', false);
-                code = data;
-                isEmailVerified = false;
-                alert('인증번호가 발송되었습니다.');            
-            },
-            error: function(xhr, status, error) {
-                console.error("Error occurred: " + error);
-                alert('이메일 인증에 실패했습니다. 다시 시도해주세요.');
-            }
-        });
-    });
+					$.ajax({
+						type : 'GET',
+						url : mailCheckUrl + '?email='
+								+ encodeURIComponent(email),
+						success : function(data) {
+							console.log("data : " + data);
+							checkInput.attr('disabled', false);
+							code = data;
+							isEmailVerified = false;
+							alert('인증번호가 발송되었습니다.');
+						},
+						error : function(xhr, status, error) {
+							console.error("Error occurred: " + error);
+							alert('이메일 인증에 실패했습니다. 다시 시도해주세요.');
+						}
+					});
+				});
 
-    $('#emailCheckInput').blur(function() {
-        const inputCode = $(this).val();
-        const $resultMsg = $('#emailWarning');
+		$('#emailCheckInput').blur(
+				function() {
+					const inputCode = $(this).val();
+					const $resultMsg = $('#emailWarning');
 
-        if (inputCode === code) {
-        	$resultMsg.html('인증번호가 일치합니다.').css('color', 'green');
-            $('#emailBtn').attr('disabled', true);
-            $('#user_email1').attr('readonly', true);
-            $('#user_email2').attr('readonly', true);
-            $('#emailCheckInput').attr('disabled', true);
-            isEmailVerified = true;
-        } else {
-        	 $resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.').css('color', 'red');
-             isEmailVerified = false;
-        }
-    });
+					if (inputCode === code) {
+						$resultMsg.html('인증번호가 일치합니다.').css('color', 'green');
+						$('#emailBtn').attr('disabled', true);
+						$('#user_email1').attr('readonly', true);
+						$('#user_email2').attr('readonly', true);
+						$('#emailCheckInput').attr('disabled', true);
+						isEmailVerified = true;
+					} else {
+						$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.').css(
+								'color', 'red');
+						isEmailVerified = false;
+					}
+				});
 
-    $(function() {
-        // 아이디 중복체크
-        $('#user_username').focusout(function() {
-            $('#idDiv').empty();
-                $.ajax({
-                    type: 'post',
-                    url: '${pageContext.request.contextPath}/user/checkId',
-                    data: 'user_username=' + $('#user_username').val(),
-                    dataType: 'text',
-                    success: function(data) {
-                        if (data == 'exist') {
-                            $('#idDiv').html('이미 사용중인 아이디입니다.');
-                            $('#idDiv').css('color', 'red');
-                        } else {
-                            $('#idDiv').html('사용가능한 아이디입니다.');
-                            $('#idDiv').css('color', 'green');
-                        }
-                    },
-                    error: function(e) {
-                        console.log(e);
-                    }
-                });
-        });
+		$(function() {
+			// 아이디 중복체크
+			$('#user_username').focusout(function() {
+				$('#idDiv').empty();
+				$.ajax({
+					type : 'post',
+					url : '${pageContext.request.contextPath}/user/checkId',
+					data : 'user_username=' + $('#user_username').val(),
+					dataType : 'text',
+					success : function(data) {
+						if (data == 'exist') {
+							$('#idDiv').html('이미 사용중인 아이디입니다.');
+							$('#idDiv').css('color', 'red');
+						} else {
+							$('#idDiv').html('사용가능한 아이디입니다.');
+							$('#idDiv').css('color', 'green');
+						}
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				});
+			});
 
-        // 등록
-        $('#writeBtn').click(function() {
-            $('#nameDiv').empty();
-            $('#idDiv').empty();
-            $('#ageDiv').empty();
-            $('#pwdDiv').empty();
-            $('#emailWarning').empty();
+			// 등록
+			$('#writeBtn').click(function() {
+				var formData = new FormData($('#writeForm')[0]);
+				$('#nameDiv').empty();
+				$('#idDiv').empty();
+				$('#ageDiv').empty();
+				$('#pwdDiv').empty();
+				$('#emailWarning').empty();
 
-            if ($('#user_name').val() == '')
-                $('#nameDiv').html('이름을 입력해주세요.').css('color', 'red');
-            else if ($('#user_age').val() == '')
-                $('#ageDiv').html('나이를 입력해주세요.').css('color', 'red');
-            else if ($('#user_username').val() == '')
-                $('#idDiv').html('아이디를 입력해주세요.').css('color', 'red');
-            else if ($('#user_pwd').val() == '')
-                $('#pwdDiv').html('비밀번호를 입력해주세요.').css('color', 'red');
-            else if (!isEmailVerified) {
-                $('#emailWarning').html('인증번호가 일치하지 않습니다.');
-                $('#emailWarning').css('color', 'red');
-            } else {
-                $.ajax({
-                    type: 'post',
-                    url: '/BitcampTinder/user/write',
-                    data: $('#writeForm').serialize(),
-                    dataType: 'text',
-                    success: function() {
-                        alert('회원가입완료');
-                        location.href = '/BitcampTinder';
-                    },
-                    error: function(e) {
-                        console.log(e);
-                    }
-                });
-            }
-        });
-    });
+				if ($('#user_name').val() == '')
+					$('#nameDiv').html('이름을 입력해주세요.').css('color', 'red');
+				else if ($('#user_age').val() == '')
+					$('#ageDiv').html('나이를 입력해주세요.').css('color', 'red');
+				else if ($('#user_username').val() == '')
+					$('#idDiv').html('아이디를 입력해주세요.').css('color', 'red');
+				else if ($('#user_pwd').val() == '')
+					$('#pwdDiv').html('비밀번호를 입력해주세요.').css('color', 'red');
+				else if (!isEmailVerified) {
+					$('#emailWarning').html('인증번호가 일치하지 않습니다.');
+					$('#emailWarning').css('color', 'red');
+				} else {
+					$.ajax({
+						type : 'post',
+						url : '/BitcampTinder/user/write',
+						data : formData,
+						contentType: false,
+				        processData: false,
+						success : function() {
+							alert('회원가입완료');
+							location.href = '/BitcampTinder';
+						},
+						error : function(e) {
+							console.log(e);
+						}
+					});
+				}
+			});
+			
+			// 앨범 아트 업로드
+			$('#albumArtCamera').click(function(){
+				$('#profilePic').trigger('click');
+			});
 
-    </script>
+			// 앨범 아트 미리보기
+			$('#profilePic').change(function(){
+				readURL(this, '#showProfilePic');
+			});
+
+			// 파일 미리보기 함수
+			function readURL(input, target){
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$(target).attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+			
+			
+		});
+		
+	</script>
 </body>
 </html>

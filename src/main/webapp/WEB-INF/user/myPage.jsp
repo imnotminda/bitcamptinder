@@ -212,7 +212,7 @@ h2.widget-heading {
 				</div>
 				<div class="user-details">
 					<div class="user-img">
-				<img src="https://kr.object.ncloudstorage.com/bitcamp-9th-bucket-142/storage/${userDTO.profile_pic }" />
+				<img src="${userDTO.profile_pic }" />
 						<form method="post" enctype="multipart/form-data">
 							<label for="chooseFile">
 								<div id="canvas">
