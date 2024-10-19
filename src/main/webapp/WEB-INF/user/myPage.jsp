@@ -366,7 +366,13 @@ h2.widget-heading {
 	</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/comment.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+function submitMessageForm(senderId, receiverId) {
+    document.getElementById('senderId').value = senderId;
+    document.getElementById('receiverId').value = receiverId;
+    document.getElementById('messageForm').submit();
+}
+</script>
 </body>
 </html>
 
