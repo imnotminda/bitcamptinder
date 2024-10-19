@@ -59,16 +59,15 @@ input[type="text"], input[type="password"], input[type="mbti"], input[type="reli
 input[type="text"]:hover, input[type="mbti"]:hover, input[type="reli"]:hover,
 	input[type="password"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
 	{
-	border-color: #888;
+	border-color: #b81c40;
 }
 
 input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 	input[type="password"]:focus {
-	border-color: #5a9;
+	border-color: #b81c40; /* #5a9; */
 	outline: none;
-	box-shadow: 0 0 5px rgba(90, 153, 90, 0.5);
+	box-shadow: 0 0 5px rgba(184, 28, 64, 0.5);
 }
-
 /* id, name, pwdWrap 항목 컨테이너 스타일 */
 #idwrap, #namewrap, #pwdwrap, #btnwrap, #resetwrap, #categorywrap,
 	#sportwrap, #foodwrap, #hobbywrap, #artwrap, #musicwrap, #smokingwrap,

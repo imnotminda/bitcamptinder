@@ -123,17 +123,38 @@ public class UserController {
 	
 	//마이페이지 
 	
+//	 @RequestMapping(value = "myPage", method = RequestMethod.GET)
+//	    public String mypage(@RequestParam("user_id") Integer userId, Model model) {
+//	        UserDTO userDTO = userService.getUserById(userId);
+//	        if (userDTO != null) {
+//	        	System.out.println("UserDTO: " + userDTO); // Debug line
+//	        	model.addAttribute("userDTO", userDTO);    
+//	            return "user/myPage"; // Ensure this path is correct
+//	        } else {
+//	            return "redirect:/error"; // Handle user not found scenario
+//	        }
+//	    }
+	 //오혜진 241020 세션 관련 로직 추가 - 사용자 비교
 	 @RequestMapping(value = "myPage", method = RequestMethod.GET)
-	    public String mypage(@RequestParam("user_id") Integer userId, Model model) {
-	        UserDTO userDTO = userService.getUserById(userId);
-	        if (userDTO != null) {
-	        	System.out.println("UserDTO: " + userDTO); // Debug line
-	        	model.addAttribute("userDTO", userDTO);    
-	            return "user/myPage"; // Ensure this path is correct
-	        } else {
-	            return "redirect:/error"; // Handle user not found scenario
-	        }
-	    }
+	 public String mypage(HttpSession session, @RequestParam("user_id") Integer userId, Model model) {
+	     Integer memId = (Integer) session.getAttribute("memId"); // 세션 memId 
+
+//	     if (memId == null) {
+//	         return "redirect:/user/loginForm"; //
+//	     }
+
+	     // 주어진 userId로 사용자 정보 가져오기
+	     UserDTO userDTO = userService.getUserById(userId);
+	     if (userDTO != null) {
+	         System.out.println("UserDTO: " + userDTO); // 
+	         model.addAttribute("userDTO", userDTO);
+	         model.addAttribute("isCurrentUser", memId.equals(userId)); //
+	         return "user/myPage"; //
+	     } else {
+	         return "redirect:/error"; // 사용자x
+	     }
+	 }
+
 	 
 	 @RequestMapping(value = "deleteForm", method = RequestMethod.GET)
 	    public String deleteForm(Model model, HttpSession session) {
