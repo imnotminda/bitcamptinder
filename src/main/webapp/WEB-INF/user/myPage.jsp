@@ -220,7 +220,7 @@ h2.widget-heading {
 		<hr>
 		<br>
 		<div style="display: flex;">
-
+	    
 			<ul class="menu" style="padding-left: 0px; width: 230px;">
 				<br>
 				<li><a >마이페이지</a>
