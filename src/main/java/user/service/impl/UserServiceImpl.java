@@ -63,12 +63,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(UserDTO userDTO) {
-		userDAO.delete(userDTO);
-
-	}
-
-	@Override
 	public UserDTO checkDeleteInfo(String user_username) {
 		return userDAO.checkDeleteInfo(user_username);
 	}
@@ -96,6 +90,17 @@ public class UserServiceImpl implements UserService {
 	    userDTO.setProfile_pic(profilePicUrl);
 
 	    // 이후 DAO 호출로 DB에 저장하는 로직 추가 (예: userDAO.updateProfilePic(userDTO))
+	}
+
+	@Override
+	public UserDTO getUserById(Integer userId) {
+		return userDAO.getUserById(userId);
+	}
+
+	@Override
+	public void delete(String user_username) {
+		userDAO.delete(user_username);
+		
 	}
 
 	

@@ -101,7 +101,7 @@ $(document).ready(function() {
 
 	            var galleryItem = `
 	                <div class="gallery-item">
-	            		<a href="${pageContext.request.contextPath}/user/myPage?user_Id=` + userId + `" target="_blank">
+	            		<a href="${pageContext.request.contextPath}/user/myPage?user_id=` + userId + `" target="_blank">
 	            		<img src="` + profileImage + `" alt="` + username + `">
 	                    </a>
 	                </div>`;

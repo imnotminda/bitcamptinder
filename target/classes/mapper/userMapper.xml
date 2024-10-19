@@ -66,14 +66,19 @@
 	<!-- 회원탈퇴 정보 확인 -->
 	<select id="checkDeleteInfo" parameterType="String"
 		resultType="UserDTO">
-		SELECT * FROM DATE_USER WHERE username = #{username}
+		SELECT * FROM DATE_USER WHERE user_username = #{user_username}
 	</select>
 
 	<!-- 회원정보 탈퇴 -->
 	<delete id="delete" parameterType="String">
-		DELETE FROM DATE_USER WHERE username=#{username}
+		DELETE FROM DATE_USER WHERE user_username=#{user_username}
 	</delete>
 
+	<select id="getExistPwd" parameterType="String" resultType="userDTO">
+   	 	SELECT * FROM date_user WHERE USER_USERNAME = #{user_username}
+	</select>
+	
+	
 	<!-- 회원 로그인 / 241016 오혜진 -->
 	<select id="login" parameterType="map" resultType="userDTO">
 		SELECT * FROM date_user WHERE USER_USERNAME = #{user_username} AND USER_PWD = #{user_pwd}
@@ -84,5 +89,11 @@
         SELECT user_id, user_username, profile_pic
         FROM date_user
     </select>
+    
+    <select id="getUserById" parameterType="Integer" resultType="userDTO">
+	    SELECT *
+	    FROM date_user
+	    WHERE user_id = #{user_id}
+	</select>
 
 </mapper>

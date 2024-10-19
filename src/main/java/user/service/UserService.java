@@ -18,8 +18,6 @@ public interface UserService {
 	public void update(UserDTO userDTO);
 
 	public UserDTO getUser(String user_username);
-
-	public void delete(UserDTO userDTO);
 	
 	public UserDTO checkDeleteInfo(String user_username);
 	
@@ -31,6 +29,10 @@ public interface UserService {
 
 	//프로필 업로드 서비스 추가 
 	public void updateProfilePic(UserDTO userDTO, MultipartFile img);
+
+	public UserDTO getUserById(Integer userId);
+
+	public void delete(String user_username);
 
 }
 

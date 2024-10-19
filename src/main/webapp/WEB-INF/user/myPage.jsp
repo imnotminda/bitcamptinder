@@ -49,7 +49,20 @@ button {
 	padding: 5% 10%;
 	background-color: white;
 }
-
+/* .menu {
+    list-style-type: none;
+    margin-right: 10px;
+    margin-left: 0px;
+    padding-left: 0px;
+    width: 15%;
+    position: fixed; /* 메뉴를 고정된 위치에 두도록 설정 */
+    top: 0; /* 상단에 고정 */
+    left: 0; /* 좌측에 고정 */
+    background-color: #fff; /* 배경색 추가 */
+    padding-top: 20px; /* 상단 여백 추가 */
+    height: 100vh; /* 메뉴의 높이를 전체 뷰포트 높이로 설정 */
+} */
+ 
 .menu {
 	list-style-type: none;
 	margin-right: 10px;
@@ -58,22 +71,23 @@ button {
 	width: 15%;
 	height: 100%;
 	overflow: auto;
-}
+} 
 
 .menu li a {
 	display: block;
 	color: #000;
 	padding: 8px 16px;
 	text-decoration: none;
+	  font-size: 20px;
 }
 
-.menu li a.active {
-	background-color: #5271FF;
+ .menu li a.active {
+	background-color: #b81c40; /*#5271FF;*/
 	color: white;
 }
-
+ 
 .menu li a:hover:not(.active) {
-	background-color: #5271FF;
+	background-color:  #b81c40; /*#5271FF;*/
 	color: white;
 }
 
@@ -107,37 +121,52 @@ body {
 }
 
 .profile-widget h3 {
-	color: #6E9DDC;
-	margin: 20px 0px 10px;
+    color: #630016;  /* 빨간색 #b81c40; /* 기존 파란색 #6E9DDC; */
+    margin: 10px 0px 20px ; /* 오른쪽 여백을 20px로 설정 */
 }
 
 .profile-widget img {
-	width: 100%;
-	max-width: 100%;
-	height: auto;
-	display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
+
 
 .user-img {
 	width: 100px;
 	height: 100px;
 	border-radius: 100%;
 	overflow: hidden;
-	box-shadow: 0px 0px 4px 0px #6E9DDC;
+	box-shadow: 0px 0px 4px 0px  #b81c40; /* #6E9DDC; 기존 파란색*/
 	border: 4px solid #fff;
 	margin: 0 auto;
 	margin-top: -60px;
 	position: relative;
 	z-index: 999;
 }
+/* 부모 컨테이너의 너비를 설정 */
+.profile-widget {
+    max-width: 100%; /* 필요한 경우 max-width 값을 조정 */
+    width: 500px; /* 필요에 맞게 너비를 늘림 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.followers {
+    display: flex;
+    flex-wrap: wrap; /* 항목들이 가로로 배치되며 줄바꿈 가능 */
+    gap: 20px; /* 항목 사이에 간격 추가 */
+    justify-content: space-between; /* 항목 간 여백을 자동으로 분배 */
+}
 
 .followers h3 {
-	width: 49%;
-	float: left;
-	padding: 6px 0px;
-	border: 1px dashed #838383;
-	border-radius: 144px;
-	font-size: 18px;
+    width: 45%; /* 한 줄에 두 개씩 배치되도록 너비 설정 */
+    padding: 6px 0px;
+    border: 1px dashed #838383;
+    border-radius: 144px;
+    font-size: 18px;
+    text-align: center;
+    box-sizing: border-box; /* 패딩과 너비가 겹치지 않도록 함 */
 }
 
 .followers h3:last-child {
@@ -151,10 +180,10 @@ body {
 
 button.follow-btn {
 	font-size: 19px;
-	background: #6E9DDC;
+	background: #b81c40; /* #6E9DDC; */
 	border: none;
 	color: #fff;
-	padding: 10px 15px;
+	padding: 10px 10px 40px;
 	margin: 20px 0px 0px;
 	width: 100%;
 	cursor: pointer;
@@ -184,7 +213,9 @@ h2.widget-heading {
 
 	<div class="innerOuter">
 			<input type="hidden" id="memId" value="${sessionscope.memId }" />
-		<h2>마이페이지</h2>
+			<a href="/BitcampTinder/"><img src="../image/tlogo.png"
+				width="50" alt="Tinder" /></a>
+		 <h2>BitcampTinder 마이페이지</h2>
 		<br>
 		<hr>
 		<br>
@@ -192,10 +223,11 @@ h2.widget-heading {
 
 			<ul class="menu" style="padding-left: 0px; width: 230px;">
 				<br>
-				<li><a href="myPage.se">마이페이지</a>
+				<li><a >마이페이지</a>
 					<ul style="width: 210px;">
-						<li><a href="pwdChange.me">- 회원 정보수정 </a></li>
-						<li><a href="delete.me">- 회원 탈퇴</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보수정 </a></li>
+						<li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
+						 <!-- <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/loginForm'">로그인</button> -->
 					</ul></li>
 
 
@@ -223,7 +255,7 @@ h2.widget-heading {
 										</c:when>
 										<c:otherwise>
 											<img
-												src="resources/image/profile/<fmt:formatNumber value='${sessionScope.loginMember.memberNo}' pattern ='00000000' />.${sessionScope.loginMember.memberPhotoExtend}"
+												src="resources/image/profile/<fmt:formatNumber value='${userDTO.profile_pic}' pattern ='00000000' />.${sessionScope.loginMember.memberPhotoExtend}"
 												alt="User photo2" id="uploadFiles">
 										</c:otherwise>
 									</c:choose>
@@ -279,7 +311,7 @@ h2.widget-heading {
 						</h3>
 					</div>
 					<!--   <button class="follow-btn" onclick="location.href='myPage.me'">수정하기</button> <br> -->
-					<button class="follow-btn" onclick="location.href='projecting.bo'">매칭점수보기</button>
+					<button class="follow-btn" onclick="location.href='/BitcampTinder'">매칭점수보러 메인가기</button>
 				</div>
 				<!-- Image by <a href="https://www.freepik.com/free-photo/empty-room-with-chairs-desks_15501155.htm#query=office&position=4&from_view=search&track=sph&uuid=bc5b64e6-870d-4c59-a1d8-d8ba1d700a20">Freepik</a> -->
 				<%--  <c:choose>
@@ -297,17 +329,105 @@ h2.widget-heading {
 
 		</div>
 		<!--  장훈님 댓글 영역 -->
-		<!--  댓글 등록 버튼 -->
+    <% 
+        // 세션에서 memId 가져오기
+        Integer comment_memId = (Integer) session.getAttribute("memId");
+    %>
 
-		<div id="btnwrap">
-			<button type="button" id="updateBtn"
-				style="width: 100px; height: 30px;">댓글 등록</button>
-		</div>
-
-
+    <div>
+    	<input type="text" id="pageuser_id" value="${userDTO.user_id}" readonly>
+        <input type="text" id="comment_id" value="<%= comment_memId %>" readonly>
+    </div>
+    
+	<div id="commentSection">
+	    <div id="commentList"> <!-- 댓글 리스트를 표시할 div 추가 -->
+	        <!-- 댓글이 여기에 추가됩니다. -->
+	    </div>
+	    
+	    <textarea id="commentContent" placeholder="댓글을 입력하세요"></textarea>
+	    <button id="commentInput">댓글 작성</button>
 	</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script type="text/javascript" src="../js/comment.js"></script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+        $('#commentInput').click(function() {
+        	var pageuser_id = $('#pageuser_id').val(); // 마이페이지 유저의 id
+            var comment_id = $('#comment_id').val();; // 댓글 작성자 ID
+            var content = $('#commentContent').val();
+            
+            if (content.trim() === '') {
+                alert('댓글 내용을 입력하세요');
+                return;
+            }
 
+            $.ajax({
+                url: '/BitcampTinder/user/commentContent',
+                type: 'POST',
+                data: {
+                    pageuser_id: pageuser_id,
+                    content: content,
+                    commenter_id: comment_id
+                },
+                success: function(response) {
+                    alert('댓글이 성공적으로 등록되었습니다.');
+                    $('#commentContent').val('');
+                    loadComments();
+                },
+                error: function(error) {
+                    console.log('댓글 작성 실패:', error);
+                }
+            });
+        });
+        
+        function formatDate(dateString) {
+            if (!dateString) return "날짜 없음"; // 유효하지 않은 경우 기본 메시지 반환
+            
+            var date = new Date(dateString);
+            if (isNaN(date.getTime())) return "유효하지 않은 날짜"; // 유효하지 않은 날짜 형식 체크
 
+            var year = date.getFullYear();
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var day = String(date.getDate()).padStart(2, '0');
+
+            return year + '-' + month + '-' + day; // YYYY-MM-DD 형식으로 반환
+        }
+        
+        function loadComments() {
+            var pageuser_id = $('#pageuser_id').val();
+
+            $.ajax({
+                url: '/BitcampTinder/user/getComment',
+                type: 'GET',
+                data: { pageuser_id: pageuser_id },
+                success: function(response) {
+                    console.log(response); // 응답 확인
+                    displayComments(response);
+                },
+                error: function(error) {
+                    console.log('댓글 로딩 실패:', error);
+                }
+            });
+        }
+
+        function displayComments(comments) {
+            var commentList = $('#commentList');
+            commentList.empty(); // 기존 댓글 제거
+
+            comments.forEach(function(comment) {
+                var commentItem = `
+                    <div class="comment">
+                        <p><strong>` + comment.commenter_id + `</strong>: ` + comment.content + `</p>
+                        <span>` + formatDate(comment.created_AT) + `</span>
+                    </div>
+                `;
+                commentList.append(commentItem); // 댓글 추가
+            });
+        }
+
+        loadComments(); // 페이지 로드 시 댓글 로드
+    });
+    </script>
 </body>
 </html>
 

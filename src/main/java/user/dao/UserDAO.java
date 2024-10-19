@@ -21,17 +21,17 @@ public interface UserDAO {
 	public void update(UserDTO userDTO);
 
 	public UserDTO getUser(String username);
-
-	public void delete(UserDTO userDTO);
-
+	
 	public UserDTO checkDeleteInfo(String username);
 	
-
-
 	//유저 로그인 -241016
 	public UserDTO login(Map<String, String> map);
 	
 	//겔러리
 	public List<UserDTO> getAllUsers();
+
+	public UserDTO getUserById(Integer userId);
+
+	public void delete(String user_username);
 	
 }

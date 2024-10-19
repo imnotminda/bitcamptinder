@@ -120,8 +120,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <body>
     <div id="wrap">
         <div id="Formwrap">
-            <a href="/BitcampTinder/"><img src="../image/apple.jpg" width="25" alt="Tinder" /></a> 
-            BitcampTinder 회원정보 수정
+<a href="/BitcampTinder/"><img src="../image/tlogo.png"
+				width="50" alt="Tinder" /></a>BitcampTinder 회원정보 수정
             <form id="updateForm">
             	<input type="hidden" id="memId" value="${sessionscope.memId }" />
                 <div id="inputwrap">
@@ -200,7 +200,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
                  	<!-- 여행 카테고리 -->
 <div style="display: inline-block; width: 45%; margin-right: 5%;">
     <div id="categorywrap">
-        <label for="travelcategory">여행 카테고리 :</label> 
+        <label for="travelcategory">여행 취향 :</label> 
         <select id="user_travel" name="user_travel">
             <option value="국내여행" <c:if test="${userDTO.user_travel == '국내여행'}">selected</c:if>>국내여행</option>
             <option value="해외여행" <c:if test="${userDTO.user_travel == '해외여행'}">selected</c:if>>해외여행</option>
@@ -215,7 +215,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <!-- 스포츠 -->
 <div style="display: inline-block; width: 45%;">
     <div id="sportwrap">
-        <label for="sportcategory">스포츠및 운동:</label> 
+        <label for="sportcategory">스포츠/운동:</label> 
         <select id="user_sport" name="user_sport">
             <option value="축구" <c:if test="${userDTO.user_sport == '축구'}">selected</c:if>>축구</option>
             <option value="여행" <c:if test="${userDTO.user_sport == '여행'}">selected</c:if>>여행</option>
@@ -248,7 +248,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <!-- 취미 및 여가 -->
 <div style="display: inline-block; width: 45%;">
     <div id="hobbywrap">
-        <label for="hobbycategory">취미 및 여가:</label> 
+        <label for="hobbycategory">취미/여가:</label> 
         <select id="user_hobby" name="user_hobby">
             <option value="독서" <c:if test="${userDTO.user_hobby == '독서'}">selected</c:if>>독서</option>
             <option value="게임" <c:if test="${userDTO.user_hobby == '게임'}">selected</c:if>>게임</option>
@@ -264,7 +264,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <!-- 예술 및 문화 -->
 <div style="display: inline-block; width: 45%; margin-right: 5%;">
     <div id="artwrap">
-        <label for="artcategory">음악 취향:</label> 
+        <label for="artcategory">문화생활 취향:</label> 
         <select id="user_art" name="user_art">
             <option value="음악" <c:if test="${userDTO.user_art == '음악'}">selected</c:if>>음악</option>
             <option value="미술" <c:if test="${userDTO.user_art == '미술'}">selected</c:if>>미술</option>
@@ -291,8 +291,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
         <div id="musiccategoryDiv"></div>
     </div>
 </div>
-
-<div style="display: inline-block; width: 100%;">
+<!-- 
+<div style="display: inline-block; width: 100%;"> -->
       <!-- 흡연 -->
   <div style="display: inline-block; width: 100%;">
     <!-- 흡연 -->
@@ -326,7 +326,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 </div>
                     <div id="btnwrap">
                         <button type="button" id="updateBtn" style="width: 100px; height: 30px;">수정</button>
-                        <button type="reset" id="resetBtn" style="width: 100px; height: 30px;">취소</button>
+                      <button type="button" id="reset" style="width: 100px; height: 30px;" onclick="location.href='/BitcampTinder'">취소</button>
+
                     </div>
                 </div>
             </form>
