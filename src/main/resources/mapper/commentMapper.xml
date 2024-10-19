@@ -5,12 +5,12 @@
  
 <mapper namespace="user.dao.CommentDAO">
     <insert id="insertComment" parameterType="CommentDTO">
-        INSERT INTO comment (user_id, commenter_id, content, created_AT)
-        VALUES (#{user_id}, #{commenter_id}, #{content}, #{created_AT})
+        INSERT INTO comment (user_id, commenter_id, content, created_AT, commenter_name)
+        VALUES (#{user_id}, #{commenter_id}, #{content}, #{created_AT}, #{commenter_name})
     </insert>
 
     <select id="getComment" parameterType="int" resultType="CommentDTO">
-        SELECT comment_id, user_id, commenter_id, content, created_AT
+        SELECT comment_id, user_id, commenter_id, content, created_AT, commenter_name
         FROM comment
         WHERE user_id = #{userId}
         ORDER BY created_AT DESC
