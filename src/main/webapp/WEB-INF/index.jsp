@@ -90,19 +90,24 @@ $(document).ready(function() {
 	    	console.log("AJAX 요청 성공", data);
 	        var gallery = $('#gallery');
 	        $.each(data, function(index, user) {
-	            console.log("넌 뭐냐 ? " + user); // 각 user 객체 출력
-	            console.log(user.user_id);
-	            console.log("넌 뭐냐 픽 ? " + user.profile_pic); // 각 user 객체 출력	            
+	            // 개별적으로 user_id 추출
+	            var userId = user.user_id; // 각 user의 user_id
+	            var username = user.username; // 각 user의 username
 	            var profileImage = user.profile_pic ? user.profile_pic : 'http://localhost:8080/BitcampTinder/image/default.jpg';
-	            console.log("사용할 이미지 경로:", profileImage); // 최종 이미지 경로 확인
+
+	            console.log("User ID:", userId); // 각 user_id 출력
+	            console.log("Username:", username); // 각 username 출력
+	            console.log("사용할 이미지 경로:", profileImage); // 이미지 경로 출력
+
 	            var galleryItem = `
 	                <div class="gallery-item">
-	                    <a href="${pageContext.request.contextPath}/user/myPage?userId=${user.user_id}" target="_blank">
-	                        <img src="http://localhost:8080/BitcampTinder/image/default.jpg" alt="${user.username}">
+	            		<a href="${pageContext.request.contextPath}/user/myPage?user_Id=` + userId + `" target="_blank">
+	            		<img src="` + profileImage + `" alt="` + username + `">
 	                    </a>
 	                </div>`;
 	            gallery.append(galleryItem);
 	        });
+	        
 	           // AJAX 요청이 완료된 후 items를 초기화
             const items = document.querySelectorAll('.gallery-item');
             const itemCount = items.length;
