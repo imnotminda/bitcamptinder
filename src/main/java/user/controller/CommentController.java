@@ -33,16 +33,19 @@ public class CommentController {
 	@ResponseBody
 	public Map<String, Object> commentInput(@RequestParam("pageuser_id") int userId, 
 	                                         @RequestParam("content") String commentContent,
-	                                         @RequestParam("commenter_id") int commenterId) {
+	                                         @RequestParam("commenter_id") int commenterId,
+	                                         @RequestParam("commenter_name") String commenterName) {
 	    System.out.println("userId: " + userId);
 	    System.out.println("commentContent: " + commentContent);
 	    System.out.println("commenterId: " + commenterId); // commenterId 출력
+	    System.out.println("commenterName" + commenterName);
 
 	    CommentDTO userCommentDTO = new CommentDTO();
 	    userCommentDTO.setUser_id(userId);
 	    userCommentDTO.setCommenter_id(commenterId); // commenter_id 설정
 	    userCommentDTO.setContent(commentContent);
-	    userCommentDTO.setCreated_AT(new Date()); 
+	    userCommentDTO.setCreated_AT(new Date());
+	    userCommentDTO.setCommenter_name(commenterName);
 
 	    String result = commentService.commentInput(userCommentDTO);
 
@@ -58,6 +61,5 @@ public class CommentController {
     @ResponseBody
     public List<CommentDTO> getComment(@RequestParam("pageuser_id") int userId) {
         return commentService.getComment(userId);
-        
     }
 }

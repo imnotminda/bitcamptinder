@@ -1,8 +1,8 @@
 $(document).ready(function() {
-        // 댓글 작성 버튼 클릭 시
-        $('#submitComment').click(function() {
-            var userId = 1; // 마이페이지 유저 ID
-            var commenterId = 2; // 댓글 작성자 ID
+        $('#commentInput').click(function() {
+        	var pageuser_id = $('#pageuser_id').val(); // 마이페이지 유저의 id
+            var comment_id = $('#comment_id').val(); // 댓글 작성자 ID
+            var comment_name = $('#comment_name').val();
             var content = $('#commentContent').val();
             
             if (content.trim() === '') {
@@ -11,45 +11,69 @@ $(document).ready(function() {
             }
 
             $.ajax({
-                url: '/BitcampTinder/comment/add', // 댓글 작성 요청
+                url: '/BitcampTinder/user/commentContent',
                 type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    userId: userId,
-                    commenterId: commenterId,
-                    content: content
-                }),
+                data: {
+                    pageuser_id: pageuser_id,
+                    content: content,
+                    commenter_name : comment_name,
+                    commenter_id: comment_id
+                },
                 success: function(response) {
                     alert('댓글이 성공적으로 등록되었습니다.');
-                    $('#commentContent').val(''); // 입력란 비우기
-                    loadComments(); // 댓글 리스트 다시 로드
+                    $('#commentContent').val('');
+                    loadComments();
                 },
                 error: function(error) {
                     console.log('댓글 작성 실패:', error);
                 }
             });
         });
+        
+        function formatDate(dateString) {
+            if (!dateString) return "날짜 없음"; // 유효하지 않은 경우 기본 메시지 반환
+            
+            var date = new Date(dateString);
+            if (isNaN(date.getTime())) return "유효하지 않은 날짜"; // 유효하지 않은 날짜 형식 체크
 
-        // 댓글 리스트 로드 함수
+            var year = date.getFullYear();
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var day = String(date.getDate()).padStart(2, '0');
+
+            return year + '-' + month + '-' + day; // YYYY-MM-DD 형식으로 반환
+        }
+        
         function loadComments() {
-            var userId = 1; // 현재 마이페이지 유저 ID
+            var pageuser_id = $('#pageuser_id').val();
 
             $.ajax({
-                url: '/BitcampTinder/comment/list?userId=' + userId,
+                url: '/BitcampTinder/user/getComment',
                 type: 'GET',
-                success: function(data) {
-                    var commentsHtml = '';
-                    $.each(data, function(index, comment) {
-                        commentsHtml += `<div><strong>${comment.commenterName}</strong>: ${comment.content}</div>`;
-                    });
-                    $('#commentsList').html(commentsHtml);
+                data: { pageuser_id: pageuser_id },
+                success: function(response) {
+                    console.log(response); // 응답 확인
+                    displayComments(response);
                 },
                 error: function(error) {
-                    console.log('댓글 목록 로드 실패:', error);
+                    console.log('댓글 로딩 실패:', error);
                 }
             });
         }
 
-        // 페이지 로드 시 댓글 리스트 로드
-        loadComments();
+        function displayComments(comments) {
+            var commentList = $('#commentList');
+            commentList.empty(); // 기존 댓글 제거
+
+            comments.forEach(function(comment) {
+                var commentItem = `
+                    <div class="comment">
+                        <p><strong>` + comment.commenter_name + `</strong>: ` + comment.content + `</p>
+                        <span>` + formatDate(comment.created_AT) + `</span>
+                    </div>
+                `;
+                commentList.append(commentItem); // 댓글 추가
+            });
+        }
+
+        loadComments(); // 페이지 로드 시 댓글 로드
     });
