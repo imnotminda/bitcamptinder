@@ -236,7 +236,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  10.여행 -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="categorywrap">
-							<label for="travelcategory">여행 카테고리 :</label> <select
+							<label for="travelcategory">여행취향 :</label> <select
 								id="user_travel" name="user_travel">
 								<option value="국내여행">국내여행</option>
 								<option value="해외여행">해외여행</option>
@@ -250,7 +250,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  11.스포츠 -->
 					<div style="display: inline-block; width: 45%;">
 						<div id="sportwrap">
-							<label for="sportcategory">스포츠및 운동:</label> <select
+							<label for="sportcategory">스포츠/운동:</label> <select
 								id="user_sport" name="user_sport">
 								<option value="축구">축구</option>
 								<option value="여행">여행</option>
@@ -282,7 +282,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 
 					<div style="display: inline-block; width: 45%;">
 						<div id="hobbywrap">
-							<label for="hobbycategory">취미 및 여가:</label> <select
+							<label for="hobbycategory">취미/여가:</label> <select
 								id="user_hobby" name="user_hobby">
 								<option value="독서">독서</option>
 								<option value="게임">게임</option>
@@ -297,7 +297,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--14. 예술 및 문화  -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="artwrap">
-							<label for="artcategory">음악 취향:</label> <select id="user_art"
+							<label for="artcategory">문화생활 취향:</label> <select id="user_art"
 								name="user_art">
 								<option value="음악">음악</option>
 								<option value="미술">미술</option>
@@ -312,7 +312,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--15. 음악  -->
 					<div style="display: inline-block; width: 45%;">
 						<div id="musicwrap">
-							<label for="musiccategory">취미 및 여가:</label> <select
+							<label for="musiccategory">음악 취향:</label> <select
 								id="user_music" name="user_music">
 								<option value="클래식">클래식</option>
 								<option value="팝">팝</option>
@@ -361,8 +361,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							style="width: 100px; height: 30px;">회원가입</button>
 						<!--   </div>
              <div id="resetwrap"> -->
-						<button type="reset" id="resetBtn"
-							style="width: 100px; height: 30px;">취소</button>
+				                      <button type="button" id="reset" style="width: 100px; height: 30px;" onclick="location.href='/BitcampTinder'">취소</button>
 					</div>
 				</div>
 			</form>

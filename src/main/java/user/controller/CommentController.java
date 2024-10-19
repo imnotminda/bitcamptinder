@@ -1,6 +1,9 @@
 package user.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import user.bean.UserCommentDTO;
+import user.bean.CommentDTO;
 import user.service.CommentService;
 
 @Controller
@@ -24,19 +27,37 @@ public class CommentController {
 	public String userfeedForm() {
 		return "/user/feedForm";
 	}
-    @RequestMapping(value = "commentInput", method = RequestMethod.POST)
+	
+	//comment
+	@RequestMapping(value = "commentContent", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> commentInput(@RequestParam("pageuser_id") int userId, 
+	                                         @RequestParam("content") String commentContent,
+	                                         @RequestParam("commenter_id") int commenterId) {
+	    System.out.println("userId: " + userId);
+	    System.out.println("commentContent: " + commentContent);
+	    System.out.println("commenterId: " + commenterId); // commenterId 출력
+
+	    CommentDTO userCommentDTO = new CommentDTO();
+	    userCommentDTO.setUser_id(userId);
+	    userCommentDTO.setCommenter_id(commenterId); // commenter_id 설정
+	    userCommentDTO.setContent(commentContent);
+	    userCommentDTO.setCreated_AT(new Date()); 
+
+	    String result = commentService.commentInput(userCommentDTO);
+
+	    // 댓글 ID를 반환하도록 수정
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("message", result);
+	    response.put("commentId", userCommentDTO.getComment_id()); // 댓글 ID 포함
+
+	    return response;
+	}
+	
+    @RequestMapping(value = "getComment", method = RequestMethod.GET)
     @ResponseBody
-    public String commentInput(@RequestParam("userId") int userId, 
-                               @RequestParam("commentContent") String commentContent) {
-        System.out.println(userId);
-        System.out.println(commentContent);
-
-        UserCommentDTO userCommentDTO = new UserCommentDTO();
-        userCommentDTO.setUser_id(userId);
-        userCommentDTO.setComment_content(commentContent);
-        userCommentDTO.setLogtime(new Date());
-
-        String result = commentService.commentInput(userCommentDTO);
-        return result;
+    public List<CommentDTO> getComment(@RequestParam("pageuser_id") int userId) {
+        return commentService.getComment(userId);
+        
     }
 }

@@ -3,18 +3,16 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="CommentMapper">
-    <insert id="insertComment" parameterType="map">
-        INSERT INTO date_comment (user_id, comment_content, logtime)
-        VALUES (#{userId}, #{commentContent}, NOW())
+<mapper namespace="user.dao.CommentDAO">
+    <insert id="insertComment" parameterType="CommentDTO">
+        INSERT INTO comment (user_id, commenter_id, content, created_AT)
+        VALUES (#{user_id}, #{commenter_id}, #{content}, #{created_AT})
     </insert>
 
-    <insert id="insertIntoProfileBoard" parameterType="map">
-        INSERT INTO date_profile_board (user_id, comment_seq)
-        VALUES (#{userId}, #{commentSeq})
-    </insert>
-
-    <select id="getLastInsertId" resultType="int">
-        SELECT LAST_INSERT_ID()
+    <select id="getComment" parameterType="int" resultType="CommentDTO">
+        SELECT comment_id, user_id, commenter_id, content, created_AT
+        FROM comment
+        WHERE user_id = #{userId}
+        ORDER BY created_AT DESC
     </select>
 </mapper>
