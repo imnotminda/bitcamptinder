@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="user.bean.UserDTO" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -209,8 +210,6 @@ h2.widget-heading {
 </style>
 </head>
 <body>
-
-
 	<div class="innerOuter">
 			<input type="hidden" id="memId" value="${sessionscope.memId }" />
 			<a href="/BitcampTinder/"><img src="../image/tlogo.png"
@@ -220,19 +219,30 @@ h2.widget-heading {
 		<hr>
 		<br>
 		<div style="display: flex;">
-
+			<!-- 241020 마이페이지 세션 수정 및 추가영역 / 오혜진 -->
+		<br>
+        <% if (session.getAttribute("memId") == null) { %>
+            <li><a href="${pageContext.request.contextPath}/user/loginForm">로그인</a></li>
+        <% } else { %>
+            <c:if test="${isCurrentUser}">
 			<ul class="menu" style="padding-left: 0px; width: 230px;">
-				<br>
+				<li><a >마이페이지</a><ul style="width: 210px;">
+                <li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보 수정</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
+            </c:if>
+        <% } %>
+    </ul>
+</li>
+  </ul> 
+			<%-- 기존 마이페이지 버튼 영역 수정전
+					<br>
 				<li><a >마이페이지</a>
 					<ul style="width: 210px;">
 						<li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보수정 </a></li>
 						<li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
 						 <!-- <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/loginForm'">로그인</button> -->
 					</ul></li>
-
-
-			</ul>
-
+			</ul>  --%>
 			<!--  프로필 이미지  영역 -->
 			<div class="profile-widget">
 		<h2 class="widget-heading">프로필</h2>
@@ -354,4 +364,3 @@ h2.widget-heading {
 <script type="text/javascript"></script>
 </body>
 </html>
-
