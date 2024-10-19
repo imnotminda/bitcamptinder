@@ -21,4 +21,17 @@
         FROM date_user
         WHERE USER_ID = #{user_id} <!-- Changed from USER_ID to USER_USERNAME -->
     </select>
+    
+     <insert id="sendMessage" parameterType="map">
+        INSERT INTO date_message (sender_id, receiver_id, message_text, timestamp, status) 
+        VALUES (#{sender_id}, #{receiver_id}, #{message_text}, NOW(), 'unread')
+    </insert>
+    
+   <select id="getMessagesForUser" parameterType="int" resultType="user.bean.MessageDTO">
+	    SELECT dm.sender_id, dm.receiver_id, dm.message_text, dm.timestamp, dm.status, du.USER_NAME AS sender_name
+	    FROM date_message dm
+	    JOIN date_user du ON dm.sender_id = du.USER_ID
+	    WHERE dm.receiver_id = #{user_id} 
+	    ORDER BY dm.timestamp DESC
+	</select>
 </mapper>

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import user.bean.UserDTO;
 import user.service.MailService;
+import user.service.MatchService;
 import user.service.UserService;
 import user.service.impl.NCPObjectStorageService;
 
@@ -33,6 +34,8 @@ public class UserController {
 	private MailService mailService;
 	@Autowired
 	private NCPObjectStorageService objectStorageService;
+	@Autowired
+	private MatchService matchService;
 
 	// 회원가입
 	@RequestMapping(value = "writeForm", method = RequestMethod.GET)
@@ -121,19 +124,25 @@ public class UserController {
 		userService.update(userDTO);
 	}
 	
-	//마이페이지 
-	
 	 @RequestMapping(value = "myPage", method = RequestMethod.GET)
-	    public String mypage(@RequestParam("user_id") Integer userId, Model model) {
-	        UserDTO userDTO = userService.getUserById(userId);
-	        if (userDTO != null) {
-	        	System.out.println("UserDTO: " + userDTO); // Debug line
-	        	model.addAttribute("userDTO", userDTO);    
-	            return "user/myPage"; // Ensure this path is correct
-	        } else {
-	            return "redirect:/error"; // Handle user not found scenario
-	        }
-	    }
+	 public String mypage(@RequestParam("user_id") Integer userId, HttpSession session, Model model) {
+		 Integer currentUserId = (Integer) session.getAttribute("memId");
+		 
+		 UserDTO userDTO = userService.getUserById(userId);
+		 UserDTO currentUser = matchService.getCurrentUserById(currentUserId);
+		 UserDTO clickedUser = matchService.getCurrentUserById(userId);
+	        
+        if (userDTO != null) {
+        	System.out.println("UserDTO: " + userDTO); // Debug line
+        	model.addAttribute("userDTO", userDTO);   
+        	model.addAttribute("currentUserId", currentUserId);
+        	model.addAttribute("currentUser", currentUser);
+	        model.addAttribute("clickedUser", clickedUser);
+            return "user/myPage"; // Ensure this path is correct
+        } else {
+            return "redirect:/error"; // Handle user not found scenario
+        }
+    }
 	 
 	 @RequestMapping(value = "deleteForm", method = RequestMethod.GET)
 	    public String deleteForm(Model model, HttpSession session) {

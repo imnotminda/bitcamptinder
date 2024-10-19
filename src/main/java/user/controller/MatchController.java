@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import user.bean.MessageDTO;
 import user.bean.UserDTO;
 import user.service.MatchService;
 
@@ -63,6 +66,83 @@ public class MatchController {
 		    model.addAttribute("currentUser", currentUser);
 
 		    return "/user/autoMatchResult";
+	    }	 
+	 
+	 
+	 // Method to handle profile click and redirect to matchCompare.jsp
+	    @GetMapping("/matchCompare")
+	    public String compareUsers(@RequestParam("user_id") int userId, HttpSession session, Model model) {
+	        // Get the current user from the session
+	        Integer currentUserId = (Integer) session.getAttribute("memId");
+	        
+	        // Check if the user is logged in
+	        if (currentUserId == null) {
+	            throw new RuntimeException("User is not logged in.");
+	        }
+	        
+	        // Fetch the current user data
+	        UserDTO currentUser = matchService.getCurrentUserById(currentUserId);
+	        
+	        // Fetch the clicked user's data
+	        UserDTO clickedUser = matchService.getCurrentUserById(userId);
+	        
+	        if (clickedUser == null) {
+	            throw new RuntimeException("Clicked user not found.");
+	        }
+	        
+	        // Add both users' data to the model
+	        model.addAttribute("currentUser", currentUser);
+	        model.addAttribute("clickedUser", clickedUser);
+	        
+	        // Redirect to matchCompare.jsp
+	        return "/user/matchCompare";
 	    }
-	
+	    
+    // Method to handle message form display
+    @GetMapping("/messageForm")
+    public String messageForm(@RequestParam("sender_id") int senderId,  @RequestParam("receiver_id") int receiverId, HttpSession session, Model model) {
+        // Check if the user is logged in
+        Integer currentUserId = (Integer) session.getAttribute("memId");
+        
+        if (currentUserId == null) {
+            throw new RuntimeException("User is not logged in.");
+        }
+
+        // Fetch current user data (this should be the sender)
+        UserDTO currentUser = matchService.getCurrentUserById(senderId);
+        // Fetch clicked user's data (this should be the receiver)
+        UserDTO clickedUser = matchService.getCurrentUserById(receiverId);
+
+        // Add both users' data to the model
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("clickedUser", clickedUser);
+
+        // Return to the message form JSP
+        return "/user/messageForm";  // Adjust the path to your message form JSP
+    }
+    
+    @PostMapping("/sendMessage")
+    public String sendMessage(@RequestParam("sender_id") int senderId, @RequestParam("receiver_id") int receiverId, @RequestParam("message_text") String messageText) {
+
+        // Assuming you have a service to handle message sending logic
+        matchService.sendMessage(senderId, receiverId, messageText);
+
+        // Redirect to inbox or a success page
+        return "redirect:/user/userInbox"; // Adjust to your actual inbox mapping
+    }
+    
+    @GetMapping("/userInbox")
+    public String showInbox(HttpSession session, Model model) {
+        Integer user_id = (Integer) session.getAttribute("memId");
+
+        // Check if user is logged in
+        if (user_id == null) {
+            throw new RuntimeException("User is not logged in.");
+        }
+
+        List<MessageDTO> messages = matchService.getMessagesForUser(user_id); // Implement this service method
+        model.addAttribute("messages", messages);
+
+        return "/user/userInbox"; // Path to your inbox JSP
+    }
 }

@@ -24,10 +24,10 @@
                     <div class="card h-100">
                         <c:choose>
                             <c:when test="${not empty user.profile_pic}">
-                                <img src="${user.profile_pic}" class="card-img-top" alt="Profile Pic">
+                                <a href="${pageContext.request.contextPath}/user/matchCompare?user_id=${user.user_id}"><img src="${user.profile_pic}" class="card-img-top" alt="Profile Pic"></a>
                             </c:when>
                             <c:otherwise>
-                                <img src="../image/tlogo.png" class="card-img-top" alt="Default Profile Pic">
+                                <a href="${pageContext.request.contextPath}/user/matchCompare?user_id=${user.user_id}"><img src="../image/tlogo.png" class="card-img-top" alt="Default Profile Pic"></a>
                             </c:otherwise>
                         </c:choose>
                         <div class="card-body">

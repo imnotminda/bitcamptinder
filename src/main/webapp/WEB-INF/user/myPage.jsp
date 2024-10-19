@@ -225,10 +225,25 @@ h2.widget-heading {
 				<br>
 				<li><a >마이페이지</a>
 					<ul style="width: 210px;">
-						<li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보수정 </a></li>
-						<li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
+						<c:if test="${currentUserId != userDTO.user_id}">
+							 <li>
+						        <a href="#" onclick="submitMessageForm(${currentUser.user_id}, ${clickedUser.user_id}); return false;">- 매칭 신청하기</a>
+						    </li>
+						    <!-- Hidden Form -->
+							<form id="messageForm" action="${pageContext.request.contextPath}/user/messageForm" method="get" style="display:none;">
+							    <input type="hidden" name="sender_id" id="senderId">
+							    <input type="hidden" name="receiver_id" id="receiverId">
+							</form>										
+						</c:if>
+						<c:if test="${currentUserId == userDTO.user_id}">
+							<li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보수정 </a></li>
+							<li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
+					        <li><a href="${pageContext.request.contextPath}/user/userInbox">- 메세지함</a></li>
+				        </c:if>
+				       
 						 <!-- <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/loginForm'">로그인</button> -->
-					</ul></li>
+					</ul>
+				</li>
 
 
 			</ul>
@@ -427,7 +442,14 @@ $(document).ready(function() {
 
         loadComments(); // 페이지 로드 시 댓글 로드
     });
-    </script>
+
+		function submitMessageForm(senderId, receiverId) {
+		    document.getElementById('senderId').value = senderId;
+		    document.getElementById('receiverId').value = receiverId;
+		    document.getElementById('messageForm').submit();
+		}
+
+</script>
 </body>
 </html>
 

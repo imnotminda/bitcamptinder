@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import user.bean.MessageDTO;
 import user.bean.UserDTO;
 import user.dao.MatchDAO;
 import user.dao.UserDAO;
@@ -130,5 +131,13 @@ public class MatchServiceImpl implements MatchService {
 		return matchDAO.getCurrentUserById(currentUserId);
 	}
 
+	@Override
+	 public void sendMessage(int senderId, int receiverId, String messageText) {
+        matchDAO.sendMessage(senderId, receiverId, messageText);
+	}
 
+	@Override
+	public List<MessageDTO> getMessagesForUser(Integer user_id) {
+       return matchDAO.getMessagesForUser(user_id);
+    }
 }
