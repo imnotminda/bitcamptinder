@@ -10,7 +10,6 @@
 <title>BitcampTinder: 회원가입</title>
 </head>
 <body>
-<c:import url="/WEB-INF/header/header.jsp"></c:import>
     <div id="wrap">
         <div id="Formwrap">
 <a href="/BitcampTinder/"><img src="../image/tlogo.png"
