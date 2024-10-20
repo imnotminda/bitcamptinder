@@ -223,8 +223,8 @@ h2.widget-heading {
 	    
 			<ul class="menu" style="padding-left: 0px; width: 230px;">
 				<br>
-				<li><a >마이페이지</a>
-					<ul style="width: 210px;">
+				<!-- 241020 오혜진- 다른사람 MYPAGE 에서 보이는 항목 -->
+		<!-- 		<li><a >마이페이지</a><ul style="width: 210px;"> -->
 						<c:if test="${currentUserId != userDTO.user_id}">
 							 <li>
 						        <a href="#" onclick="submitMessageForm(${currentUser.user_id}, ${clickedUser.user_id}); return false;">- 매칭 신청하기</a>
@@ -235,19 +235,19 @@ h2.widget-heading {
 							    <input type="hidden" name="receiver_id" id="receiverId">
 							</form>										
 						</c:if>
+						<!--241020 오혜진-  나의 MYPAGE 에서 보이는 항목 -->
 						<c:if test="${currentUserId == userDTO.user_id}">
+							<li><a >마이페이지</a><ul style="width: 210px;">
 							<li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보수정 </a></li>
 							<li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
 					        <li><a href="${pageContext.request.contextPath}/user/userInbox">- 메세지함</a></li>
+				        </ul>
 				        </c:if>
-				       
 						 <!-- <button type="button" class="btn btn-danger" onclick="location.href='http://localhost:8080/BitcampTinder/user/loginForm'">로그인</button> -->
-					</ul>
-				</li>
-
-
+					<!--수정X </ul> -->
+				<!--수정X </li>  -->
 			</ul>
-
+		</div>
 			<!--  프로필 이미지  영역 -->
 			<div class="profile-widget">
 		<h2 class="widget-heading">프로필</h2>
@@ -339,9 +339,7 @@ h2.widget-heading {
 		            
 		            				        
  --%>
-
 			</div>
-
 		</div>
 		<!--  장훈님 댓글 영역 -->
    <% 
@@ -375,4 +373,3 @@ function submitMessageForm(senderId, receiverId) {
 </script>
 </body>
 </html>
-

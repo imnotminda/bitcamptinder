@@ -9,6 +9,36 @@
 <title>BitcampTinder: 회원가입</title>
 
 <style>
+/*241020 핸드폰 번호 간격조정 */
+/* 핸드폰 번호 관련 스타일 */
+#telInputs {
+    display: flex;
+    align-items: center; /* 수직 정렬을 맞추기 위해 추가 */
+}
+/* 첫 번째 번호 선택 */
+#user_tel1 {
+    width: 90px; /* 두 번째와 세 번째 입력 필드와 동일한 너비 설정 */
+    margin-right: 5px; /* 간격 조정 */
+}
+/* 두 번째 및 세 번째 번호 입력 필드 */
+#user_tel2,
+#user_tel3 {
+    width: 90px; /* 기존과 동일한 너비 유지 */
+}
+
+/* readonly 241020 음영처리 수정 */
+/* 변경금지되는 항목 음영처리 */
+input[type="text"][readonly], input[type="password"][readonly] {
+    background-color: #f0f0f0; /* 배경 색상 */
+    border-color: #ccc; /* 테두리 색상 */
+    cursor: not-allowed; 
+}
+
+input[type="text"][readonly]:focus, input[type="password"][readonly]:focus {
+    outline: none; 
+    box-shadow: none; 
+}
+
 #btnwrap {
 	display: flex;
 	justify-content: center; /* 가로 가운데 정렬 */
@@ -128,7 +158,103 @@ input[type="text"][readonly]:focus {
 	padding: 5px;
 	font-size: 16px;
 }
-    </style>
+/* 241020 셀렉트박스 꾸미기*/
+
+/* 셀렉트 박스 공통 스타일 */
+select {
+    width: 100%; /* 전체 너비 사용 */
+    padding: 10px; /* 패딩 추가 */
+    font-size: 16px; /* 텍스트 크기 */
+    color: #333; /* 텍스트 색상 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 5px; /* 둥근 모서리 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 */
+    appearance: none; /* 기본 화살표 제거 (브라우저별 다를 수 있음) */
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer; /* 커서 모양 변경 */
+}
+
+/* 공통 스타일 */
+select {
+    appearance: none; /* 기본 브라우저 스타일 제거 */
+    -webkit-appearance: none; /* 사파리 브라우저 호환성 */
+    -moz-appearance: none; /* 파이어폭스 브라우저 호환성 */
+    background-color: white; /* 내부 배경 흰색 */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* 둥근 모서리 */
+    padding: 8px 10px;
+    font-size: 16px;
+    color: #333; /* 텍스트 색상 */
+    box-sizing: border-box;
+    width: 100%; /* 너비 100% */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon fill="%23999" points="0,0 10,0 5,5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* 화살표 위치 */
+    background-size: 10px 10px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+/* 호버 시 스타일 */
+select:hover {
+    border-color: #b81c40; /* 테두리 색상 변경 */
+}
+
+/* 포커스 시 스타일 */
+select:focus {
+    border-color: #b81c40;
+    outline: none;
+    box-shadow: 0 0 5px rgba(184, 28, 64, 0.5);
+}
+
+/* 241020 라디오버튼 꾸미기*/
+/* 라디오 버튼 공통 스타일 */
+input[type="radio"] {
+    appearance: none; /* 기본 브라우저 스타일 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc; /* 기본 테두리 색상 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* 라디오 버튼 클릭 전 상태 */
+input[type="radio"]:before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white; /* 내부 배경 흰색 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease;
+}
+
+/* 라디오 버튼 클릭 시 스타일 */
+input[type="radio"]:checked {
+    border-color: #b81c40; /* 클릭된 테두리 색상 */
+}
+
+/* 라디오 버튼 클릭 후 내부 색상 변화 */
+input[type="radio"]:checked:before {
+    background-color: #b81c40; /* 클릭된 내부 색상 */
+}
+
+/* 라디오 버튼 호버 시 스타일 */
+input[type="radio"]:hover {
+    border-color: #b81c40; /* 호버 시 테두리 색상 */
+}
+
+</style>
 </head>
 <body>
     <div id="wrap">
