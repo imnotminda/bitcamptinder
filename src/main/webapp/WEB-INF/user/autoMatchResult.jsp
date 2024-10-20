@@ -32,7 +32,16 @@
                         </c:choose>
                         <div class="card-body">
                             <h5 class="card-title">${user.user_name}</h5>
-                            <p class="card-text">매치점수 : ${user.matchScore}%</p>
+                            <p class="card-text">매치점수 : 
+							    <c:choose>
+							        <c:when test="${user.matchScore > 100}">
+							            100%
+							        </c:when>
+							        <c:otherwise>
+							            ${user.matchScore}%
+							        </c:otherwise>
+							    </c:choose>
+							</p>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">MBTI: ${user.user_mbti}</small><br>

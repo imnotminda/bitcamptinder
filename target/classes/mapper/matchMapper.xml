@@ -28,7 +28,7 @@
     </insert>
     
    <select id="getMessagesForUser" parameterType="int" resultType="user.bean.MessageDTO">
-	    SELECT dm.sender_id, dm.receiver_id, dm.message_text, dm.timestamp, dm.status, du.USER_NAME AS sender_name
+	    SELECT dm.sender_id, dm.receiver_id, dm.message_text, dm.timestamp, dm.status, du.user_name AS sender_name, du.profile_pic AS sender_profile_pic
 	    FROM date_message dm
 	    JOIN date_user du ON dm.sender_id = du.USER_ID
 	    WHERE dm.receiver_id = #{user_id} 

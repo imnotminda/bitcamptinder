@@ -3,37 +3,95 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inbox</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../css/userInbox.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-    <h2>나의 메시지함</h2>
+<div class="header">
+    <c:import url="/WEB-INF/header/header.jsp"></c:import>
+</div>
 
-    <c:if test="${not empty messages}">
-        <ul>
-            <c:forEach var="message" items="${messages}">
-                <li>
-                    <strong>이름:</strong> ${message.sender_name} <br>
-                    <strong>내용:</strong> ${message.message_text} <br>
-                    <strong>시간:</strong><fmt:formatDate value="${message.timestamp}" pattern="MM월 dd일 hh:mm a" timeZone="Asia/Seoul"/><br>
-                    <strong>상태:</strong>
-                   	<c:choose>
-					    <c:when test="${message.status == 'unread'}">
-					        읽지 않음
-					    </c:when>
-					    <c:otherwise>
-					        ${message.status} 읽음
-					    </c:otherwise>
-					</c:choose>
-                </li>
-                <hr>
-            </c:forEach>
-        </ul>
-    </c:if>
+<div class="pageContent">
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebarHeader">
+                메세지함
+            </div>
+            <ul class="chatList">
+                <c:forEach var="uniqueSender" items="${uniqueSenders}">
+                    <li class="chatItem">
+                        <a href="?senderId=${uniqueSender.sender_id}" style="text-decoration: none;"> <!-- Link to select sender -->
+                            <img src="${not empty uniqueSender.sender_profile_pic ? uniqueSender.sender_profile_pic : '../image/tlogo.png'}" alt="User profile" class="profile-pic">
+                                <strong>${uniqueSender.sender_name}</strong><br>
+                        </a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
 
-    <c:if test="${empty messages}">
-        <p>No messages found.</p>
-    </c:if>
+        <!-- Chat Area -->
+        <div class="chatArea">
+            <div class="chatHeader">
+                  <c:choose>
+		            <c:when test="${not empty messages}">
+		                <!-- Use the sender of the first message to show the profile picture -->
+		                <img src="${not empty messages[0].sender_profile_pic ? messages[0].sender_profile_pic : '../image/tlogo.png'}" alt="User profile">
+		                <div>
+		                    <strong>${messages[0].sender_name}</strong><br>
+		                </div>
+		            </c:when>
+		            <c:otherwise>
+		                <div>
+		                    <strong>채팅</strong><br>
+		                </div>
+		            </c:otherwise>
+		        </c:choose>
+		    </div>
+            <div class="chatMessages">
+			    <c:forEach var="message" items="${messages}">
+			        <!-- Compare sender_id and currentUserId as strings to ensure consistent comparison -->
+			        <div class="message ${message.sender_id eq currentUserId ? 'sent' : 'received'}">
+					    ${message.message_text}
+					    <span class="messageTime">
+					        <fmt:formatDate value="${message.timestamp}" pattern="hh:mm a" timeZone="Asia/Seoul" />
+					    </span>
+					</div>
+			    </c:forEach>
+			</div>
+            <div class="messageInput">
+                <form id="messageForm" action="${pageContext.request.contextPath}/user/sendMessage" method="post"> <!-- Add your action URL -->
+			        <textarea id="messageText" name="message_text" placeholder="메세지를 입력하세요" style="resize: none;"></textarea>
+			        <input type="hidden" name="sender_id" value="${currentUserId}">
+			        <input type="hidden" name="receiver_id" value="${messages[0].sender_id}">
+			        <button id="sendButton" type="submit">보내기</button>
+			    </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("messageForm").onsubmit = function() {
+        var senderId = document.querySelector("input[name='sender_id']").value;
+        var receiverId = document.querySelector("input[name='receiver_id']").value;
+        var messageText = document.getElementById("messageText").value;
 
+        console.log("Sender ID:", senderId);
+        console.log("Receiver ID:", receiverId);
+        console.log("Message Text:", messageText);
+
+        // Check if senderId or receiverId is empty
+        if (!senderId || !receiverId || !messageText) {
+            alert("Please ensure all fields are filled in.");
+            return false; // Prevent form submission
+        }
+    }
+</script>
 </body>
 </html>

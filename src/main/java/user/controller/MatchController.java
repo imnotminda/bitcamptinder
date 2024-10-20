@@ -1,6 +1,9 @@
 package user.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -117,6 +120,7 @@ public class MatchController {
         // Add both users' data to the model
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("clickedUser", clickedUser);
+        model.addAttribute("currentReceiverId", receiverId);
 
         // Return to the message form JSP
         return "/user/messageForm";  // Adjust the path to your message form JSP
@@ -125,27 +129,65 @@ public class MatchController {
     @PostMapping("/sendMessage")
     public String sendMessage(@RequestParam("sender_id") int senderId, @RequestParam("receiver_id") int receiverId, @RequestParam("message_text") String messageText, HttpSession session) {
 
+    	System.out.println("Sender ID: " + senderId);
+    	System.out.println("Receiver ID: " + receiverId);
+    	System.out.println("Message Text: " + messageText);
+    	
         // Assuming you have a service to handle message sending logic
         matchService.sendMessage(senderId, receiverId, messageText);
         
         session.setAttribute("user_id", senderId);
         
         // Redirect to inbox or a success page
-        return "redirect:/user/myPage?user_id=" + senderId;
+        return "redirect:/user/userInbox?senderId=" + senderId;
     }
     
     @GetMapping("/userInbox")
-    public String showInbox(HttpSession session, Model model) {
-        Integer user_id = (Integer) session.getAttribute("memId");
+    public String showInbox(HttpSession session, Model model, @RequestParam(required = false) Integer senderId) {
+    	Integer currentUserId = (Integer) session.getAttribute("memId");
 
-        // Check if user is logged in
-        if (user_id == null) {
-            throw new RuntimeException("User is not logged in.");
-        }
+    	// Check if user is logged in
+    	if (currentUserId == null) {
+    		throw new RuntimeException("User is not logged in.");
+    	}
 
-        List<MessageDTO> messages = matchService.getMessagesForUser(user_id); // Implement this service method
-        model.addAttribute("messages", messages);
+    	// Fetch all messages for the current logged-in user
+    	List<MessageDTO> allMessages = matchService.getMessagesForUser(currentUserId); // Fetch all messages for the user
 
-        return "/user/userInbox"; // Path to your inbox JSP
+    	// Get unique senders
+    	Map<Integer, MessageDTO> uniqueSendersMap = new HashMap<>();
+    	for (MessageDTO message : allMessages) {
+    		uniqueSendersMap.putIfAbsent(message.getSender_id(), message);
+    	}
+
+    	List<MessageDTO> uniqueSenders = new ArrayList<>(uniqueSendersMap.values());
+
+    	// If a sender ID is specified, filter messages for that sender
+    	List<MessageDTO> filteredMessages = new ArrayList<>();
+    	if (senderId != null) {
+    	    for (MessageDTO message : allMessages) {
+    	        if (message.getSender_id() == senderId || message.getReceiver_id() == senderId) {
+    	            filteredMessages.add(message);
+    	        }
+    	    }
+    	} else {
+    	    // Default to showing messages where the current user is involved
+    	    if (!uniqueSenders.isEmpty()) {
+    	        senderId = uniqueSenders.get(0).getSender_id();
+    	        for (MessageDTO message : allMessages) {
+    	            if (message.getSender_id() == senderId || message.getReceiver_id() == senderId) {
+    	                filteredMessages.add(message);
+    	            }
+    	        }
+    	    }
+    	}
+
+    	model.addAttribute("messages", filteredMessages);
+    	model.addAttribute("uniqueSenders", uniqueSenders);
+    	model.addAttribute("selectedSenderId", senderId);    
+    	model.addAttribute("currentUserId", currentUserId); // Add current user ID to the model if needed in the JSP
+
+    	return "/user/userInbox"; // Path to your inbox JSP
     }
+
 }

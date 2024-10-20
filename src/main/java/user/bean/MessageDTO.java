@@ -18,4 +18,5 @@ public class MessageDTO {
     private String message_text;
     private Date timestamp;
     private String status;
+    private String sender_profile_pic;
 }
