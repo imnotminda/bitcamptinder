@@ -220,7 +220,7 @@ h2.widget-heading {
 		<hr>
 		<br>
 		<div style="display: flex;">
-
+	    
 			<ul class="menu" style="padding-left: 0px; width: 230px;">
 				<br>
 				<!-- 241020 오혜진- 다른사람 MYPAGE 에서 보이는 항목 -->
@@ -371,3 +371,5 @@ function submitMessageForm(senderId, receiverId) {
     document.getElementById('messageForm').submit();
 }
 </script>
+</body>
+</html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import user.bean.MessageDTO;
 import user.bean.UserDTO;
@@ -122,13 +123,15 @@ public class MatchController {
     }
     
     @PostMapping("/sendMessage")
-    public String sendMessage(@RequestParam("sender_id") int senderId, @RequestParam("receiver_id") int receiverId, @RequestParam("message_text") String messageText) {
+    public String sendMessage(@RequestParam("sender_id") int senderId, @RequestParam("receiver_id") int receiverId, @RequestParam("message_text") String messageText, HttpSession session) {
 
         // Assuming you have a service to handle message sending logic
         matchService.sendMessage(senderId, receiverId, messageText);
-
+        
+        session.setAttribute("user_id", senderId);
+        
         // Redirect to inbox or a success page
-        return "redirect:/user/userInbox"; // Adjust to your actual inbox mapping
+        return "redirect:/user/myPage?user_id=" + senderId;
     }
     
     @GetMapping("/userInbox")
