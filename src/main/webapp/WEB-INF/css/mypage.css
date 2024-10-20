@@ -1,0 +1,170 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.menu {
+    list-style: none;
+    width: 230px;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.innerOuter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: space-around;
+    width: calc(100% - 400px); /* 메뉴 너비 + 여유 공간 */
+    margin-right: 50px;
+    gap: 20px; /* 프로필과 매칭 아이템 사이 간격 */
+    box-sizing: border-box;
+}
+
+.profile-widget {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.matching-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex: 1;
+    border-radius: 10px;
+    box-sizing: border-box;
+    gap: 10px; /* 원형 아이템 사이의 간격 조정 */
+}
+
+.item-circle {
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 130px; /* 크기를 약간 줄임 */
+    height: 130px; /* 크기를 약간 줄임 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px; /* 마진 줄임 */
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.user-img img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.follow-btn {
+    background-color: #b81c40;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.follow-btn:hover {
+    background-color: #d62839;
+}
+
+/* 댓글 섹션 */
+#commentSection {
+    width: calc(100% - 300px); /* 메뉴 너비 + 여유 공간을 더 확보 */
+    margin-left: 250px;
+    margin-right: 30px; /* 오른쪽 여백 추가 */
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
+}
+
+#commentList {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #222;
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
+}
+
+#commentContent {
+    width: 100%;
+    box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    resize: none;
+    height: 80px;
+}
+
+#commentInput {
+    float: right;
+    background-color: #b81c40;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+#commentInput:hover {
+    background-color: #d62839;
+}
+
+#commentSection::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+    .profile-container {
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+    }
+    
+    #commentSection {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .menu {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

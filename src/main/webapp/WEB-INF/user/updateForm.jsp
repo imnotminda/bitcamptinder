@@ -1,136 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/update.css">
 <title>BitcampTinder: 회원가입</title>
-
-<style>
-#btnwrap {
-	display: flex;
-	justify-content: center; /* 가로 가운데 정렬 */
-	gap: 20px; /* 버튼 간 간격 */
-	margin-top: 20px;
-}
-
-/* 버튼 스타일 */
-button {
-	width: 120px;
-	height: 40px;
-	background-color: #b81c40; /* 버튼 배경 색상 */
-	border: none;
-	border-radius: 5px; /* 둥근 모서리 */
-	color: white; /* 버튼 텍스트 색상 */
-	font-size: 16px; /* 버튼 텍스트 크기 */
-	cursor: pointer; /* 마우스를 올렸을 때 커서 변경 */
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 버튼 그림자 */
-	transition: background-color 0.3s ease; /* 배경색 전환 효과 */
-}
-
-#Formwrap {
-	width: 300px;
-	margin: 50px auto;
-	padding: 20px;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	background-color: #f9f9f9;
-}
-
-div {
-	margin-bottom: 15px;
-}
-
-div label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
-
-input[type="text"], input[type="password"], input[type="mbti"], input[type="reli"],
-	input[type="submit"], input[type="reset"] input[type="mbti"] {
-	width: calc(100% - 20px); /* 패딩을 고려한 너비 조절 */
-	padding: 8px 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-input[type="text"]:hover, input[type="mbti"]:hover, input[type="reli"]:hover,
-	input[type="password"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
-	{
-	border-color: #b81c40;
-}
-
-input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
-	input[type="password"]:focus {
-	border-color: #b81c40; /* #5a9; */
-	outline: none;
-	box-shadow: 0 0 5px rgba(184, 28, 64, 0.5);
-}
-
-/241020*변경금지되는 항목 음영처리*/
-input[type="text"][readonly] {
-    background-color: #f0f0f0;
-    border-color: #ccc;
-    cursor: not-allowed; 
-}
-
-input[type="text"][readonly]:focus {
-    outline: none; 
-    box-shadow: none; 
-}
-
-
-/* id, name, pwdWrap 항목 컨테이너 스타일 */
-#idwrap, #namewrap, #pwdwrap, #btnwrap, #resetwrap, #categorywrap,
-	#sportwrap, #foodwrap, #hobbywrap, #artwrap, #musicwrap, #smokingwrap,
-	#mbtiwrap, #reliwrap, #genderwrap, #agewrap, #moviewrap {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	color: #333;
-}
-
-#smokingwrap, #genderwrap {
-	display: flex;
-	align-items: center;
-}
-
-#smokingwrap, #genderwrap label {
-	margin-right: 10px; /* 라벨과 라디오 버튼 간의 간격 조절 */
-}
-
-#buttonWrap {
-	display: flex;
-	justify-content: space-between; /* 버튼 간의 간격 조정 */
-}
-
-#telwrap {
-	display: flex;
-	flex-direction: column; /* 요소를 수직으로 나열 */
-	gap: 3px; /* 각 칸 사이의 간격 */
-}
-
-#telInputs {
-	display: flex;
-	gap: 7px; /* 입력 필드 간의 간격 */
-	align-items: center; /* 입력 필드의 세로 정렬 */
-}
-
-#telwrap label {
-	font-size: 14px;
-}
-
-#telwrap select, #telwrap input {
-	padding: 5px;
-	font-size: 16px;
-}
-    </style>
 </head>
 <body>
+<c:import url="/WEB-INF/header/header.jsp"></c:import>
     <div id="wrap">
         <div id="Formwrap">
 <a href="/BitcampTinder/"><img src="../image/tlogo.png"
