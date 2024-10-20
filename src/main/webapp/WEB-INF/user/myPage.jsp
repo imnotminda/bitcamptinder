@@ -40,7 +40,7 @@
 				        <ul style="width: 210px;">
 				            <li><a href="${pageContext.request.contextPath}/user/updateForm">- 회원 정보수정</a></li>
 				            <li><a href="${pageContext.request.contextPath}/user/deleteForm">- 회원 탈퇴</a></li>
-				            <li><a href="${pageContext.request.contextPath}/user/userInbox">- 메세지함</a></li>
+				            <li><a href="${pageContext.request.contextPath}/user/userInbox?senderId=">- 메세지함</a></li>
 				        </ul>
 				    </li>
 				</c:if>

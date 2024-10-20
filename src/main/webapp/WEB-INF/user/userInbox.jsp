@@ -24,41 +24,48 @@
             <div class="sidebarHeader">
                 메세지함
             </div>
-            <ul class="chatList">
-                <c:forEach var="uniqueSender" items="${uniqueSenders}">
-                    <li class="chatItem">
-                        <a href="?senderId=${uniqueSender.sender_id}" style="text-decoration: none;"> <!-- Link to select sender -->
-                            <img src="${not empty uniqueSender.sender_profile_pic ? uniqueSender.sender_profile_pic : '../image/tlogo.png'}" alt="User profile" class="profile-pic">
-                                <strong>${uniqueSender.sender_name}</strong><br>
-                        </a>
-                    </li>
-                </c:forEach>
-            </ul>
+             <ul class="chatList">
+		        <c:forEach var="uniqueSender" items="${uniqueSenders}">
+		            <!-- Skip if the uniqueSender is the current user (currentUserId) -->
+		            <c:if test="${uniqueSender.sender_id != currentUserId}">
+		                <li class="chatItem">
+		                    <a href="?senderId=${uniqueSender.sender_id}" style="text-decoration: none;"> <!-- Link to select sender -->
+		                        <img src="${not empty uniqueSender.sender_profile_pic ? uniqueSender.sender_profile_pic : '../image/tlogo.png'}" alt="User profile" class="profile-pic">
+		                        <strong>${uniqueSender.sender_name}</strong><br>
+		                    </a>
+		                </li>
+		            </c:if>
+		        </c:forEach>
+		    </ul>
         </div>
 
         <!-- Chat Area -->
         <div class="chatArea">
             <div class="chatHeader">
                   <c:choose>
-		            <c:when test="${not empty messages}">
-		                <!-- Use the sender of the first message to show the profile picture -->
-		                <img src="${not empty messages[0].sender_profile_pic ? messages[0].sender_profile_pic : '../image/tlogo.png'}" alt="User profile">
-		                <div>
-		                    <strong>${messages[0].sender_name}</strong><br>
-		                </div>
-		            </c:when>
-		            <c:otherwise>
-		                <div>
-		                    <strong>채팅</strong><br>
-		                </div>
-		            </c:otherwise>
-		        </c:choose>
+			        <c:when test="${not empty selectedSenderId}">
+			            <!-- Fetch clicked sender's data -->
+			            <c:forEach var="sender" items="${uniqueSenders}">
+			                <c:if test="${sender.sender_id == selectedSenderId}">
+			                    <img src="${not empty sender.sender_profile_pic ? sender.sender_profile_pic : '../image/tlogo.png'}" alt="User profile">
+			                    <div>
+			                        <strong>${sender.sender_name}</strong><br>
+			                    </div>
+			                </c:if>
+			            </c:forEach>
+			        </c:when>
+			        <c:otherwise>
+			            <div>
+			                <strong>채팅</strong><br>
+			            </div>
+			        </c:otherwise>
+			    </c:choose>
 		    </div>
             <div class="chatMessages">
 			    <c:forEach var="message" items="${messages}">
 			        <!-- Compare sender_id and currentUserId as strings to ensure consistent comparison -->
-			        <div class="message ${message.sender_id eq currentUserId ? 'sent' : 'received'}">
-					    ${message.message_text}
+			         <div class="message ${message.sender_id.toString() eq currentUserId.toString() ? 'sent' : 'received'}">
+       					 ${message.message_text}
 					    <span class="messageTime">
 					        <fmt:formatDate value="${message.timestamp}" pattern="hh:mm a" timeZone="Asia/Seoul" />
 					    </span>
@@ -69,7 +76,7 @@
                 <form id="messageForm" action="${pageContext.request.contextPath}/user/sendMessage" method="post"> <!-- Add your action URL -->
 			        <textarea id="messageText" name="message_text" placeholder="메세지를 입력하세요" style="resize: none;"></textarea>
 			        <input type="hidden" name="sender_id" value="${currentUserId}">
-			        <input type="hidden" name="receiver_id" value="${messages[0].sender_id}">
+			        <input type="hidden" name="receiver_id" value="${selectedSenderId}">
 			        <button id="sendButton" type="submit">보내기</button>
 			    </form>
             </div>

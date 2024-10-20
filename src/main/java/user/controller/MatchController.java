@@ -139,7 +139,7 @@ public class MatchController {
         session.setAttribute("user_id", senderId);
         
         // Redirect to inbox or a success page
-        return "redirect:/user/userInbox?senderId=" + senderId;
+        return "redirect:/user/userInbox?senderId=" + receiverId;
     }
     
     @GetMapping("/userInbox")
@@ -171,15 +171,7 @@ public class MatchController {
     	        }
     	    }
     	} else {
-    	    // Default to showing messages where the current user is involved
-    	    if (!uniqueSenders.isEmpty()) {
-    	        senderId = uniqueSenders.get(0).getSender_id();
-    	        for (MessageDTO message : allMessages) {
-    	            if (message.getSender_id() == senderId || message.getReceiver_id() == senderId) {
-    	                filteredMessages.add(message);
-    	            }
-    	        }
-    	    }
+    	    
     	}
 
     	model.addAttribute("messages", filteredMessages);
