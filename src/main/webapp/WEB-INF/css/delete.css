@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    text-align: left;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 화면 전체 높이를 차지 */
+    background-image: url("https://tinder.com/static/build/3011237ba52b39fe50311f7917878ace.webp");
+    background-size: cover; /* 배경 이미지 크기 조정 */
+}
+
+#Formwrap {
+    background-color: rgba(34, 34, 34, 0.8); /* 배경 반투명화 */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    width: 400px; /* 폼의 너비 설정 */
+}
+
+#delete-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#deleteForm {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+#user_username {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* 아이디 입력창과 다른 요소 간의 간격 */
+}
+
+#user_pwd {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* 비밀번호 입력창과 다른 요소 간의 간격 */
+}
+
+#deleteBtn, #menuBtn {
+    background-color: #b81c40; /* 버튼 색상 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* 버튼 너비 */
+    margin: 10px 0; /* 버튼 간의 간격 */
+}
+
+#deleteBtn:hover, #menuBtn:hover {
+    background-color: #d62839; /* 버튼 호버 색상 */
+}
