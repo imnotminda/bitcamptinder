@@ -24,15 +24,24 @@
                     <div class="card h-100">
                         <c:choose>
                             <c:when test="${not empty user.profile_pic}">
-                                <img src="${user.profile_pic}" class="card-img-top" alt="Profile Pic">
+                                <a href="${pageContext.request.contextPath}/user/matchCompare?user_id=${user.user_id}"><img src="${user.profile_pic}" class="card-img-top" alt="Profile Pic"></a>
                             </c:when>
                             <c:otherwise>
-                                <img src="../image/tlogo.png" class="card-img-top" alt="Default Profile Pic">
+                                <a href="${pageContext.request.contextPath}/user/matchCompare?user_id=${user.user_id}"><img src="../image/tlogo.png" class="card-img-top" alt="Default Profile Pic"></a>
                             </c:otherwise>
                         </c:choose>
                         <div class="card-body">
                             <h5 class="card-title">${user.user_name}</h5>
-                            <p class="card-text">매치점수 : ${user.matchScore}%</p>
+                            <p class="card-text">매치점수 : 
+							    <c:choose>
+							        <c:when test="${user.matchScore > 100}">
+							            100%
+							        </c:when>
+							        <c:otherwise>
+							            ${user.matchScore}%
+							        </c:otherwise>
+							    </c:choose>
+							</p>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">MBTI: ${user.user_mbti}</small><br>

@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px;
+    text-align: left;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#login-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#login-wrap {
+    background-color: rgba(34, 34, 34, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+#login-form-wrap {
+    width: 400px;
+}
+
+#login-input-wrap {
+	width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-idwrap, #login-pwdwrap {
+    margin-bottom: 20px;
+}
+
+#login-idwrap div, #login-pwdwrap div {
+    margin-bottom: 5px;
+}
+
+#login-input-wrap input[type="text"], #login-input-wrap input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black;
+    box-sizing: border-box;
+}
+
+#login-input-wrap input[type="text"]:focus, #login-input-wrap input[type="password"]:focus {
+    border-color: #e63946;
+    outline: none;
+}
+
+#login-btnwrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+#login-btnwrap button {
+    background-color: #b81c40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    width: 100%;
+    margin: 10px 0;
+}
+
+#login-btnwrap button:hover {
+    background-color: #d62839;
+}
+
+button.signup-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+button.signup-btn:hover {
+    color: #d62839;
+}

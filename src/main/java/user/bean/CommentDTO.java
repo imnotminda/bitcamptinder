@@ -10,9 +10,11 @@ import lombok.Setter;
 @Component
 @Setter
 @Getter
-public class UserCommentDTO {
+public class CommentDTO {
+	private int comment_id;
 	private int user_id;
-	private int comment_seq;
-	private String comment_content;
-	private Date logtime;
+	private int commenter_id;
+	private String content;
+	private Date created_AT;
+	private String commenter_name;
 }

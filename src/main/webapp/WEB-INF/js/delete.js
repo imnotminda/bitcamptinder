@@ -32,22 +32,24 @@ $(document).ready(function() {
 });
     });
 
-    function deleteAccount(userUsername) {
-        $.ajax({
-            url: '/BitcampTinder/user/delete',
-            type: 'POST',
-            dataType: 'json',  // 서버 응답이 JSON일 경우
-            data: {
-                user_username: userUsername // 사용자 이름
-            },
-            success: function(response) {
-                alert("회원탈퇴가 완료되었습니다.");
-                window.location.href = "/BitcampTinder";
-            },
-            error: function(xhr, status, error)	 {
-                console.error("Error:", error);
-                alert("회원탈퇴 중 오류가 발생했습니다.");
-            }
-        });
-    }
+ function deleteAccount(userUsername) {
+    $.ajax({
+        url: '/BitcampTinder/user/delete',
+        type: 'POST',
+        dataType: 'json',  // 서버 응답이 JSON일 경우
+        data: {
+            user_username: userUsername // 사용자 이름
+        },
+        success: function(response) {
+            alert("회원탈퇴가 안됨 젭알.");  // 다시 수정-오류시 알럿
+            window.location.href = "/BitcampTinder";
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
+            alert("회원탈퇴 되었습니다");  // 성공시 알럿
+              window.location.href = "/BitcampTinder";
+        }
+    });
+}
+
 });

@@ -1,7 +1,11 @@
 package user.service;
 
-import user.bean.UserCommentDTO;
+import java.util.List;
+
+import user.bean.CommentDTO;
 
 public interface CommentService {
-    String commentInput(UserCommentDTO userCommentDTO);
+    String commentInput(CommentDTO userCommentDTO);
+
+	List<CommentDTO> getComment(int userId);
 }

@@ -1,127 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/update.css">
 <title>BitcampTinder: 회원가입</title>
-
-<style>
-#btnwrap {
-	display: flex;
-	justify-content: center; /* 가로 가운데 정렬 */
-	gap: 20px; /* 버튼 간 간격 */
-	margin-top: 20px;
-}
-
-/* 버튼 스타일 */
-button {
-	width: 120px;
-	height: 40px;
-	background-color: #b81c40; /* 버튼 배경 색상 */
-	border: none;
-	border-radius: 5px; /* 둥근 모서리 */
-	color: white; /* 버튼 텍스트 색상 */
-	font-size: 16px; /* 버튼 텍스트 크기 */
-	cursor: pointer; /* 마우스를 올렸을 때 커서 변경 */
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 버튼 그림자 */
-	transition: background-color 0.3s ease; /* 배경색 전환 효과 */
-}
-
-#Formwrap {
-	width: 300px;
-	margin: 50px auto;
-	padding: 20px;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	background-color: #f9f9f9;
-}
-
-div {
-	margin-bottom: 15px;
-}
-
-div label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
-
-input[type="text"], input[type="password"], input[type="mbti"], input[type="reli"],
-	input[type="submit"], input[type="reset"] input[type="mbti"] {
-	width: calc(100% - 20px); /* 패딩을 고려한 너비 조절 */
-	padding: 8px 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-input[type="text"]:hover, input[type="mbti"]:hover, input[type="reli"]:hover,
-	input[type="password"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
-	{
-	border-color: #888;
-}
-
-input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
-	input[type="password"]:focus {
-	border-color: #5a9;
-	outline: none;
-	box-shadow: 0 0 5px rgba(90, 153, 90, 0.5);
-}
-
-/* id, name, pwdWrap 항목 컨테이너 스타일 */
-#idwrap, #namewrap, #pwdwrap, #btnwrap, #resetwrap, #categorywrap,
-	#sportwrap, #foodwrap, #hobbywrap, #artwrap, #musicwrap, #smokingwrap,
-	#mbtiwrap, #reliwrap, #genderwrap, #agewrap, #moviewrap {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	color: #333;
-}
-
-#smokingwrap, #genderwrap {
-	display: flex;
-	align-items: center;
-}
-
-#smokingwrap, #genderwrap label {
-	margin-right: 10px; /* 라벨과 라디오 버튼 간의 간격 조절 */
-}
-
-#buttonWrap {
-	display: flex;
-	justify-content: space-between; /* 버튼 간의 간격 조정 */
-}
-
-#telwrap {
-	display: flex;
-	flex-direction: column; /* 요소를 수직으로 나열 */
-	gap: 3px; /* 각 칸 사이의 간격 */
-}
-
-#telInputs {
-	display: flex;
-	gap: 7px; /* 입력 필드 간의 간격 */
-	align-items: center; /* 입력 필드의 세로 정렬 */
-}
-
-#telwrap label {
-	font-size: 14px;
-}
-
-#telwrap select, #telwrap input {
-	padding: 5px;
-	font-size: 16px;
-}
-    </style>
 </head>
 <body>
     <div id="wrap">
         <div id="Formwrap">
-            <a href="/BitcampTinder/"><img src="../image/apple.jpg" width="25" alt="Tinder" /></a> 
-            BitcampTinder 회원정보 수정
+<a href="/BitcampTinder/"><img src="../image/tlogo.png"
+				width="50" alt="Tinder" /></a>BitcampTinder 회원정보 수정
             <form id="updateForm">
             	<input type="hidden" id="memId" value="${sessionscope.memId }" />
                 <div id="inputwrap">
@@ -200,7 +92,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
                  	<!-- 여행 카테고리 -->
 <div style="display: inline-block; width: 45%; margin-right: 5%;">
     <div id="categorywrap">
-        <label for="travelcategory">여행 카테고리 :</label> 
+        <label for="travelcategory">여행 취향 :</label> 
         <select id="user_travel" name="user_travel">
             <option value="국내여행" <c:if test="${userDTO.user_travel == '국내여행'}">selected</c:if>>국내여행</option>
             <option value="해외여행" <c:if test="${userDTO.user_travel == '해외여행'}">selected</c:if>>해외여행</option>
@@ -215,7 +107,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <!-- 스포츠 -->
 <div style="display: inline-block; width: 45%;">
     <div id="sportwrap">
-        <label for="sportcategory">스포츠및 운동:</label> 
+        <label for="sportcategory">스포츠/운동:</label> 
         <select id="user_sport" name="user_sport">
             <option value="축구" <c:if test="${userDTO.user_sport == '축구'}">selected</c:if>>축구</option>
             <option value="여행" <c:if test="${userDTO.user_sport == '여행'}">selected</c:if>>여행</option>
@@ -248,7 +140,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <!-- 취미 및 여가 -->
 <div style="display: inline-block; width: 45%;">
     <div id="hobbywrap">
-        <label for="hobbycategory">취미 및 여가:</label> 
+        <label for="hobbycategory">취미/여가:</label> 
         <select id="user_hobby" name="user_hobby">
             <option value="독서" <c:if test="${userDTO.user_hobby == '독서'}">selected</c:if>>독서</option>
             <option value="게임" <c:if test="${userDTO.user_hobby == '게임'}">selected</c:if>>게임</option>
@@ -264,7 +156,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 <!-- 예술 및 문화 -->
 <div style="display: inline-block; width: 45%; margin-right: 5%;">
     <div id="artwrap">
-        <label for="artcategory">음악 취향:</label> 
+        <label for="artcategory">문화생활 취향:</label> 
         <select id="user_art" name="user_art">
             <option value="음악" <c:if test="${userDTO.user_art == '음악'}">selected</c:if>>음악</option>
             <option value="미술" <c:if test="${userDTO.user_art == '미술'}">selected</c:if>>미술</option>
@@ -291,8 +183,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
         <div id="musiccategoryDiv"></div>
     </div>
 </div>
-
-<div style="display: inline-block; width: 100%;">
+<!-- 
+<div style="display: inline-block; width: 100%;"> -->
       <!-- 흡연 -->
   <div style="display: inline-block; width: 100%;">
     <!-- 흡연 -->
@@ -326,7 +218,8 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 </div>
                     <div id="btnwrap">
                         <button type="button" id="updateBtn" style="width: 100px; height: 30px;">수정</button>
-                        <button type="reset" id="resetBtn" style="width: 100px; height: 30px;">취소</button>
+                      <button type="button" id="reset" style="width: 100px; height: 30px;" onclick="location.href='/BitcampTinder'">취소</button>
+
                     </div>
                 </div>
             </form>

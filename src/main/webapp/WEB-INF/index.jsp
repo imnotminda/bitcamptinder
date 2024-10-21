@@ -82,32 +82,32 @@ let previousTouchY = 0; // touchmove를 위해 추가된 변수
 
 $(document).ready(function() {
 	console.log("AJAX 요청 발송");
-	 $.ajax({
-	        url: '/BitcampTinder/user/gallery',
-	        type: 'GET',
-	        dataType: 'json',
-	        success: function(data) {
-	            console.log("AJAX 요청 성공", data);
-	            var gallery = $('#gallery');
-	            $.each(data, function(index, user) {
-	                // 개별적으로 user_id 추출
-	                var user_id = user.user_id; // 각 user의 user_id
-	                var username = user.username; // 각 user의 username
-	                var profileImage = user.profile_pic ? user.profile_pic : 'http://localhost:8080/BitcampTinder/image/default.jpg';
+	$.ajax({
+	    url: '/BitcampTinder/user/gallery',
+	    type: 'GET',
+	    dataType: 'json',
+	    success: function(data) {
+	    	console.log("AJAX 요청 성공", data);
+	        var gallery = $('#gallery');
+	        $.each(data, function(index, user) {
+	            // 개별적으로 user_id 추출
+	            var userId = user.user_id; // 각 user의 user_id
+	            var username = user.username; // 각 user의 username
+	            var profileImage = user.profile_pic ? user.profile_pic : 'http://localhost:8080/BitcampTinder/image/default.jpg';
 
-	                console.log("User ID:", user_id); // 각 user_id 출력
-	                console.log("Username:", username); // 각 username 출력
-	                console.log("사용할 이미지 경로:", profileImage); // 이미지 경로 출력
+	            console.log("User ID:", userId); // 각 user_id 출력
+	            console.log("Username:", username); // 각 username 출력
+	            console.log("사용할 이미지 경로:", profileImage); // 이미지 경로 출력
 
-	                var galleryItem = `
-	                    <div class="gallery-item">
-	                        <a href="${pageContext.request.contextPath}/user/myPage?user_id=` + user_id + `" target="_blank">
-	                            <img src="` + profileImage + `" alt="` + username + `">
-	                        </a>
-	                    </div>`;
-	                gallery.append(galleryItem);
-	            });
-	            
+	            var galleryItem = `
+	                <div class="gallery-item">
+	            		<a href="${pageContext.request.contextPath}/user/myPage?user_id=` + userId + `" target="_blank">
+	            		<img src="` + profileImage + `" alt="` + username + `">
+	                    </a>
+	                </div>`;
+	            gallery.append(galleryItem);
+	        });
+	        
 	           // AJAX 요청이 완료된 후 items를 초기화
             const items = document.querySelectorAll('.gallery-item');
             const itemCount = items.length;

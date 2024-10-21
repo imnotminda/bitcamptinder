@@ -1,9 +1,12 @@
 package user.dao;
 
-import user.bean.UserCommentDTO;
+import java.util.List;
+
+import user.bean.CommentDTO;
 
 public interface CommentDAO {
-    boolean insertComment(int userId, String commentContent);
-    boolean insertIntoProfileBoard(int userId, int commentSeq);
-    int getLastInsertId(); // 마지막으로 추가된 댓글 ID 가져오는 메서드
+    int insertComment(CommentDTO commentDTO);
+    List<CommentDTO> getCommentsByUserId(int userId);
+    
+	List<CommentDTO> getComment(int userId);
 }

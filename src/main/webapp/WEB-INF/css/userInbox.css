@@ -1,0 +1,203 @@
+body {
+    background-color: black; /* Set background to solid black */
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header stays at the top, not affected by centering */
+.header {
+    width: 100%;
+    text-align: left;
+}
+
+/* Page content wrapper (flex applied here) */
+.pageContent {
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    align-items: center; /* Center the container vertically */
+    height: calc(100vh - 250px); /* Reduce space for the header and decrease by 200px */
+    padding-top: 50px; /* Ensure space between header and container */
+}
+
+/* Container */
+.container {
+    display: flex;
+    width: calc(100% - 100px); /* Keep the width the same */
+    height: calc(100vh - 300px); /* Reduce height by 200px for margin */
+    max-height: 600px; /* Update max height accordingly */
+    background-color: #2b2b2b; /* Change to dark gray */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for depth */
+    border-radius: 10px;
+}
+
+/* Optional hover effect for the container */
+.container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* Darker shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Sidebar (Chats) */
+.sidebar {
+    width: 30%;
+    background-color: #2b2b2b; /* Match sidebar color */
+    border-right: 1px solid #444; /* Adjust border color for contrast */
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.sidebarHeader {
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #444; /* Match border color */
+    color: #ffffff; /* Text color for visibility */
+}
+
+.chatList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chatItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #444; /* Match border color */
+    transition: background-color 0.3s;
+}
+
+.chatItem:hover {
+    background-color: #3d3d3d; /* Slightly lighter on hover */
+}
+
+.chatItem img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chatItem .messagePreview {
+    flex: 1;
+    color: #ffffff; /* Text color for visibility */
+}
+
+.chatItem .messageTime {
+    font-size: 12px;
+    color: #888;
+}
+
+.unreadCount {
+    background-color: #b81c40; /* Updated to the requested light red */
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Chat Area */
+.chatArea {
+    width: 70%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2b2b2b; /* Match chat area color */
+}
+
+.chatHeader {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #444; /* Match border color */
+}
+
+.chatHeader img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chatMessages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px;
+    background-color: #b81c40; /* Base background color for messages */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex; /* Use flex for vertical stacking */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center; /* Center items vertically */
+    max-width: fit-content; /* Ensure the message box wraps around the content */
+    word-wrap: break-word; /* Break long words if necessary */
+}
+
+/* Specific styles for sent messages */
+.sent {
+    background-color: #b81c40; /* Green background for sent messages */
+    color: white; /* Text color */
+    margin-left: auto; /* Align to the right */
+    justify-content: flex-end; /* Align items to the end */
+}
+
+/* Specific styles for received messages */
+.received {
+    background-color: #3d3d3d; /* Darker background for received messages */
+    color: white; /* Text color */
+    justify-content: flex-start; /* Align items to the start */
+}
+
+
+.messageTime {
+    font-size: 12px;
+    color: #fff;
+    margin-left: 10px; /* Add space between message text and time */
+}
+
+.messageInput {
+    display: flex;                      /* Use flexbox layout */
+    align-items: center;               /* Center items vertically */
+    padding: 10px;                     /* Keep padding */
+    border-top: 1px solid #444;       /* Match border color */
+    background-color: #2b2b2b;        /* Match background with chat area */
+}
+
+#messageText {
+    flex: 1;                           /* Takes the remaining space */
+    padding: 10px;                    /* Padding inside the textarea */
+    border-radius: 20px;              /* Rounded corners */
+    border: 1px solid #444;           /* Match border color */
+    background-color: #3d3d3d;        /* Lighter background for input */
+    color: white;                     /* Change text color for visibility */
+    resize: none;                     /* Disable resizing */
+    min-height: 50px;                 /* Set a minimum height */
+    max-height: 150px;                /* Prevent it from growing too large */
+    min-width: 500px;
+    margin-right: 10px;               /* Space between textarea and button */
+    margin-top: 10px;
+}
+
+#sendButton {
+    padding: 10px 15px;               /* Padding inside the button */
+    border: none;                     /* Remove default border */
+    background-color: #b81c40;       /* Button color */
+    color: white;                     /* Text color for button */
+    border-radius: 20px;              /* Match the rounded style */
+    cursor: pointer;                  /* Pointer cursor on hover */
+    display: inline-flex;             /* Use inline flex for button */
+    align-items: center;              /* Center content vertically */
+    justify-content: center;          /* Center content horizontally */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    margin-top: -10px;
+}
+
+#sendButton:hover {
+    background-color: #a01030;        /* Darker shade on hover for feedback */
+}
+

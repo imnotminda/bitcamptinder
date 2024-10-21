@@ -5,8 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>BitcampTinder: 회원가입</title>
-<!-- <link rel="stylesheet" href="../css/user.css"> -->
 <style>
+/*241020 프로필 꾸미기 */
+/*241020 핸드폰 번호 간격조정 */
+/* 핸드폰 번호 관련 스타일 */
+#telInputs {
+    display: flex;
+    align-items: center; /* 수직 정렬을 맞추기 위해 추가 */
+}
+/* 첫 번째 번호 선택 */
+#user_tel1 {
+    width: 90px; /* 두 번째와 세 번째 입력 필드와 동일한 너비 설정 */
+    margin-right: 5px; /* 간격 조정 */
+}
+/* 두 번째 및 세 번째 번호 입력 필드 */
+#user_tel2,
+#user_tel3 {
+    width: 90px; /* 기존과 동일한 너비 유지 */
+}
+
+
+/**********공통*****************/
 #btnwrap {
 	display: flex;
 	justify-content: center; /* 가로 가운데 정렬 */
@@ -60,16 +79,15 @@ input[type="text"], input[type="password"], input[type="mbti"], input[type="reli
 input[type="text"]:hover, input[type="mbti"]:hover, input[type="reli"]:hover,
 	input[type="password"]:hover, input[type="submit"]:hover, input[type="reset"]:hover
 	{
-	border-color: #888;
+	border-color: #b81c40;
 }
 
 input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 	input[type="password"]:focus {
-	border-color: #5a9;
+	border-color: #b81c40; /* #5a9; */
 	outline: none;
-	box-shadow: 0 0 5px rgba(90, 153, 90, 0.5);
+	box-shadow: 0 0 5px rgba(184, 28, 64, 0.5);
 }
-
 /* id, name, pwdWrap 항목 컨테이너 스타일 */
 #idwrap, #namewrap, #pwdwrap, #btnwrap, #resetwrap, #categorywrap,
 	#sportwrap, #foodwrap, #hobbywrap, #artwrap, #musicwrap, #smokingwrap,
@@ -113,6 +131,110 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 	padding: 5px;
 	font-size: 16px;
 }
+
+/* 241020 셀렉트박스 꾸미기*/
+
+/* 셀렉트 박스 공통 스타일 */
+select {
+    width: 100%; /* 전체 너비 사용 */
+    padding: 10px; /* 패딩 추가 */
+    font-size: 16px; /* 텍스트 크기 */
+    color: #333; /* 텍스트 색상 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    border: 1px solid #ccc; /* 테두리 색상 */
+    border-radius: 5px; /* 둥근 모서리 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 */
+    appearance: none; /* 기본 화살표 제거 (브라우저별 다를 수 있음) */
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer; /* 커서 모양 변경 */
+}
+
+/* 공통 스타일 */
+select {
+    appearance: none; /* 기본 브라우저 스타일 제거 */
+    -webkit-appearance: none; /* 사파리 브라우저 호환성 */
+    -moz-appearance: none; /* 파이어폭스 브라우저 호환성 */
+    background-color: white; /* 내부 배경 흰색 */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* 둥근 모서리 */
+    padding: 8px 10px;
+    font-size: 16px;
+    color: #333; /* 텍스트 색상 */
+    box-sizing: border-box;
+    width: 100%; /* 너비 100% */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon fill="%23999" points="0,0 10,0 5,5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* 화살표 위치 */
+    background-size: 10px 10px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+/* 호버 시 스타일 */
+select:hover {
+    border-color: #b81c40; /* 테두리 색상 변경 */
+}
+
+/* 포커스 시 스타일 */
+select:focus {
+    border-color: #b81c40;
+    outline: none;
+    box-shadow: 0 0 5px rgba(184, 28, 64, 0.5);
+}
+
+/* 241020 라디오버튼 꾸미기*/
+/* 라디오 버튼 공통 스타일 */
+input[type="radio"] {
+    appearance: none; /* 기본 브라우저 스타일 제거 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc; /* 기본 테두리 색상 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* 라디오 버튼 클릭 전 상태 */
+input[type="radio"]:before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white; /* 내부 배경 흰색 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease;
+}
+
+/* 라디오 버튼 클릭 시 스타일 */
+input[type="radio"]:checked {
+    border-color: #b81c40; /* 클릭된 테두리 색상 */
+}
+
+/* 라디오 버튼 클릭 후 내부 색상 변화 */
+input[type="radio"]:checked:before {
+    background-color: #b81c40; /* 클릭된 내부 색상 */
+}
+
+/* 라디오 버튼 호버 시 스타일 */
+input[type="radio"]:hover {
+    border-color: #b81c40; /* 호버 시 테두리 색상 */
+}
+
+/* 라벨 스타일 */
+label {
+    font-size: 16px;
+    margin-left: 10px;
+    color: #333;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -140,7 +262,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  2.성별 -->
 					<div id="genderwrap">
 						<label>성별 :</label> <input type="radio" id="genderMale"
-							name="gender" value="male"> <label for="genderMale">남</label>
+							name="user_gender" value="male"> <label for="genderMale">남</label>
 						<input type="radio" id="genderFemale" name="user_gender"
 							value="female"> <label for="genderFemale">여</label>
 						<div id="genderDiv"></div>
@@ -175,29 +297,27 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 						<input type="reli" id="user_religion" name="user_religion" />
 						<div id="reliDiv"></div>
 					</div>
-					<!--  8.핸드폰 -->
-					<!-- 추가 -->
-					<div id="telwrap">
-						<label for="tel1">핸드폰 번호 :</label>
-						<!-- 핸드폰 번호 제목 -->
-						<div id="telInputs">
-							<!-- 첫 번째 번호 선택 -->
-							<select id="user_tel1" name="user_tel1">
-								<optgroup>
-									<option value="010">010</option>
-									<option value="011">011</option>
-									<option value="019">019</option>
-								</optgroup>
-							</select>
-
-							<!-- 두 번째 번호 입력 -->
-							<input type="text" id="user_tel2" name="user_tel2" size="3"
-								maxlength="4" style="width: 90px;" />
-							<!-- 세 번째 번호 입력 -->
-							<input type="text" id="user_tel3" name="user_tel3" size="3"
-								maxlength="4" style="width: 90px;" />
-						</div>
-						<div id="telDiv"></div>
+				<!--  8.핸드폰 -->
+			<div id="telwrap">
+			    <label for="tel1">핸드폰 번호 :</label>
+			    <!-- 핸드폰 번호 제목 -->
+			    <div id="telInputs">
+			        <!-- 첫 번째 번호 선택 -->
+			        <select id="user_tel1" name="user_tel1">
+			            <optgroup>
+			                <option value="010">010</option>
+			                <option value="011">011</option>
+			                <option value="019">019</option>
+			            </optgroup>
+			        </select>
+			
+			        <!-- 두 번째 번호 입력 -->
+			        <input type="text" id="user_tel2" name="user_tel2" size="3" maxlength="4" style="width: 90px;" />
+			        <!-- 세 번째 번호 입력 -->
+			        <input type="text" id="user_tel3" name="user_tel3" size="3" maxlength="4" style="width: 90px;" />
+			    </div>
+			    <div id="telDiv"></div>
+					</div>
 
 						<!--9. 이메일 -->
 						<div id="emailwrap">
@@ -206,10 +326,10 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 							<div id="emailInputs">
 								<!-- 이메일 첫 번째 입력 -->
 								<input type="text" name="user_email1" id="user_email1" size="10"
-									placeholder="이메일 앞부분" /> @
+									placeholder="이메일 id" /> @
 								<!-- 이메일 두 번째 입력 -->
 								<input type="text" name="user_email2" id="user_email2" size="10"
-									placeholder="도메인" />
+									placeholder="이메일 도메인" />
 
 								<!-- 이메일 세 번째 입력 (선택 옵션) -->
 								<input type="text" name="user_email3" id="user_email3"
@@ -236,7 +356,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  10.여행 -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="categorywrap">
-							<label for="travelcategory">여행 카테고리 :</label> <select
+							<label for="travelcategory">여행취향 :</label> <select
 								id="user_travel" name="user_travel">
 								<option value="국내여행">국내여행</option>
 								<option value="해외여행">해외여행</option>
@@ -250,7 +370,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--  11.스포츠 -->
 					<div style="display: inline-block; width: 45%;">
 						<div id="sportwrap">
-							<label for="sportcategory">스포츠및 운동:</label> <select
+							<label for="sportcategory">스포츠/운동:</label> <select
 								id="user_sport" name="user_sport">
 								<option value="축구">축구</option>
 								<option value="여행">여행</option>
@@ -282,7 +402,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 
 					<div style="display: inline-block; width: 45%;">
 						<div id="hobbywrap">
-							<label for="hobbycategory">취미 및 여가:</label> <select
+							<label for="hobbycategory">취미/여가:</label> <select
 								id="user_hobby" name="user_hobby">
 								<option value="독서">독서</option>
 								<option value="게임">게임</option>
@@ -297,7 +417,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--14. 예술 및 문화  -->
 					<div style="display: inline-block; width: 45%; margin-right: 5%;">
 						<div id="artwrap">
-							<label for="artcategory">음악 취향:</label> <select id="user_art"
+							<label for="artcategory">문화생활 취향:</label> <select id="user_art"
 								name="user_art">
 								<option value="음악">음악</option>
 								<option value="미술">미술</option>
@@ -312,7 +432,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<!--15. 음악  -->
 					<div style="display: inline-block; width: 45%;">
 						<div id="musicwrap">
-							<label for="musiccategory">취미 및 여가:</label> <select
+							<label for="musiccategory">음악 취향:</label> <select
 								id="user_music" name="user_music">
 								<option value="클래식">클래식</option>
 								<option value="팝">팝</option>
@@ -359,13 +479,11 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 					<div id="btnwrap">
 						<button type="button" id="writeBtn"
 							style="width: 100px; height: 30px;">회원가입</button>
-						<!--   </div>
-             <div id="resetwrap"> -->
-						<button type="reset" id="resetBtn"
-							style="width: 100px; height: 30px;">취소</button>
+				    <button type="button" id="reset" style="width: 100px; height: 30px;" onclick="location.href='/BitcampTinder'">취소</button>
 					</div>
 				</div>
 			</form>
+			
 		</div>
 	</div>
 	<script type="text/javascript"
@@ -503,7 +621,7 @@ input[type="text"]:focus, input[type="mbti"]:focus, input[type="reli"]:focus,
 			
 			
 		});
-		
+	
 	</script>
 </body>
 </html>
